@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'idroid';
+    src: url('fontes/idroid.otf') format('opentype');
+}
+#inicio {
+    text-align: center;
+    color: white;
+    margin-top: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+#paragrafo{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: normal;
+    max-width: 500px;
+    margin: auto;
+}
+div#meuvideo{
+    background-color: rgb(2, 73, 2);
+    margin: 0px -20px 30px -20px;
+    padding: 20px;
+    padding-bottom: 58%;
+    position: relative;
+}
+
+div#meuvideo > iframe {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+
+}
+
+#ultimo{
+    background-color: rgb(147, 245, 196);
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 10px;
+    border-radius: 15px ;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.473);
+}
+
+
+#la{
+    text-align: center;
+}
+.penultimo{
+   border-bottom-left-radius: 10px;
+   border-bottom-right-radius: 10px;
+   background-color: white;
+   margin: auto;
+   min-width: 300px;
+   max-width: 1040px;
+   
+}
+.link{
+    margin-right: 10px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+.liverde{
+    color: green;
+}
+
+body{
+    background-color: rgb(93, 212, 157);
+    margin: 0px;
+       
+}
+header{
+    
+    margin-top: 0;
+    padding: 0px;
+    background-image: linear-gradient(to bottom, rgb(47, 172, 120) 35%, rgb(18, 94, 37) );
+    box-shadow: 2px 2px 10px rgb(71, 71, 71);
+}
+
+nav > a:hover{
+    background-color: rgb(41, 160, 71);
+    color: rgb(19, 87, 19);
+    border-radius: 5px;
+    transition-duration: 1s;
+}
+
+main{
+    
+    background-color: white;
+    margin: auto;
+    min-width: 300px;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+main img.pequena{
+    max-width: 350px;
+    display: block;
+    margin: auto;
+}
+main p{
+    text-align: justify;
+    margin: 15px 0px;
+    text-indent: 30px;
+}
+
+
+img{
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+h1{
+    font-family: 'idroid';
+    font-size: 25px;
+    margin-top: 0;
+    color: rgb(18, 94, 37) ;
+    text-align: center;
+}
+h2{
+    font-family: 'idroid';
+    color: rgb(18, 94, 37) ;
+    text-align: center;
+}
+h3{
+    color: white;
+    background-color: rgb(49, 131, 80);
+    margin: -10px;
+    border-radius: 10px 10px 0 0;
+    
+}
+aside p{
+    text-align: justify;
+    margin: 15px 0px;
+    text-indent: 30px;
+}
+   
+aside h3{
+    margin: -10px -10px 0 -10px;
+
+}
+
+aside ul{
+    list-style-position: inside;
+    columns: 2;
+    list-style: '\2714\00A0\00A0'; /*Nao compativel com todos os navegadores */
+}
+
+footer{
+    text-align: center;
+    background-color:rgb(12, 80, 21) ;
+    color: white;
+}

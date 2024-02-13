@@ -43,6 +43,7 @@ nav > a{
     padding-right: 10px;
     text-decoration: none;
     color: var(--cor05);
+    margin-left: 5px;
 }
 
 nav > a:hover{
@@ -85,9 +86,13 @@ aside p{
 footer{
     background-color: var(--cor02);
 }
+footer a {
+    margin-left: 10px;
+}
 
 p{
     text-indent: 10px;
     font-size: 1.1em;
     text-align: justify;
+    margin-left: 3px;
 }

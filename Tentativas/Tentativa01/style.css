@@ -13,9 +13,12 @@
 }
 
 .po{
-    max-width: 600px;
+    max-width: 500px;
 }
 
+.dacerto{
+    display: inline-block;
+}
 
 body{
     margin: 0px;
@@ -54,26 +57,25 @@ nav > a:hover{
 }
 
 main { 
-    columns: 2;
-    max-width: 1050px;
+    max-width: 1000px;
     margin: auto;
     background-color: white;
 }
 section{
     background-color: white;
     min-width: 400px;
-    max-width: 700px;
-    
+    max-width: 600px;
 }
 
-article{
-    margin: auto;
+section p{
+    max-width: 550px;
+    font-size: 1.2em;
 }
 
 aside{
     min-width: 300px;
-    max-width: 400px;
-    margin-left: 200px;
+    max-width: 350px;
+    margin-left: 100px;
     padding-top: 20px;
     
 }
@@ -81,6 +83,7 @@ aside{
 aside p{
     font-size: 1.3em;
     margin-right: 5px;
+    width: 300px;
 }
 
 footer{

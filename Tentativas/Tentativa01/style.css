@@ -13,6 +13,7 @@
 }
 
 .po{
+    width: 80vw;
     max-width: 500px;
 }
 
@@ -63,8 +64,8 @@ main {
 }
 section{
     background-color: white;
-    min-width: 400px;
-    max-width: 600px;
+    margin-right: 60px;
+    margin-left: 20px;
 }
 
 section p{
@@ -75,7 +76,7 @@ section p{
 aside{
     min-width: 300px;
     max-width: 350px;
-    margin-left: 100px;
+    margin-left: 20px;
     padding-top: 20px;
     
 }

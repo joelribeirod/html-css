@@ -1,9 +1,38 @@
 @charset "UTF-8";
 
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#caixa p{
+    max-width: 480px;
+    font-size: 19px;
+}
+
+div#video{
+    position: relative;
+}
+
+
+header{
+    background-color: darkred;
+    height: 70px;
+}
+
+nav a{
+    color: white;
+    font-size: 25px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
 img{
-    max-width: 500px;
+    max-width: 490px;
     display: inline-block;
 }
+
+
 
 section{
     display: inline-block;
@@ -14,6 +43,8 @@ article{
 }
 
 p{
-    max-width: 400px;
+    max-width: 907px;
     padding-top: 18px;
+    padding-left: 5px;
+    text-align: justify;
 }

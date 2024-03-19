@@ -3,17 +3,40 @@
 *{
     margin: 0;
     padding: 0;
+    
 }
 
-#caixa p{
+#caixa1 p{
     max-width: 480px;
     font-size: 19px;
 }
 
-div#video{
-    position: relative;
+#caixa2{
+    font-size: 18px;
+    margin-left: 5px; 
+    
 }
 
+#caixa3{
+    margin-left: 500px;
+    max-width: 490px;
+    display: inline-block;
+}
+
+div#video{
+    
+    display: inline-block;
+    width: 490px;
+}
+
+
+div#video > iframe{
+    position: absolute;
+} 
+
+body{
+    background-color: black;
+}
 
 header{
     background-color: darkred;
@@ -25,6 +48,12 @@ nav a{
     font-size: 25px;
     padding: 15px;
     margin-top: 10px;
+}
+
+main{
+    margin: auto;
+    max-width: 1040px;
+    background-color: white;
 }
 
 img{

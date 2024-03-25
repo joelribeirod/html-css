@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 *{
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     
 }
 
@@ -18,20 +18,30 @@
 }
 
 #caixa3{
-    margin-left: 500px;
     max-width: 490px;
     display: inline-block;
+    font-size: 1.2em;
+    letter-spacing: 1px; 
 }
 
 div#video{
-    
     display: inline-block;
     width: 490px;
+    height: 315px;
+    position: relative;
+    background-color: black;
 }
 
+.img{
+    width: 90vw;
+    max-width: 490px;
+}
 
 div#video > iframe{
     position: absolute;
+    top: 3%;
+    width: 95%;
+    height: 95%;
 } 
 
 body{

@@ -26,7 +26,11 @@
 }
 
 #img2{
-    margin: 0 25px 0 5px;
+    margin: 10px 21px 0 5px;
+}
+
+#img3{
+    margin: 10px 0 0 5px;
 }
 
 div#video{
@@ -50,6 +54,10 @@ div#video > iframe{
     height: 95%;
     margin-left:12px ;
 } 
+
+#pad{
+    vertical-align: top;
+}
 
 body{
     background-color: black;
@@ -90,6 +98,10 @@ section{
 
 article{
     max-width: 1200px;
+}
+
+article > div{
+    max-width: 90vw;
 }
 
 p{

@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Query</title>
     <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/media-query.css">
 </head>
-<body>
+<body onresize="mudouTamanho()">
     <header>
         <h1>Meu site</h1>
-        <menu>
+        <p id="burger" onclick="clickMenu()">A</p>
+        <menu id="itens">
             <ul>
                 <li><a href="#">Opção 1</a></li>
                 <li><a href="#">Opção 2</a></li>
@@ -29,5 +31,22 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad tempora voluptate ab assumenda eius. Eveniet debitis eligendi esse veritatis nisi doloremque est facere beatae, sequi suscipit tempore? Consequatur, soluta repudiandae? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste laudantium non atque, sint laborum temporibus recusandae excepturi corporis numquam officiis provident tempora voluptatem vel, eum illum voluptas earum? Quo, eveniet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, laboriosam neque amet adipisci cumque ducimus quia vero ipsam. Cupiditate voluptate repudiandae repellendus voluptatibus accusamus eveniet ratione at possimus perferendis illo?</p>
         </article>
     </main>
+    <script>
+        function mudouTamanho(){
+            if (window.innerWidth >= 768) {
+                itens.style.display = 'block'
+            } else {
+                itens.style.display = 'none'
+            }
+        }
+
+        function clickMenu(){
+            if (itens.style.display == 'block'){
+                itens.style.display = 'none'
+            } else{
+                itens.style.display = 'block'
+            }
+        }
+    </script>
 </body>
 </html>

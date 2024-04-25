@@ -2,6 +2,68 @@
 
 @media screen and (min-width:768px) {
     /*A ideia principal de deixar em 2 colunas não vai dar certo com o tamanho que temos, talvez de, na verdade, porem o conteudo ia ficar muito pequeno e não há garantias de que fique bom, então, podemos testar algo diferente, criar um outro layout para o modelo de tablet, e enfim deixar o layout final de colunas para PC/TV */
+
+    header > h1{
+        font-size: 2.3em;
+    }
+
+    #surgimento{
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    #surgimento > h2{
+        font-size: 2.1em;
+    }
+
+    #surgimento > p{
+        font-size: 1.5em;
+        margin: 20px;
+    }
+
+    #surgimento > span{
+        background-color: black;
+        width: 97.7vw;
+        height: 480px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #surgimento > span > img{
+        width: 740px;
+    } 
+
+    #funcionamento > p{
+        font-size: 1.5em;
+    }
+
+    #img > span > img{
+        width: 740px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #img{
+        padding: 0px;
+    }
+
+    #img > span{
+        background-color: black;
+        width: 97,8vw;
+        height: 480px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #img > p{
+        font-size: 1.5em;
+        margin: 0 20px 20px 20px;
+    }
 } 
 
 @media screen and (min-width: 992px) {

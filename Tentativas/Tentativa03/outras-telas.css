@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+@media screen and (min-width:768px) {
+    /*A ideia principal de deixar em 2 colunas não vai dar certo com o tamanho que temos, talvez de, na verdade, porem o conteudo ia ficar muito pequeno e não há garantias de que fique bom, então, podemos testar algo diferente, criar um outro layout para o modelo de tablet, e enfim deixar o layout final de colunas para PC/TV */
+} 
+
+@media screen and (min-width: 992px) {
+    
+}

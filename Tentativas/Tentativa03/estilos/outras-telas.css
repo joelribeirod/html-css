@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 @media screen and (min-width:768px) {
+
+    body{
+        overflow-x: hidden;
+    }
+
     header > h1{
         font-size: 2.3em;
     }
@@ -10,7 +15,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
     }
 
     #surgimento > h2{
@@ -24,7 +29,7 @@
 
     #surgimento > span{
         background-color: black;
-        width: 97.7vw;
+        width: 100vw;
         height: 480px;
         display: flex;
         justify-content: center;
@@ -51,7 +56,7 @@
 
     #img > span{
         background-color: black;
-        width: 97.8vw;
+        width: 100vw;
         height: 480px;
         display: flex;
         justify-content: center;
@@ -78,14 +83,6 @@
 
     }
 
-    #div1{
-       
-    }
-
-    #div2{
-        
-    }
-
     #surgimento > span{
         background-color: black;
         width: 500px;
@@ -95,7 +92,7 @@
     }
 
     #img > span{
-        border-radius: 2px;
+        border-radius: 2px 0 0px 2px;
     }
 
     #surgimento > span > img{

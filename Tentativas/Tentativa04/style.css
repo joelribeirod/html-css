@@ -1,0 +1,39 @@
+@charset "UTF-8";
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#calculadora{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#res{
+    width: 250px;
+    height: 35px;
+    border: solid black 1px;
+    margin: 3px;
+}
+
+#botoes{
+    display: flex;
+    flex-wrap: wrap;
+    width: 250px;
+    height: 150px;
+}
+
+.botao{
+    
+    flex-basis: 25%;
+}

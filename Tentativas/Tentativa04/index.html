@@ -5,27 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
     <div id="calculadora">
         <div id="res">resultado...</div>
         <section id="botoes">
-            <button class="botao" id="9">9</button>
-            <button class="botao" id="8">8</button>
-            <button class="botao" id="7">7</button>
-            <button class="botao" id="subtrair">-</button>
-            <button class="botao" id="6">6</button>
-            <button class="botao" id="5">5</button>
-            <button class="botao" id="4">4</button>
-            <button class="botao" id="adicionar">+</button>
-            <button class="botao" id="3">3</button>
-            <button class="botao" id="2">2</button>
-            <button class="botao" id="1">1</button>
-            <button class="botao" id="multiplicar">x</button>
-            <button class="botao" id="virgula">,</button>
-            <button class="botao" id="0">0</button>
-            <button class="botao" id="dividir">/</button>
-            <button class="botao" id="resultado">=</button>
+            <table>
+                <tr>
+                    <td><button class="botaoN" id="9" value="9">9</button></td>
+                    <td><button class="botaoN" id="8" value="8">8</button></td>
+                    <td><button class="botaoN" id="7" value="7">7</button></td>
+                    <td><button class="botao" id="apagar"><span class="material-symbols-outlined">arrow_back</span></button></td>
+                </tr>
+                <tr>
+                    <td><button class="botaoN" id="6" value="6">6</button></td>
+                    <td><button class="botaoN" id="5" value="5">5</button></td>
+                    <td><button class="botaoN" id="4" value="4">4</button></td>
+                    <td><button class="botao" id="subtrair" onclick="subtrair()">-</button></td>
+                </tr>
+                <tr>                   
+                    <td><button class="botaoN" id="3" value="3">3</button></td>
+                    <td><button class="botaoN" id="2" value="2">2</button></td>
+                    <td><button class="botaoN" id="1" value="1">1</button></td>
+                    <td><button class="botao" id="adicionar" onclick="adicionar()">+</button></td>
+                </tr>
+                <tr>
+
+                    <td><button class="botao" id="virgula">,</button></td>
+                    <td><button class="botaoN" id="0" value="0">0</button></td>
+                    
+                    <td><button class="botao" id="dividir" onclick="dividir()">/</button></td>
+                    <td><button class="botao" id="multiplicar" onclick="multiplicar()">x</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="botao" id="Limpar" onclick="limpar()">C</button></td>
+                    <td colspan="2"><button class="botao" id="resultado" onclick="calcular()">=</button></td>
+                </tr>
+                
+            </table>
         </section>
     </div>
     <script src="ambiente.js"></script>

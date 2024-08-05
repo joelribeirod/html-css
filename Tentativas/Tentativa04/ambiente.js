@@ -2,6 +2,7 @@ var res = document.getElementById('res')
 var nMaisA 
 var nMenosA
 var nMultiA
+var nDivA
 var restot = 0
 
 let mais = false
@@ -34,6 +35,12 @@ function subtrair(){
     if(multi == true){
         multi = false
         restot *= nMenosA
+        restot -= nMenosA
+    }
+
+    if(div == true){
+        div = false
+        restot /= nMenosA
         restot -= nMenosA
     }
     
@@ -70,6 +77,12 @@ function adicionar(){
         restot -= nMaisA
     }
 
+    if(div == true){
+        div = false
+        restot /= nMaisA
+        restot -= nMaisA
+    }
+
     restot += nMaisA 
     
     num = []
@@ -96,11 +109,15 @@ function multiplicar(){
     }else if(menos == true){
         menos = false
         restot -= nMultiA    
+    }else if(div == true){
+        div = false
+        restot /= nMultiA
+        restot /= nMultiA
     }
 
     if(restot==0){
         restot = 1
-    }
+    }//else if(restot<0 && nMultiA % 2 == 0){ } || tentar deixar o numero negativo multiplicado por um par em positivo
     restot *= nMultiA
     
     num = []
@@ -117,7 +134,35 @@ function multiplicar(){
 }
 
 function dividir(){
+    let n = document.getElementById('res')
+    let nDiv = n.textContent
+    nDivA = Number(nDiv)
+    
+    if(multi == true){
+        multi = false
+        restot *= nDivA 
+        
+    }
 
+    if(div == true){
+        div = false
+        restot /= nDivA
+    }else if(restot == 0){
+        restot = nDivA
+    }
+    
+
+    num = []
+    res.innerHTML = ""  
+    res.innerHTML += restot
+    res.innerHTML += "/"
+
+    if(div == false){
+        mais = false
+        menos = false
+        div = true
+        multi = false
+    }
 }
 
 function calcular(){
@@ -135,6 +180,15 @@ function calcular(){
     }else if(multi == true){
         multi = false
         restot *= Number(oi2)
+    }else if(div == true){
+        div = false
+        if(Number(oi2) == 0){
+            window.alert('Não pode dividir por zero')
+        }else{
+            restot /= Number(oi2)
+        }  
+    }else{
+        window.alert('Digita um valor neh')
     }
 
     num = []
@@ -149,11 +203,14 @@ function limpar(){
     nMaisA = null
     nMenosA = null
     nMultiA = null
+    nDivA = null
     num = []
     res.innerHTML += num
     restot = 0
 }
 
 function apagar(){
-    
+    //ideia para teste: na hora de apagar o ultimo valor, a função pode pegar o numero, transformar numa string, remover o ultimo numero e depois transformar denovo em um numero, isso em 2 ocasiões, 
+    //1: se não tiver como usar um metodo para apagar o ultimo digito de um numero
+    //2: tem que ver se existe um metodo para apagar o ultimo digito de uma string
 }

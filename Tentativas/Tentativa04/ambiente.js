@@ -153,3 +153,7 @@ function limpar(){
     res.innerHTML += num
     restot = 0
 }
+
+function apagar(){
+    
+}

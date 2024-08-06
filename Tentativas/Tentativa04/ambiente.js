@@ -3,12 +3,14 @@ var nMaisA
 var nMenosA
 var nMultiA
 var nDivA
+var nPontoA
 var restot = 0
 
 let mais = false
 let menos = false
 let div = false
 let multi = false
+let nPonto = false
 
 //analisa qual numero que foi escolhido
 var numeros 
@@ -19,11 +21,16 @@ for(var i = 0; i < clicou.length; i++){
         numeros = this.value;
         num.push(numeros)
         console.log(num);
-        
-        
+
         res.innerHTML = ""
-        res.innerHTML += num.join("")
+        /*if(nPonto == true){
+            nPonto = false
+            res.innerHTML += '.'
+        }*/
         
+        res.innerHTML += num.join("")
+
+
     }) ;
 }
 
@@ -48,7 +55,7 @@ function subtrair(){
         menos = false
         restot -= nMenosA
     }else{
-        restot += nMenosA
+        restot += nMenosA // aqui ta dando erro quando apaga o sinal e digita outro
     }
 
     if(menos == false){
@@ -77,13 +84,21 @@ function adicionar(){
         restot -= nMaisA
     }
 
+    if(menos == true){
+        menos = false
+        restot -= nMaisA
+        
+    }else{
+        restot += nMaisA 
+    }
+
     if(div == true){
         div = false
         restot /= nMaisA
         restot -= nMaisA
     }
 
-    restot += nMaisA 
+    
     
     num = []
     res.innerHTML = ""  
@@ -99,10 +114,12 @@ function adicionar(){
 }
 
 function multiplicar(){
+    //pega o primeiro numero que foi digitado
     let n = document.getElementById('res')
     let nMulti = n.textContent
     nMultiA = Number(nMulti)
 
+    //analisa qual operação deve ser feita
     if(mais == true){
         mais = false
         restot += nMultiA
@@ -115,16 +132,19 @@ function multiplicar(){
         restot /= nMultiA
     }
 
-    if(restot==0){
-        restot = 1
-    }//else if(restot<0 && nMultiA % 2 == 0){ } || tentar deixar o numero negativo multiplicado por um par em positivo
-    restot *= nMultiA
+    if(multi == true){
+        multi = false
+        restot *= nMultiA
+    }else if(restot == 0){
+        restot = nMultiA
+    }
     
+    //limpa a tela e os valores
     num = []
     res.innerHTML = ""  
     res.innerHTML += restot
     res.innerHTML += "x"
-
+    //sinaliza para a proxima função qual operação devera ser feita
     if(multi == false){
         mais = false
         menos = false
@@ -142,6 +162,12 @@ function dividir(){
         multi = false
         restot *= nDivA 
         
+    }else if(menos == true){
+        menos = false
+        restot -= nDivA
+    }else if(mais == true){
+        mais = false
+        restot += nDivA
     }
 
     if(div == true){
@@ -209,8 +235,39 @@ function limpar(){
     restot = 0
 }
 
+function ponto(){
+    let n = document.getElementById('res')
+    let nPonto = n.textContent
+    nPontoA = Number(nPonto)
+
+    nPonto = true
+    /*res.innerHTML = ""  
+    res.innerHTML += nPontoA
+    res.innerHTML += '.'*/
+    
+}
+
 function apagar(){
+    //Apaga o ultimo digito colocado
+    let n = document.getElementById('res').textContent
+    let novoN = n.slice(0,-1)
+    let nFinal = parseInt(novoN, 10)
+    if(mais == true){
+        mais = false
+    }else if(menos == true){
+        menos = false
+    }else if(multi == true){
+        multi = false
+    }else if(div == true){
+        div = false
+    }
+    
+    num.pop()
+    res.innerHTML = nFinal    
+
     //ideia para teste: na hora de apagar o ultimo valor, a função pode pegar o numero, transformar numa string, remover o ultimo numero e depois transformar denovo em um numero, isso em 2 ocasiões, 
     //1: se não tiver como usar um metodo para apagar o ultimo digito de um numero
     //2: tem que ver se existe um metodo para apagar o ultimo digito de uma string
+
+    //o metodo que usei foi o 2 mesmo, para o array só usei um outro metodo chamado pop, que apaga o ultimo digito
 }

@@ -59,6 +59,7 @@ function subtrair(){
         restot -= nMenosA
     }else if(apagou == true){
         apagou = false
+        restot = nMenosA
     }else{
         restot += nMenosA 
     }    
@@ -100,6 +101,7 @@ function adicionar(){
         
     }else if(apagou == true){
         apagou = false
+        restot = nMaisA
     }else{     
         restot += nMaisA 
     }
@@ -252,21 +254,30 @@ function limpar(){
     num = []
     res.innerHTML += num
     restot = 0
+
+    menos = false
+    div = false
+    mais = false
+    multi = false
 }
 
 function ponto(){
     let n = document.getElementById('res')
     let nPontos = n.textContent
     nPontoA = Number(nPontos)
-    nPonto = true
-
-    nPontoA += '.'
+    
+    if(nPonto == false){
+        nPontoA += '.'
+    }else{
+        window.alert('Não pode colocar dois pontos')
+    }
+    
     console.log(nPontoA)
     num = []
     //Ideia para testar depois: Criar uma variavel para pegar o valor que esta aqui, e depois continuar digitando outros valores depois da virgula
     res.innerHTML = ""  
     res.innerHTML += nPontoA
-    
+    nPonto = true
     
 }
 

@@ -248,6 +248,7 @@ function limpar(){
     nMenosA = null
     nMultiA = null
     nDivA = null
+    nPontoA = null
     num = []
     res.innerHTML += num
     restot = 0

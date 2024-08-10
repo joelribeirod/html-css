@@ -23,11 +23,8 @@ for(var i = 0; i < clicou.length; i++){
         console.log(num);
 
         res.innerHTML = ""
-        /*if(nPonto == true){
-            nPonto = false
-            res.innerHTML += '.'
-        }*/
         
+
         res.innerHTML += num.join("")
 
 
@@ -38,7 +35,7 @@ function subtrair(){
     let n = document.getElementById('res')
     let nMenos = n.textContent
     nMenosA = Number(nMenos)
-
+    nPonto = false
     if(multi == true){
         multi = false
         restot *= nMenosA
@@ -237,13 +234,14 @@ function limpar(){
 
 function ponto(){
     let n = document.getElementById('res')
-    let nPonto = n.textContent
-    nPontoA = Number(nPonto)
+    let nPontos = n.textContent
+    nPontoA = Number(nPontos)
 
     nPonto = true
-    /*res.innerHTML = ""  
+    //Ideia para testar depois: Criar uma variavel para pegar o valor que esta aqui, e depois continuar digitando outros valores depois da virgula
+    res.innerHTML = ""  
     res.innerHTML += nPontoA
-    res.innerHTML += '.'*/
+    res.innerHTML += '.'
     
 }
 

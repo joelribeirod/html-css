@@ -11,6 +11,7 @@ let menos = false
 let div = false
 let multi = false
 let nPonto = false
+let apagou = false
 
 //analisa qual numero que foi escolhido
 var numeros 
@@ -23,7 +24,9 @@ for(var i = 0; i < clicou.length; i++){
         console.log(num);
 
         res.innerHTML = ""
-        
+        if(nPonto == true){
+            res.innerHTML = nPontoA
+        }
 
         res.innerHTML += num.join("")
 
@@ -36,6 +39,9 @@ function subtrair(){
     let nMenos = n.textContent
     nMenosA = Number(nMenos)
     nPonto = false
+    if(nPonto == true){
+        nPonto = false
+    }
     if(multi == true){
         multi = false
         restot *= nMenosA
@@ -51,9 +57,13 @@ function subtrair(){
     if(menos == true){
         menos = false
         restot -= nMenosA
+    }else if(apagou == true){
+        apagou = false
     }else{
-        restot += nMenosA // aqui ta dando erro quando apaga o sinal e digita outro
-    }
+        restot += nMenosA 
+    }    
+        
+    
 
     if(menos == false){
         mais = false
@@ -75,6 +85,9 @@ function adicionar(){
     let nMais = n.textContent
     nMaisA = Number(nMais)
 
+    if(nPonto == true){
+        nPonto = false
+    }
     if(multi == true){
         multi = false
         restot *= nMaisA
@@ -85,7 +98,9 @@ function adicionar(){
         menos = false
         restot -= nMaisA
         
-    }else{
+    }else if(apagou == true){
+        apagou = false
+    }else{     
         restot += nMaisA 
     }
 
@@ -117,6 +132,9 @@ function multiplicar(){
     nMultiA = Number(nMulti)
 
     //analisa qual operação deve ser feita
+    if(nPonto == true){
+        nPonto = false
+    }
     if(mais == true){
         mais = false
         restot += nMultiA
@@ -155,6 +173,9 @@ function dividir(){
     let nDiv = n.textContent
     nDivA = Number(nDiv)
     
+    if(nPonto == true){
+        nPonto = false
+    }
     if(multi == true){
         multi = false
         restot *= nDivA 
@@ -236,20 +257,33 @@ function ponto(){
     let n = document.getElementById('res')
     let nPontos = n.textContent
     nPontoA = Number(nPontos)
-
     nPonto = true
+
+    nPontoA += '.'
+    console.log(nPontoA)
+    num = []
     //Ideia para testar depois: Criar uma variavel para pegar o valor que esta aqui, e depois continuar digitando outros valores depois da virgula
     res.innerHTML = ""  
     res.innerHTML += nPontoA
-    res.innerHTML += '.'
+    
     
 }
 
 function apagar(){
     //Apaga o ultimo digito colocado
     let n = document.getElementById('res').textContent
-    let novoN = n.slice(0,-1)
-    let nFinal = parseInt(novoN, 10)
+    if(n.includes('.')){
+        n = n.slice(0,-1)
+        if(n.endsWith('.')){
+            n = n.slice(0,-1)
+            nPontoA = n
+        }
+    }else{
+        n = n.slice(0,-1)
+    }
+
+    let nFinal = parseFloat(n)
+
     if(mais == true){
         mais = false
     }else if(menos == true){
@@ -262,7 +296,7 @@ function apagar(){
     
     num.pop()
     res.innerHTML = nFinal    
-
+    apagou = true
     //ideia para teste: na hora de apagar o ultimo valor, a função pode pegar o numero, transformar numa string, remover o ultimo numero e depois transformar denovo em um numero, isso em 2 ocasiões, 
     //1: se não tiver como usar um metodo para apagar o ultimo digito de um numero
     //2: tem que ver se existe um metodo para apagar o ultimo digito de uma string

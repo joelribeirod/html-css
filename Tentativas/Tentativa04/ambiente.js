@@ -278,6 +278,7 @@ function ponto(){
     res.innerHTML = ""  
     res.innerHTML += nPontoA
     nPonto = true
+    //corrigir problema onde, se apagar o ponto, se vc n fazer nenhuma operação, ele não deix colocar outro ponto
     
 }
 

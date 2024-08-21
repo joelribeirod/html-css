@@ -35,10 +35,12 @@ for(var i = 0; i < clicou.length; i++){
 }
 
 function subtrair(){
+    //pega o primeiro numero que foi digitado
     let n = document.getElementById('res')
     let nMenos = n.textContent
     nMenosA = Number(nMenos)
     nPonto = false
+    //analisa qual operação deve ser feita
     if(nPonto == true){
         nPonto = false
     }
@@ -63,9 +65,8 @@ function subtrair(){
     }else{
         restot += nMenosA 
     }    
-        
-    
-
+         
+    //sinaliza para a proxima função qual operação devera ser feita
     if(menos == false){
         mais = false
         menos = true
@@ -74,7 +75,7 @@ function subtrair(){
         
     }
 
-    
+    //limpa a tela e os valores
     num = []
     res.innerHTML = ""  
     res.innerHTML += restot
@@ -128,12 +129,10 @@ function adicionar(){
 }
 
 function multiplicar(){
-    //pega o primeiro numero que foi digitado
     let n = document.getElementById('res')
     let nMulti = n.textContent
     nMultiA = Number(nMulti)
 
-    //analisa qual operação deve ser feita
     if(nPonto == true){
         nPonto = false
     }
@@ -156,12 +155,11 @@ function multiplicar(){
         restot = nMultiA
     }
     
-    //limpa a tela e os valores
     num = []
     res.innerHTML = ""  
     res.innerHTML += restot
     res.innerHTML += "x"
-    //sinaliza para a proxima função qual operação devera ser feita
+    
     if(multi == false){
         mais = false
         menos = false

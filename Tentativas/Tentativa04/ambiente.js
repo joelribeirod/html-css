@@ -232,7 +232,7 @@ function calcular(){
             restot /= Number(oi2)
         }  
     }else{
-        window.alert('Digita um valor neh')
+        window.alert('Digite uma operação para calcular')
     }
 
     num = []

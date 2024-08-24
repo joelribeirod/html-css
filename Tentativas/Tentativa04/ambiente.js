@@ -38,8 +38,18 @@ function subtrair(){
     //pega o primeiro numero que foi digitado
     let n = document.getElementById('res')
     let nMenos = n.textContent
+    //Analisa se tem alguma operação pendente e apaga ela, substituindo para não ocorrer um erro
+    if(nMenos.endsWith('+') || nMenos.endsWith('x') || nMenos.endsWith('/') || nMenos.endsWith('-')){
+        nMenos = nMenos.slice(0,-1)
+        menos = true
+        div = false
+        mais = false
+        multi = false
+    }
     nMenosA = Number(nMenos)
     nPonto = false
+
+    
     //analisa qual operação deve ser feita
     if(nPonto == true){
         nPonto = false
@@ -48,17 +58,16 @@ function subtrair(){
         multi = false
         restot *= nMenosA
         restot -= nMenosA
-    }
-
-    if(div == true){
+    }else if(div == true){
         div = false
         restot /= nMenosA
         restot -= nMenosA
-    }
+    }  
     
     if(menos == true){
         menos = false
         restot -= nMenosA
+        restot += nMenosA
     }else if(apagou == true){
         apagou = false
         restot = nMenosA
@@ -85,6 +94,14 @@ function subtrair(){
 function adicionar(){
     let n = document.getElementById('res')
     let nMais = n.textContent
+    if(nMais.endsWith('+') || nMais.endsWith('x') || nMais.endsWith('/') || nMais.endsWith('-')){
+        nMais = nMais.slice(0,-1)
+        menos = false
+        div = false
+        mais = false
+        multi = false
+        apagou = true
+    }
     nMaisA = Number(nMais)
 
     if(nPonto == true){
@@ -94,27 +111,22 @@ function adicionar(){
         multi = false
         restot *= nMaisA
         restot -= nMaisA
-    }
-
-    if(menos == true){
+    }else if(menos == true){
         menos = false
         restot -= nMaisA
         
     }else if(apagou == true){
         apagou = false
         restot = nMaisA
-    }else{     
-        restot += nMaisA 
-    }
-
-    if(div == true){
+    }else if(div == true){
         div = false
         restot /= nMaisA
         restot -= nMaisA
     }
+    else{     
+        restot += nMaisA 
+    }
 
-    
-    
     num = []
     res.innerHTML = ""  
     res.innerHTML += restot
@@ -131,6 +143,13 @@ function adicionar(){
 function multiplicar(){
     let n = document.getElementById('res')
     let nMulti = n.textContent
+    if(nMulti.endsWith('+') || nMulti.endsWith('x') || nMulti.endsWith('/') || nMulti.endsWith('-')){
+        nMulti = nMulti.slice(0,-1)
+        menos = false
+        div = false
+        mais = false
+        multi = false
+    }
     nMultiA = Number(nMulti)
 
     if(nPonto == true){
@@ -171,6 +190,13 @@ function multiplicar(){
 function dividir(){
     let n = document.getElementById('res')
     let nDiv = n.textContent
+    if(nDiv.endsWith('+') || nDiv.endsWith('x') || nDiv.endsWith('/') || nDiv.endsWith('-')){
+        nDiv = nDiv.slice(0,-1)
+        menos = true
+        div = false
+        mais = false
+        multi = false
+    }
     nDivA = Number(nDiv)
     
     if(nPonto == true){
@@ -306,7 +332,11 @@ function apagar(){
     }
     
     num.pop()
-    res.innerHTML = nFinal    
+    if(isNaN(nFinal)){
+        res.innerHTML = 0
+    }else{
+        res.innerHTML = nFinal  
+    }
     apagou = true
     //ideia para teste: na hora de apagar o ultimo valor, a função pode pegar o numero, transformar numa string, remover o ultimo numero e depois transformar denovo em um numero, isso em 2 ocasiões, 
     //1: se não tiver como usar um metodo para apagar o ultimo digito de um numero

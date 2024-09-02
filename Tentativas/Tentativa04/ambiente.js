@@ -289,10 +289,14 @@ function ponto(){
     let n = document.getElementById('res')
     let nPontos = n.textContent
     nPontoA = Number(nPontos)
+    if(isNaN(nPontoA)){
+        nPontoA = 0
+    }
     
     if(nPonto == false){
         nPontoA += '.'
-    }else{
+    }
+    else{
         window.alert('Não pode colocar dois pontos')
     }
     

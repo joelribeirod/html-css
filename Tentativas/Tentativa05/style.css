@@ -1,0 +1,82 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root{
+    --azulEscuro:#212CDE;
+    --roxo:#9223DE;
+    --roxoClaro:#9E88D9;
+    --roxoSuperclaro:#E4E4FF;
+    --font1:"Bitter", serif;
+    --font2: "Open Sans", sans-serif;
+}
+
+html,body{
+    width: 100vw;
+    height: 100dvh;
+    font-family: var(--font2);
+}
+
+header{
+    display: flex;
+    height: 80px;
+    background-color: var(--azulEscuro);
+    color: rgba(255, 255, 255, 0.932);
+    font-size: 24px;
+    font-family: var(--font1);
+    justify-content: space-between;
+}
+
+#login{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.blogin{
+    background-color: var(--roxoSuperclaro);
+    color: black;
+    text-decoration: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+#textopromocional{
+    width: 70vw;
+    text-indent:3px;
+    text-align: justify;
+}
+
+nav{
+    background-color: var(--azulEscuro);
+    padding: 15px 0 5px 0;
+    font-size: 20px;
+    position: relative;
+    display: flex;
+    gap: 30px;
+}
+
+nav > a{
+    color: var(--roxoSuperclaro);
+    text-decoration: none;
+}
+
+nav > a:hover{
+    background-color: #7019fc;
+    box-shadow: 0px 0px 3px black;
+    border-radius: 30px;
+    transition: 0.2s ease-in;
+}
+
+
+/*O Site vai ser contruido com o mobile first, logo, as media queries podem ser direcionadas para telas maiores*/
+@media screen and (min-width: 768px) {
+    
+}

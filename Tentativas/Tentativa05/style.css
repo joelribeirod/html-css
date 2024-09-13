@@ -194,8 +194,15 @@ footer{
 
 @media screen and (max-width:768px) {
     /*Se ficar muito ruim em telas pequenas, fazer o css pra celular*/
+    html, body{
+        overflow-x: hidden;
+    }
     header{
-        height: 150px;
+        height: 200px;
+    }
+
+    #textopromocional{
+        font-size: 28px;
     }
 
     #caixa1{

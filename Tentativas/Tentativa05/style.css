@@ -33,7 +33,6 @@ header{
     font-size: 24px;
     font-family: var(--font1);
     justify-content: space-between;
-
     padding: 5px;
 }
 
@@ -63,7 +62,7 @@ header{
     width: 80vw;
     max-width: 1000px;
     text-indent:3px;
-    text-align: justify;
+    
     align-self: center;
     font-size: 30px;
     margin: 0px 10px 0 5px;
@@ -78,7 +77,7 @@ nav{
     position: relative;
     display: flex;
     gap: 30px;
-    box-shadow: 0px 2px 2px rgb(12, 5, 112);
+    box-shadow: 0px 4px 5px rgba(12, 5, 112, 0.459);
 }
 
 nav > a{
@@ -155,6 +154,7 @@ main{
     margin: 35px 20px 0px 30px;
     font-size: 28px;
     text-align: justify;
+    font-family: var(--font1);
 }
 
 #caixa2{
@@ -172,6 +172,11 @@ main{
     padding: 20px;
 }
 
+#avantage{
+    text-decoration: none;
+    color: var(--azulEscuro);
+}
+
 #produtos{
     background-color: var(--roxoClaro);
     border-radius: 80px;
@@ -183,18 +188,52 @@ main{
     font-size: 30px;
 }
 
-#produtos > a{
-    color: var();
-    text-decoration: none;
-}
-
 footer{
     background-color: var(--roxoSuperclaro);
 }
 
 @media screen and (max-width:768px) {
     /*Se ficar muito ruim em telas pequenas, fazer o css pra celular*/
+    header{
+        height: 150px;
+    }
+
+    #caixa1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #container-img{
+        width: 98vw;
+        max-width: 600px;
+        gap: 8px;
+    }
+
+    #carrosel_imagens{
+        width: 98vw;
+    }
+
+    #carrosel_imagens > img{
+        height: auto;
+        box-shadow: 0px 1px 3px rgb(21, 1, 114);
+    }
+
+    #descricao{
+        width: 90vw;
+    }
+
     #descricao{
         font-size: 23px;
+        margin: 20px;
+    }
+
+    #vantagens{
+        width: 94vw;
+        height: 370px;
+    }
+
+    #produtos{
+        width: 94vw;
     }
 }

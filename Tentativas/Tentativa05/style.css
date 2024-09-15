@@ -122,12 +122,12 @@ main{
 
 #carrosel_imagens > img{
     position: absolute;
-    width: 100%;
+    width: 98%;
     height: auto;
     border-radius: 60px;
     display: block;
     transition: 0.3s ease-in;
-    box-shadow: 0px 1px 8px rgb(21, 1, 114);
+    box-shadow: 0px 1px 5px rgb(21, 1, 114);
 }
 
 .imgs{
@@ -170,6 +170,7 @@ main{
     background-color: var(--roxoSuperclaro);
     border-radius: 60px;
     padding: 20px;
+    box-shadow: 1px 1px 5px rgba(13, 3, 100, 0.432);
 }
 
 #avantage{
@@ -186,6 +187,11 @@ main{
     height: auto;
     text-align: justify;
     font-size: 30px;
+    box-shadow: 1px 1px 5px rgba(13, 3, 100, 0.5);
+}
+
+.teste3{
+    justify-self: center;
 }
 
 footer{
@@ -198,7 +204,8 @@ footer{
         overflow-x: hidden;
     }
     header{
-        height: 200px;
+
+        height: auto;
     }
 
     #textopromocional{
@@ -237,7 +244,7 @@ footer{
 
     #vantagens{
         width: 94vw;
-        height: 370px;
+        height: auto;
     }
 
     #produtos{

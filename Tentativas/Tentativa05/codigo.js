@@ -3,6 +3,7 @@ const prev = document.getElementById('prev')
 const next = document.getElementById('next')
 
 let imgAtual = 0
+let intervalo
 
 function addicionar(){
     slider.forEach(item => item.classList.add('imgs'))//1;  o problema tava nessas 2 linhas
@@ -30,7 +31,7 @@ function prox(){
     
     
     remover()
-    console.log(slider)
+    iniciarIntervalo()
 }
 
 function anterior(){
@@ -41,7 +42,17 @@ function anterior(){
         imgAtual--
     }
     remover()
+    iniciarIntervalo()
 }
+
+function iniciarIntervalo() {
+    clearInterval(intervalo);
+
+    intervalo = setInterval(prox, 4000);
+}
+
+iniciarIntervalo()
+
 
 prev.addEventListener('click', anterior)
 next.addEventListener('click', prox)

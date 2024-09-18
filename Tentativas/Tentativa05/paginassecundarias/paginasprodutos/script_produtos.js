@@ -5,13 +5,9 @@
 
 const slider = document.querySelectorAll('.imgcarro')
 
+
 let intervalo
 let imgAtual = 0
-
-function carroCel(){
-    clearInterval(intervalo)
-    intervalo = setInterval(prox, 4000)
-}
 
 function addicionar(){
     slider.forEach(item => item.classList.add('off'))
@@ -30,12 +26,16 @@ function prox(){
     }
     remover()
 }
+
+function carroCel(){
+    clearInterval(intervalo)
+    intervalo = setInterval(prox, 2000)
+}
+
 function inicializar(){
-    if(window.innerWidth < 768){
-        carroCel()
-    }
+    carroCel()
 }
 
 inicializar()
 
-window.addEventListener('resize', carroCel)
+window.addEventListener('resize', inicializar)

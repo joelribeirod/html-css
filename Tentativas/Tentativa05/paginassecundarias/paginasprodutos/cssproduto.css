@@ -26,7 +26,7 @@ html,body{
 }
 
 header{
-    background-color: var(--azulEscuro);
+    background-image: linear-gradient(90deg, rgba(0, 0, 255, 0.308), rgb(138, 138, 250));
     height: 100px;
 }
 
@@ -46,7 +46,8 @@ header > a:hover{
 }
 
 nav{
-    background-color: var(--azulEscuro);
+   /*background-color: var(--azulEscuro);*/
+    background-image: linear-gradient(90deg, rgba(0, 0, 255, 0.308), rgb(138, 138, 250));
     position: relative;
     box-shadow: 0px 4px 5px rgba(12, 5, 112, 0.459);
     padding-bottom: 5px;
@@ -75,22 +76,163 @@ main{
 
 #caixa1{
     display: flex;
+    background-image: linear-gradient(135deg, rgba(89, 0, 255, 0.836), rgb(194, 180, 247));
+    gap: 80px;
+    padding: 10px 10px 30px 10px;
+    box-shadow: 0px 2px 2px rgba(11, 12, 88, 0.534);
 }
 
 #img{
-    width: 500px;
+    width: 50%;
 }
 
-img{
+#img > img{
+    box-shadow: 0px 1px 10px rgb(12, 68, 85);
     border-radius: 60px;
-    width: 500px; /*depois voltar esse valor para 100%*/
-    box-shadow: 0px 1px 5px rgb(21, 1, 114);
+    width: 100%;
 }
 
-img:hover{
-    box-shadow: 0px 1px 10px #5d7c13;
-    transition: 0.3s ease-in-out;
+#pagamento{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-color: white;
+    border-radius: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.397);
+    box-shadow: 0px 1px 10px rgb(24, 120, 150);
 }
+
+#preco{
+    padding: 10px;
+    margin: 0px 20px;
+    height: 40%;
+    font-size: 25px;
+}
+
+#tamanho{
+    height: 10%;
+    position: relative;
+    margin: 30px 30px;
+    font-size: 20px;
+}
+
+#opcoes{
+    border: none;
+    
+}
+
+input{
+    margin-right: 5px;
+}
+
+#modopgmt{
+    height: 20%;
+    font-size: 20px;
+    margin: 0px 30px;
+}
+
+#pagar{
+    height: 35%;
+    font-size: 35px;
+    margin: 30px;
+    align-self: center;
+    border-radius: 30px;
+    width: 70%;
+    text-align: center;
+    background-color: rgb(200, 203, 253);
+    text-decoration: none;
+    box-shadow: 0px 0px 7px rgb(43, 43, 184);
+}
+
+#pagar:hover{
+    box-shadow: 0px 1px 10px rgb(24, 120, 150);
+
+}
+
+#caixa2{
+    display: flex;
+    flex-direction: column;
+}
+
+#desc{
+    width: 70%;
+    margin: 30px 5px;
+    font-size: 18px;
+}
+
+#mais{
+    margin: 5px;
+    font-size: 25px;
+}
+
+#outros{
+    display: flex;
+    width: 910px;
+    height: 400px;  
+    padding: 10px;
+    position: relative;
+    border-radius: 15px;
+    background-color: rgb(197, 197, 255);
+    overflow: hidden;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#outros > img{
+    position: absolute;
+    width: 300px;
+    height: auto;
+    display: block;
+    transition: 0.3 ease-in-out;
+}
+
 footer{
     background-color: var(--roxoSuperclaro);
+}
+
+.off{
+    opacity: 0;
+}
+
+.off > a{
+    
+}
+
+@media screen and (max-width: 768px) {
+    #caixa1{
+        flex-direction: column;
+        background-image: linear-gradient(180deg, rgba(0, 0, 255, 0.438), rgb(7, 7, 19));
+        gap: 80px;
+    }
+    #img{
+        width: 100%;
+    }
+    #pagamento{
+        width: 100%;
+        border: 1px solid rgb(2, 24, 58);
+        box-shadow: 0px 1px 15px rgb(20, 166, 211);
+    }
+    #teste{
+        width: 100%;
+        height: 300px;
+    }
+    #outros{
+        width: 85%;
+        max-width: 500px;
+        max-height: 300px;
+        height: 100%;
+    }
+
+    #outros > a{
+        width: 85%;
+        
+    }
+
+    #outros > img{
+        border-radius: 40px;
+        width: 95%;
+        height: 95%;
+        transition: 0.3s ease-in-out;
+    }
 }

@@ -22,18 +22,27 @@
             <aside id="pagamento">
                 <div id="preco">
                     <s>R$1400</s>
-                    <p>R$1330</p>
+                    <p style="font-size: 35px;">R$1330</p>
                     <p>5% de desconto em sua primeira compra</p>
                 </div>
                 <div id="tamanho">
-                    35 12 42 34
+                    <p>Escolha o tamanho</p>
+                    <form action="" method="post">
+                        <fieldset id="opcoes">
+                            <input type="radio" name="tamanho" id="ipequeno" value="15"><label for="ipequeno">10</label>
+
+                            <input type="radio" name="tamanho" id="imedio" value="20"><label for="imedio">20</label>
+
+                            <input type="radio" name="tamanho" id="ig" value="30"><label for="ig">30</label>
+
+                            <input type="radio" name="tamanho" id="igg" value="40"><label for="igg">40</label>
+                        </fieldset>
+                    </form>
                 </div>
                 <div id="modopgmt">
                     pix boleto cartao
                 </div>
-                <div id="pagar">
-                    <p>Pagar</p>
-                </div>
+                <a href="" id="pagar">Pagar</a>
             </aside>
         </section>
         <section id="caixa2">
@@ -42,18 +51,23 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ut temporibus, dolores laborum reiciendis vitae odit dolor neque libero cum necessitatibus consectetur beatae iusto? Cupiditate repellendus omnis iusto maxime explicabo.
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis vero repellendus dolor, corporis tenetur qui voluptates assumenda, totam labore nobis error enim incidunt dolorum alias eligendi unde? Necessitatibus, officiis ducimus!
             </aside>
-            <aside id="outros">
-                <!--Outro carrossel, ;) bora que bora-->
-                <img src="../../imagens/NeutralA0005.jpg" alt="">
-                <img src="../../imagens/NeutralA0006.jpg" alt="">
-                <img src="../../imagens/NeutralA0016.jpg" alt="">
-                <img src="../../imagens/Resources0014.jpg" alt="">
-                <img src="../../imagens/Resources0019.jpg" alt="">
+            <p id="mais">Veja outros produtos</p>
+            <aside id="teste">
+                <aside id="outros">
+                    <!--Outro carrossel, ;) bora que bora-->
+                    <!--tentar colocar links nas imagens pq ta fd-->
+                    <img src="../../imagens/NeutralA0005.jpg" alt="" class="imgcarro">
+                    <img src="../../imagens/NeutralA0006.jpg" alt="" class="off imgcarro">
+                    <img src="../../imagens/NeutralA0016.jpg" alt="" class="off imgcarro">
+                    <img src="../../imagens/Resources0014.jpg" alt="" class="off imgcarro">
+                    <img src="../../imagens/Resources0019.jpg" alt="" class="off imgcarro">
+                </aside>
             </aside>
         </section>
     </main>
     <footer>
         <a href="">Criado por Moso</a>
     </footer>
+    <script src="script_produtos.js"></script>
 </body>
 </html>

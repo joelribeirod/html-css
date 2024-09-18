@@ -1,4 +1,4 @@
-const slider = document.querySelectorAll('.on')
+const slider = document.querySelectorAll('.imgcarro')
 const prev = document.getElementById('prev')
 const next = document.getElementById('next')
 
@@ -22,7 +22,6 @@ function remover(){
 //agora a logica esta em; mostrar uma imagem em especifico
 function prox(){
     addicionar()
-    let teste
     if(imgAtual === slider.length -1){
         imgAtual = 0
     }else{

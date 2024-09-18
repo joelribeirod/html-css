@@ -1,4 +1,4 @@
-const slider = document.querySelectorAll('.imgcarro')
+const slider = document.querySelectorAll('.on')
 const prev = document.getElementById('prev')
 const next = document.getElementById('next')
 

@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/*body{
+    display: flex;
+    overflow: hidden;
+    width: 900px;
+    border: 1px solid black;
+    position: absolute;
+}*/
+.carrosel-img {
+    display: flex;
+    width: 900px;
+    height: 200px;
+    overflow: hidden;
+    margin: auto;
+}
+  
+.carrosel {
+    display: flex;
+    width: 33.33%;
+    transform: translateX(0px);
+    transition: 0.5s ease-in-out;
+}
+  
+.carrosel-item {
+    min-width: 33.33%;
+    transition: opacity 0.5s ease;
+}
+

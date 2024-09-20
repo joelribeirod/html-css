@@ -164,60 +164,45 @@ input{
     margin: 5px;
     font-size: 25px;
 }
-
-#teste{
-    width: 50%;
-    align-self: center;
-}
-
-#teste2{
-    display: block;
-    margin: auto;
-    width: 100%;
-    height: 350px;
-}
-
-#outros{
+/*carrossel*/
+.carrosel-img {
     display: flex;
-    gap: 6px;
-    width: 100%;
-    height: 320px;  
-    padding: 10px;
-    position: relative;
-    border-radius: 15px;
-    background-color: rgb(197, 197, 255);
-    overflow: hidden;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-}
-
-#outros > img{
-    padding: 10px;
+    min-width: 800px;
     width: 90%;
-    min-width: 350px;
+    max-width: 900px;
     height: auto;
-    min-height: 230px;
-    max-height: 310px;
-    display: block;
-    position: absolute;
-    border-radius: 20px;
-    transition:  0.5s ease-in-out;
+    overflow: hidden;
+    align-self: center;
+    background-color: var(--roxoClaro);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.281);
+    box-shadow: 0px 0px 10px var(--roxo);
 }
 
+.carrosel{
+    display: flex;
+    width: 33.33%;
+    transform: translateX(0px);
+    transition: 0.5s ease-in-out;
+}
+
+.carrosel-item{
+    min-width: 33.33%;
+    margin: 3px;
+    border-radius: 10px;
+    transition: opacity 0.5s ease;
+}
+
+/*carrossel*/
 footer{
     background-color: var(--roxoSuperclaro);
-}
-
-.off{
-    opacity: 0;
 }
 
 @media screen and (max-width: 768px) {
     #caixa1{
         flex-direction: column;
         background-image: linear-gradient(180deg, rgba(0, 0, 255, 0.438), rgb(7, 7, 19));
-        gap: 80px;
+        gap: 60px;
     }
     #img{
         width: 100%;
@@ -227,29 +212,30 @@ footer{
         border: 1px solid rgb(2, 24, 58);
         box-shadow: 0px 1px 15px rgb(20, 166, 211);
     }
-    #teste{
+    
+    .carrosel-img{
         display: flex;
-        width: 100%;
-        height: 300px;
-    }
-    #teste2{
-        width: 480px;
-        height: 300px;
-    }
-    #outros{
-        width: 85%;
-        min-width: 300px;
-        max-width: 500px;
-        max-height: 270px;
-        border-radius: 40px;
-        height: 100%;
+        align-self: center;
+        height: auto;
+        background-color: var(--roxoClaro);
+        min-width: 200px;
+        width: 60%;
+        max-width: 700px;
+        padding: 5px 5px 10px 5px;
+        border-radius: 10px;
     }
 
-    #outros > img{
-        position: absolute;
-        border-radius: 35px;
-        width: 97%;
-        height: 95%;
-        transition: 0.3s ease-in-out;
+    .carrosel{
+        width: 100%;
+    }
+
+    .carrosel-item{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+
+    .off{
+        display: none;
     }
 }

@@ -6,12 +6,27 @@
     border: 1px solid black;
     position: absolute;
 }*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+}
+
 .carrosel-img {
     display: flex;
     width: 900px;
     height: 200px;
     overflow: hidden;
-    margin: auto;
+    margin-top: 10px;
+    
 }
   
 .carrosel {

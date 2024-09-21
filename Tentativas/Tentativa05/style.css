@@ -52,10 +52,13 @@ header{
     width: 100px;
     height: 30px;
     border-radius: 15px;
+    transition: all 0.5s ease-in-out;
+    border: 1px solid rgba(0, 0, 0, 0.76);
+    box-shadow: 0px 0px 5px rgb(56, 56, 252);
 }
 .blogin:hover{
     background-color: white;
-    transition: 0.5s;
+    box-shadow: 0px 0px 10px rgb(0, 0, 161);
 }
 
 #textopromocional{
@@ -83,13 +86,14 @@ nav{
 nav > a{
     color: var(--roxoSuperclaro);
     text-decoration: none;
+    transition: all 0.2s ease-in;
 }
 
 nav > a:hover{
-    background-color: #7019fc;
+    background-color: rgb(101, 30, 182);
     box-shadow: 0px 0px 3px black;
     border-radius: 30px;
-    transition: 0.2s ease-in;
+    
 }
 
 main{
@@ -115,7 +119,7 @@ main{
     overflow: hidden;
     width: 500px;
     height: 400px;
-    transition: transform 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     transform: translateX(0);
     
 }
@@ -126,7 +130,8 @@ main{
     height: auto;
     border-radius: 60px;
     display: block;
-    transition: 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    border: 1px solid black;
     box-shadow: 0px 1px 5px rgb(21, 1, 114);
 }
 
@@ -138,10 +143,16 @@ main{
 #prev, #next{
     width: 40px;
     height: 40px;
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.493);
     background-color: rgba(17, 0, 250, 0.158);
     cursor: pointer;
+    transition: all 0.5s ease-in-out;
 }
+
+#prev:hover , #next:hover{
+    background-color: rgba(17, 0, 250, 0.514);
+}
+
 /*CSS para as imagens*/
 
 #caixa1{
@@ -170,12 +181,17 @@ main{
     background-color: var(--roxoSuperclaro);
     border-radius: 60px;
     padding: 20px;
-    box-shadow: 1px 1px 5px rgba(13, 3, 100, 0.432);
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    box-shadow: 0px 1px 5px rgba(13, 3, 100, 0.521);
 }
 
 #avantage{
     text-decoration: none;
     color: var(--azulEscuro);
+}
+
+#avantage:hover{
+    color: #020664;
 }
 
 #produtos{
@@ -187,7 +203,14 @@ main{
     height: auto;
     text-align: justify;
     font-size: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.363);
     box-shadow: 1px 1px 5px rgba(13, 3, 100, 0.5);
+    transition: all 0.2s ease-in-out;
+}
+
+#produtos:hover{
+    transform: scale(1.01);
+    box-shadow: 0px 0px 10px rgb(117, 13, 185);
 }
 
 .teste3{
@@ -195,6 +218,7 @@ main{
 }
 
 footer{
+    border: 1px solid rgba(0, 0, 0, 0.274);
     background-color: var(--roxoSuperclaro);
 }
 

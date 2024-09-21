@@ -65,7 +65,7 @@ function proxPc(){
 function carroPc(){
     //limpa os intervalos para n ocorrer de uma função ser executada varias vezes ao mesmo tempo
     clearInterval(outrointervalo)
-    outrointervalo = setInterval(proxPc, 2000)
+    outrointervalo = setInterval(proxPc, 3000)
     clearInterval(intervalo)
 }
 //fimPc

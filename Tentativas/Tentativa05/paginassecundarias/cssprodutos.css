@@ -35,6 +35,7 @@ header > a{
     color: white;
     font-size: 30px;
     margin-left: 5px;
+    transition: all 0.3s ease-in-out;
 }
 
 header > a:hover{
@@ -42,7 +43,7 @@ header > a:hover{
     border-radius: 25px;
     color: black;
     box-shadow: 0px 1px 15px rgba(8, 12, 66, 0.89);
-    transition: 0.3s ease-in-out;
+    
 }
 
 nav{
@@ -57,13 +58,14 @@ nav > a{
     text-decoration: none;
     font-size: 19px;
     margin: 0px 20px 0px 5px;
+    transition: all 0.2s ease-in-out;
 }
 
 nav > a:hover{
-    background-color: var(--roxo);
+    background-color: rgb(101, 30, 182);
     border-radius: 25px;
     box-shadow: 0px 1px 15px rgba(8, 12, 66, 0.89);
-    transition: 0.2s ease-in-out;
+    
 }
 
 main{
@@ -107,12 +109,14 @@ main{
 img{
     border-radius: 60px;
     width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.705);
     box-shadow: 0px 1px 5px rgb(21, 1, 114);
+    transition: all 0.3s ease-in-out; 
 }
 
 img:hover{
     box-shadow: 0px 1px 25px rgb(25, 1, 134);
-    transition: 0.3s ease-in-out;
+    transform: scale(1.02);
 }
 
 #contato{
@@ -130,7 +134,16 @@ img:hover{
     padding: 10px;
     font-size: 30px;
     border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
     background-color: var(--roxoClaro);
+    box-shadow: 0px 0px 4px rgb(101, 30, 182);
+    transition: all 0.3s ease-in;
+}
+
+#why:hover{
+    
+    color: rgb(0, 19, 114);
+    transform: scale(1.01);
 }
 
 footer{

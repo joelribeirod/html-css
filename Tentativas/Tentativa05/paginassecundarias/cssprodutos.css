@@ -141,7 +141,7 @@ img:hover{
 }
 
 #why:hover{
-    
+    box-shadow: 0px 0px 7px rgb(101, 30, 182);
     color: rgb(0, 19, 114);
     transform: scale(1.01);
 }

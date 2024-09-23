@@ -35,7 +35,13 @@ html,body{
 }
 
 header{
-    height: 80px;
+    display: flex;
+    justify-content: right;
+    margin: auto;
+    max-width: 1200px;
+    height: 50px;
+    flex-direction: row-reverse;
+    gap: 50%;
 }
 
 header > a{
@@ -44,6 +50,12 @@ header > a{
     font-size: 30px;
     margin-left: 5px;
     transition: all 0.3s ease-in-out;
+    height: 50px;
+}
+
+.material-symbols-outlined{
+    position: relative;
+    font-size: 50px;
 }
 
 header > a:hover{
@@ -56,24 +68,24 @@ header > a:hover{
 
 nav{
     /*background-color: var(--azulEscuro);*/
-    
+    margin: auto;
+    width: 70%;
     position: relative;
-    
     padding-bottom: 5px;
-
+    transform: translateY(-48px);
 }
  
 nav > a{
     color: white;
     text-decoration: none;
-    font-size: 19px;
+    font-size: 25px;
     margin: 0px 20px 0px 5px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
  
 nav > a:hover{
-    background-color: rgb(101, 30, 182);
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: black;
     border-radius: 25px;
     box-shadow: 0px 1px 15px rgba(8, 12, 66, 0.89);
      
@@ -111,14 +123,15 @@ p{
 }
 
 #caixa2{
-    margin: 20px 20px 0px 20px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     color: white;
+    align-items: center;
 }
 
 #caixa2 > h2{
-    margin: 5px 0px 10px 0px;
+    margin-top: 30px;
 }
 
 #github{
@@ -129,7 +142,12 @@ p{
 
 @media screen and (max-width:768px) {
     header{
-        height: 120px;
+        height: 60px;
+    }
+
+    nav{
+        margin: 0px;
+        width: 250px;
     }
 
     #caixa1{

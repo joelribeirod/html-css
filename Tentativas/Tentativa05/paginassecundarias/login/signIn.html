@@ -43,13 +43,12 @@
             </form>
         </div>
     </main>
-    <!-- <script>
-        function carregou(){
-            const form = document.getElementById('form')
-            form.style.transform = `translateX(${0}px)`
-        }
-        window.addEventListener('load', carregou)
-        testar depois, tentar criar um efeito de rolagem later direto para o meio com animação
-        </script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const div = document.getElementById('form')
+            div.classList.add('mover')
+        })
+        //testar depois, tentar criar um efeito de rolagem later direto para o meio com animação
+    </script>
 </body>
 </html>

@@ -17,10 +17,16 @@
     --font2: "Open Sans", sans-serif;
 }
 
+html{
+    background-color: black;
+}
+
 html,body{
     width: 100dvw;
     scrollbar-width: none;
     height: 100dvh;
     font-family: var(--font2);
-    background-image: linear-gradient(180deg, rgba(0, 0, 255, 0.308), rgb(76, 29, 119), black);
+    /*background-image: linear-gradient(180deg, rgba(0, 0, 255, 0.308), rgb(76, 29, 119), black);*/
+    background-image: linear-gradient(180deg, rgba(89, 89, 245, 0.63), rgb(76, 29, 119), black);
+    transition: all 0.3s ease-in-out;
 }

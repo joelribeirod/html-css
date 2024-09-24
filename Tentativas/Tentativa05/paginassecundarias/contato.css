@@ -27,11 +27,15 @@ a:hover{
     color: rgb(130, 11, 141);
 }
 
+html{
+    background-color: black;
+}
+
 html,body{
     width: 100dvw;
     scrollbar-width: none;
     font-family: var(--font2);
-    background-image: linear-gradient(180deg, rgba(0, 0, 255, 0.308), rgb(76, 29, 119), black);
+    background-image: linear-gradient(180deg, #7a73ff, rgb(76, 29, 119), black);
 }
 
 header{

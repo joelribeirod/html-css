@@ -17,6 +17,10 @@
     --font2: "Open Sans", sans-serif;
 }
 
+html{
+    background-color: black;
+}
+
 html,body{
     width: 100dvw;
     scrollbar-width: none;

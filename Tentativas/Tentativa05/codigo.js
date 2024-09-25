@@ -47,7 +47,7 @@ function anterior(){
 function iniciarIntervalo() {
     clearInterval(intervalo);
 
-    intervalo = setInterval(prox, 6000);
+    intervalo = setInterval(prox, 5000);
 }
 
 iniciarIntervalo()

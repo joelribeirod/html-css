@@ -29,6 +29,7 @@ a:hover{
 
 html{
     background-color: black;
+    
 }
 
 html,body{
@@ -37,6 +38,8 @@ html,body{
     font-family: var(--font2);
     background-image: linear-gradient(185deg, #7a73ff, rgb(76, 29, 119), black);
 }
+
+
 
 header{
     display: flex;
@@ -99,6 +102,8 @@ main{
     margin: auto;
     max-width: 1200px;
     text-indent: 5px;
+    overflow: hidden;
+    /*aviso: esse overflow hidden, é necessario pois, o keyframe, com valor de translateX 1500, causava um bug, que gerava um main gigantesco para baixo, ou seja, ficava meio que repetindo o main, mesmo sem conteudo*/
 }
 
 #caixa1{

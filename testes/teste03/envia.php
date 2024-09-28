@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-    $conexao = mysqli_connect("localhost", "root", "#Joel2210", "teste");
+    $conexao = mysqli_connect("localhost", "root", "", "teste");
     if(!$conexao){
         echo"Não conectado";
     }

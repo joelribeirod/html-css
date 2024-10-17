@@ -10,23 +10,33 @@
 </head>
 <body>
     <div id="config-tot" style="display: none;">
-            <p>
-                Escreva o resumo do FlashCard<input type="text">
-            </p>
-            <p>
-                Escreva a descricao do FlashCard<input type="text">
-            </p>
-            <button>Adicionar</button>
-        </div>
+            <div id="add-flash">
+                <p>
+                    Escreva o resumo do FlashCard       
+                </p>
+                <textarea id="resumoFlash" rows="2"></textarea>
+
+                <p>
+                    Escreva a descricao do FlashCard 
+                </p>
+                
+                <textarea id="descricaoFlash" rows="10"></textarea>
+
+                <button id="enviarFlash">Adicionar</button>
+            </div>
+            
+    </div>
     <div id="central">
-        
         <div id="itens" >
-            <span class="material-symbols-outlined" id="adicionar" onclick="mostrar()">add</span>
+            
+            <span class="material-symbols-outlined" id="adicionar">add</span>
         </div>
-        o codigo de adicionar vai ser tipo isso
-        <div class="card">
-            <div class="config-card">
-                <p class="resumo">resumo</p>
+        <!-- o codigo de adicionar vai ser tipo isso -->
+        <!-- <div class="card">
+            <div class="configCard">
+                <p class="resumo">
+                    <span class="material-symbols-outlined"> arrow_drop_down
+                    </span>resumo</p>
                 <div class="config">
                     <span class="material-symbols-outlined">
                         settings
@@ -39,8 +49,8 @@
             <div class="total">
                 descricao
             </div>
-        </div>
-        
+        </div> 
+         -->
     </div>
 
     <script src="ambiente.js"></script>

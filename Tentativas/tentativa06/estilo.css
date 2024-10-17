@@ -12,27 +12,77 @@ body{
     justify-content: center;
     height: 100dvh;
     width: 100%;
-    
+    background-color: rgb(241, 241, 241);
+}
+
+span{
+    margin: 3px 1px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+span:hover{
+    transform: scale(1.3);
 }
 
 #central{
     display: flex;
     flex-direction: column;
     background-color: black;
-    color: white;
+    color: #F6F7F8;
     width: 400px;
     max-height: 600px;
     
 }
 
 #config-tot{
+    display: flex;
     position: absolute;
     justify-self: center;
     align-self: center;
-    width: 300px;
-    height: 200px;
-    background-color: rgb(95, 95, 231);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.486);
     opacity: 1;
+}
+
+#add-flash{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 350px;
+    min-height: 200px;
+    height: auto;
+    background-color: rgb(108, 108, 245);
+    color: white;
+}
+
+#add-flash > p{
+    margin: 5px;
+    font-size: 20px;
+}
+
+#resumoFlash{
+    align-self: center;
+    width: 95%;
+    font-size: 25px;
+    resize: none;
+    
+}
+
+#descricaoFlash{
+    align-self: center;
+    width: 95%;
+    font-size: 25px;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+#enviarFlash{
+    margin: 8px;
+    height: 30px;
 }
 
 #itens{
@@ -44,26 +94,27 @@ body{
 
 #adicionar{
     margin: 3px 5px;
-    
     transition: all 0.3s ease-in-out;
-}
-
-#adicionar:hover{
-    cursor: pointer;
-    transform: scale(1.3);
 }
 
 .card{
     align-self: center;
     width: 95%;
     background-color: green;
+    margin: 10px;
 }
 
-.config-card{
+.configCard{
     display: flex;
     justify-content: space-between;
 }
 
 .resumo{
+    overflow-wrap: break-word;
+    font-size: 25px;
     width: 80%;
+}
+
+.total{
+    font-size: 20px;
 }

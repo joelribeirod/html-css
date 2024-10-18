@@ -9,22 +9,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
 <body>
+    <p style="color: white;">Aviso: caso feche o site, a anotações não serão salvas</p>
+
+    <div id="bg-edit" style="display: none;">
+        <div id="edit">
+            <p>Qual é o novo resumo?</p>
+            <textarea id="editResumo"></textarea>
+
+            <p>Qual é a nova descrição?</p>
+            <textarea id="editDesc"></textarea>
+
+            <button id="cancel" value="1">Cancelar</button>
+            <button id="enviarEdit" value="2">Editar</button>
+        </div>
+    </div>
+
+    <div id="bg-confirm" style="display: none;">
+        <div id="confirm">
+            <p>Tem certeza que deseja apagar o Card?</p>
+            <button id="sim" value="1">Sim</button>
+            <button id="nao" value="2">Não</button>
+        </div>
+    </div>
+
     <div id="config-tot" style="display: none;">
             <div id="add-flash">
-                <p>
-                    Escreva o resumo do FlashCard       
-                </p>
+                <p>Escreva o resumo do FlashCard</p>
                 <textarea id="resumoFlash" rows="2"></textarea>
 
-                <p>
-                    Escreva a descricao do FlashCard 
-                </p>
-                
+                <p>Escreva a descricao do FlashCard</p>
                 <textarea id="descricaoFlash" rows="10"></textarea>
 
                 <button id="enviarFlash">Adicionar</button>
-            </div>
-            
+            </div> 
     </div>
     <div id="central">
         <div id="itens" >
@@ -33,23 +50,23 @@
         </div>
         <!-- o codigo de adicionar vai ser tipo isso -->
         <!-- <div class="card">
-            <div class="configCard">
-                <p class="resumo">
-                    <span class="material-symbols-outlined"> arrow_drop_down
-                    </span>resumo</p>
-                <div class="config">
-                    <span class="material-symbols-outlined">
-                        settings
-                    </span>
-                    <span class="material-symbols-outlined">
-                        delete
-                    </span>
+                <div class="configCard">
+                    <p class="resumo">
+                        <span class="material-symbols-outlined"> arrow_drop_down
+                        </span>resumo</p>
+                    <div class="config">
+                        <span class="material-symbols-outlined">
+                            settings
+                        </span>
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="total">
-                descricao
-            </div>
-        </div> 
+                <div class="total">
+                    descricao
+                </div>
+            </div> 
          -->
     </div>
 

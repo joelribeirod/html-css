@@ -44,6 +44,13 @@ span{
     margin-top: 4px;
     border: 1px solid rgb(0, 95, 16);
     box-shadow: 0px 0px 15px rgb(202, 132, 248);
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+#central::-webkit-scrollbar{
+    width: 0;
+    height: 0;
 }
 
 #config-tot{
@@ -267,6 +274,7 @@ span{
 
 .config{
     display: flex;
+    flex-direction: row;
     gap: 8px;
 }
 
@@ -281,6 +289,13 @@ span{
     font-weight: 500;
     width: 80%;
     max-height: 150px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+/*Esconde a barra de rolagem*/
+.resumo::-webkit-scrollbar{
+    width: 0;
+    height: 0;
 }
 
 .total{
@@ -303,10 +318,6 @@ span{
 
     .configCard{
         overflow: hidden;
-    }
-
-    .spanconfig{
-        transform: rotate(90deg);
     }
 
     .setinha{

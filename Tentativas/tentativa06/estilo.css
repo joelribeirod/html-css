@@ -71,6 +71,7 @@ span{
     color: white;
     border: 1px solid rgba(136, 93, 255, 0.5);
     box-shadow: 0px 0px 120px rgba(136, 93, 255, 0.5);
+    border-radius: 12px;
 }
 
 #add-flash > p{
@@ -125,6 +126,7 @@ span{
     color: white;
     border: 1px solid rgba(136, 93, 255, 0.5);
     box-shadow: 0px 0px 120px rgba(136, 93, 255, 0.5);
+    border-radius: 12px;
 }
 
 #edit > p{
@@ -226,6 +228,7 @@ span{
 #descricaoFlash{
     align-self: center;
     width: 95%;
+    height: 320px;
     font-size: 25px;
     resize: none;
     margin-bottom: 20px;

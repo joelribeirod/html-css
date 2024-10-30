@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bah</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            color: white;
+            height: 100vh;
+        }
+        div{
+            display: flex;
+            flex-direction: column;
+            
+        }
+        div > p, input, button{
+            width: 250px;
+            height: 30px;
+            margin: 2px;
+        }
+
+        div > input{
+            font-size: 20px;
+            height: 40px;
+        }
+    </style>
+    <script src="ambiente.js" defer></script>
+</head>
+<body>
+    <div>
+        <p>TESTE DE CALCULO</p>
+        <input type="number" id="num">
+        <button id="addNUM">adicionar</button>
+        <button id="reset">RESETAR</button>
+        <button id="calc" type="submit">calcular</button>
+    </div>
+</body>
+</html>

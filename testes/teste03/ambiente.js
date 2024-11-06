@@ -29,18 +29,22 @@ calc.addEventListener('click', () => {
     for (const cont of numeros) {
         Xbah += Number(cont)
     }
-
+    console.log(Xbah)
     Xbah /= numeros.length
+    console.log(Xbah)
 
     for (const cont of numeros) {
-        tot += (cont - Xbah)**2
+        let teste = (cont - Xbah)**2
+        console.log(teste)
+        tot += teste
     }
-
+    console.log(`o total é ${tot}`)
     s = tot/numeros.length
 
     if(s == 0){
         window.alert('Digite mais de um valor')
     }else{
+        console.log(`S^2 é igual a: ${s}`)
         window.alert(`S^2 é igual a: ${s}`)
     }    
     Xbah = 0

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: #b7bbfc;
+}
+
+nav a{
+    margin: 0px 0px 8px 2px;
+    text-decoration: none;
+    color: blue;
+}
+
+#texto{
+    width: 90%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 28px;
+}
+
+#texto h1{
+    color: rgb(255, 208, 0);
+    text-shadow: 0px 1px 1px black;
+    font-family: "Poppins", serif;
+}
+
+#texto p{
+    font-weight: bold;
+    color: rgb(0, 24, 236);
+    margin: 20px 5px;
+    text-align: center;
+    font-family: "Poppins", serif;
+}
+
+#texto img{
+    margin: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.158);
+    width: 200px;
+}
+
+#link{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin: 20px auto;
+    width: 250px;
+    height: 40px;
+    font-size: 36px;
+    background-color: black;
+    text-decoration: none;
+    border-radius: 20px;
+    color: rgb(255, 208, 0);
+}
+
+#add{
+    margin-top: 40px;
+    padding: 20px 5px;
+    width: 100%;
+    background-color: #787cfa;
+}
+
+#add p{
+    margin: 0 auto;
+    width: 90%;
+    font-size: 22px;
+    text-align: center;
+    font-family: "Poppins", serif;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    background-color: #787cfa;
+}
+
+footer a{
+    margin: 0 auto;
+    color: rgb(255, 208, 0);
+    text-shadow: 0px 1px 1px black;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+    #link{
+        font-size: 44px;
+        width: 300px;
+        height: 60px;
+        border-radius: 50px;
+    }
+    
+    #texto img{
+        width: 300px;
+    }
+
+    #add p{
+        width: 700px;
+    }
+}

@@ -12,12 +12,6 @@ body{
     background-color: #b7bbfc;
 }
 
-nav a{
-    margin: 0px 0px 8px 2px;
-    text-decoration: none;
-    color: blue;
-}
-
 #texto{
     width: 90%;
     display: flex;
@@ -44,7 +38,7 @@ nav a{
 }
 
 #texto img{
-    margin: 20px;
+    margin: 30px 0px 50px 0px;
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.158);
     width: 200px;
@@ -54,7 +48,7 @@ nav a{
     display: flex;
     align-self: center;
     justify-content: center;
-    margin: 20px auto;
+    margin: 30px auto;
     width: 250px;
     height: 40px;
     font-size: 36px;
@@ -62,13 +56,23 @@ nav a{
     text-decoration: none;
     border-radius: 20px;
     color: rgb(255, 208, 0);
+    box-shadow: 0px 0px 10px rgb(255, 196, 0);
+    transition: 0.5s ease-in-out;
+}
+
+#link:hover{
+    box-shadow: 0px 0px 4px rgb(255, 196, 0);
+    transform: scale(1.05);
 }
 
 #add{
-    margin-top: 40px;
+    margin: 0 auto;
+    margin-top: 60px;
     padding: 20px 5px;
-    width: 100%;
+    width: 90%;
     background-color: #787cfa;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.541);
 }
 
 #add p{
@@ -80,17 +84,35 @@ nav a{
 }
 
 footer{
+    margin-top: 60px;
+    padding: 10px;
     display: flex;
     justify-content: center;
-    font-size: 22px;
-    background-color: #787cfa;
+    flex-direction: column;
+    font-size: 24px;
+    background-color: #0008ffc9;
+    gap: 15px;
+    border-top: 1px solid black;
 }
 
-footer a{
+#redesS{
+    display: flex;
+    gap: 30px;
+    margin: 0 auto;
+}
+
+footer p{
     margin: 0 auto;
     color: rgb(255, 208, 0);
     text-shadow: 0px 1px 1px black;
     text-decoration: none;
+    font-weight: bold;
+}
+
+footer a img{
+    border-radius: 50%;
+    width: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.411);
 }
 
 @media screen and (min-width: 768px) {
@@ -103,6 +125,10 @@ footer a{
     
     #texto img{
         width: 300px;
+    }
+
+    #add{
+        max-width: 1000px;
     }
 
     #add p{

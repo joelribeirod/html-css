@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signUp</title>
+    <link rel="stylesheet" href="singUp.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+    <div id="LogCon">
+        <h1>Criar conta</h1>
+        <form action="" method="post" id="Form">
+            <div id="caixa0">
+                <label for="iemail">Email :</label>
+                <input type="email" name="email" id="iemail" required>
+            </div>
+            <div id="caixa1">
+                <label for="inome">Nome :</label>
+                <input type="text" name="nome" id="inome" required>
+            </div>
+            <div id="caixa2">
+                <label for="isenha">Senha:</label>
+                <input type="password" name="senha" id="isenha" required>
+                <div id="btn">
+                    <span class="material-symbols-outlined" id="desver">visibility</span><p id="ver">Ver senha</p>
+                </div>
+            </div>
+            <button type="submit" id="enviar">Logar</button>
+        </form>
+        <p class="modificar">Já tem uma conta? <a href="singIn.html">Faça seu login aqui</a></p>
+        <p class="modificar"><a href="../../htmlCss/landPage/index.html">Voltar ao menu</a></p>
+    </div>
+    <script>
+        const ver = document.getElementById('desver')
+        const p = document.getElementById('ver')
+        const btn = document.getElementById("btn")
+        const inp = document.getElementById('isenha')
+
+        btn.addEventListener('click', () => {
+            if(inp.type === 'password'){
+                ver.innerHTML = 'visibility_off'
+                p.innerHTML = 'Esconder senha'
+                inp.type = 'text'
+            }else if(inp.type === 'text'){
+                ver.innerHTML = 'visibility'
+                p.innerHTML = 'Ver senha'
+                inp.type = 'password'
+            }
+        })
+    </script>
+</body>
+</html>

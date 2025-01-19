@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="singIn.css">
+    <title>Sign In</title>
+</head>
+<body>
+    <div id="LogCon">
+        <h1>Acesse sua conta</h1>
+        <form action="" method="get" id="Form">
+            <div id="caixa1">
+                <label for="inome">Nome :</label>
+                <input type="text" name="nome" id="inome" required>
+            </div>
+            <div id="caixa2">
+                <label for="isenha">Senha:</label>
+                <input type="password" name="senha" id="isenha" required>
+                <div id="btn">
+                    <span class="material-symbols-outlined" id="desver">visibility</span><p id="ver">Ver senha</p>
+                </div>
+            </div>
+            <button type="submit" id="enviar">Logar</button>
+        </form>
+        <p class="modificar">Não tem conta? <a href="singUp.html">Crie uma agora</a></p>
+        <p class="modificar"><a href="../../htmlCss/landPage/index.html">Voltar ao menu</a></p>
+    </div>
+    <script>
+        const ver = document.getElementById('desver')
+        const p = document.getElementById('ver')
+        const btn = document.getElementById("btn")
+        const inp = document.getElementById('isenha')
+
+        btn.addEventListener('click', () => {
+            if(inp.type === 'password'){
+                ver.innerHTML = 'visibility_off'
+                p.innerHTML = 'Esconder senha'
+                inp.type = 'text'
+            }else if(inp.type === 'text'){
+                ver.innerHTML = 'visibility'
+                p.innerHTML = 'Ver senha'
+                inp.type = 'password'
+            }
+        })
+    </script>
+</body>
+</html>

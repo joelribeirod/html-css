@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar projetos</title>
+    <link rel="stylesheet" href="mainDev.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+    <span class="material-symbols-outlined" id="voltar" style="rotate: 180deg;">arrow_back</span>
+    <aside id="configs" style="transform: translateX(-140px);">
+        
+        <a href="">Ver perfil</a>
+        <a href="">Explorar</a>
+        <a href="">Configs</a>
+    </aside>
+    <div id="options" style="display: none;">
+
+    </div>
+    <main id="principal">
+        <div id="tot-card">
+            <div id="projetos">
+
+            </div>
+            <div id="btns">
+                
+            </div>
+        </div>
+    </main>
+    <script>
+        const options = document.getElementById('options')
+        const principal = document.getElementById('principal')
+        const arrow = document.getElementById('voltar')
+        const configs = document.getElementById('configs')
+
+        window.addEventListener('click', (e) => {
+            if(e.target == options){
+                configs.style.transform = 'translateX(-140px)'
+
+                principal.style.backgroundColor = '#ececec'
+
+                arrow.style.rotate = '180deg'
+                options.style.display = 'none'
+            }
+        })
+
+        arrow.addEventListener('click', () => {
+            if(configs.style.transform == 'translateX(-140px)'){
+                // exibir configs
+                configs.style.transform = 'translateX(0px)'
+
+                principal.style.backgroundColor = '#7c7c7c'
+
+                arrow.style.rotate = '0deg'
+                options.style.display = 'block'
+            }else{
+                // esconder configs
+                configs.style.transform = 'translateX(-140px)'
+
+                principal.style.backgroundColor = '#ececec'
+
+                arrow.style.rotate = '180deg'
+                options.style.display = 'none'
+            }
+        })
+    </script>
+</body>
+</html>

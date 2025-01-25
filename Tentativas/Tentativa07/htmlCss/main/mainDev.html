@@ -9,22 +9,26 @@
 </head>
 <body>
     <span class="material-symbols-outlined" id="voltar" style="rotate: 180deg;">arrow_back</span>
-    <aside id="configs" style="transform: translateX(-140px);">
+    <aside id="configs" >
         
         <a href="">Ver perfil</a>
         <a href="">Explorar</a>
+        <a href="">Favoritos</a>
         <a href="">Configs</a>
+        
     </aside>
     <div id="options" style="display: none;">
-
+        <!-- div para ocultar o fundo do menu "hamburger" -->
     </div>
     <main id="principal">
         <div id="tot-card">
             <div id="projetos">
-
+                <!-- icone de estrela <span class="material-symbols-outlined" id="estrala"></span> star || hotel_class-->
             </div>
+            
             <div id="btns">
-                
+                <button id="re">Recusar</button>
+                <button id="ac">Aceitar</button>
             </div>
         </div>
     </main>
@@ -33,6 +37,20 @@
         const principal = document.getElementById('principal')
         const arrow = document.getElementById('voltar')
         const configs = document.getElementById('configs')
+
+        if(window.innerWidth > 768){
+            configs.style.transform = 'translateX(0)'
+        }else{
+            configs.style.transform = 'translateX(-140px)'
+        }
+        //corrigir erro de resize quando o menu hamburguer esta aberto no modo celular
+        window.addEventListener('resize', ()=>{
+            if(window.innerWidth > 768){
+                configs.style.transform = 'translateX(0)'
+            }else{
+                configs.style.transform = 'translateX(-140px)'
+            }
+        })
 
         window.addEventListener('click', (e) => {
             if(e.target == options){

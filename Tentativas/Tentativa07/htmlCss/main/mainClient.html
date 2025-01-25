@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar projetos</title>
+    <link rel="stylesheet" href="mainClient.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+    <span class="material-symbols-outlined" id="voltar" style="rotate: 180deg;">arrow_back</span>
+    <aside id="configs" >
+        
+        <a href="">Ver perfil</a>
+        <a href="">Explorar</a>
+        <a href="">Favoritos</a>
+        <a href="">Configs</a>
+        
+    </aside>
+    <div id="options" style="display: none;">
+        <!-- div para ocultar o fundo do menu "hamburger" -->
+    </div>
+    <main id="principal">
+        <div id="tot-card">
+            <div id="projetos">
+                <!-- icone de estrela <span class="material-symbols-outlined" id="estrala"></span> star || hotel_class-->
+            </div>
+            
+            <div id="btns">
+                <button id="re">Descartar</button>
+                <button id="ac">Requisitar</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        const options = document.getElementById('options')
+        const principal = document.getElementById('principal')
+        const arrow = document.getElementById('voltar')
+        const configs = document.getElementById('configs')
+
+        if(window.innerWidth > 768){
+            configs.style.transform = 'translateX(0)'
+        }else{
+            configs.style.transform = 'translateX(-140px)'
+        }
+        //corrigir erro de resize quando o menu hamburguer esta aberto no modo celular
+        window.addEventListener('resize', ()=>{
+            if(window.innerWidth > 768){
+                configs.style.transform = 'translateX(0)'
+            }else{
+                configs.style.transform = 'translateX(-140px)'
+            }
+        })
+
+        window.addEventListener('click', (e) => {
+            if(e.target == options){
+                configs.style.transform = 'translateX(-140px)'
+
+                principal.style.backgroundColor = '#ececec'
+
+                arrow.style.rotate = '180deg'
+                options.style.display = 'none'
+            }
+        })
+
+        arrow.addEventListener('click', () => {
+            if(configs.style.transform == 'translateX(-140px)'){
+                // exibir configs
+                configs.style.transform = 'translateX(0px)'
+
+                principal.style.backgroundColor = '#7c7c7c'
+
+                arrow.style.rotate = '0deg'
+                options.style.display = 'block'
+            }else{
+                // esconder configs
+                configs.style.transform = 'translateX(-140px)'
+
+                principal.style.backgroundColor = '#ececec'
+
+                arrow.style.rotate = '180deg'
+                options.style.display = 'none'
+            }
+        })
+    </script>
+</body>
+</html>

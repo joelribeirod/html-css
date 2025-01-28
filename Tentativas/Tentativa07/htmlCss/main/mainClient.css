@@ -70,7 +70,7 @@ main{
     background-color: #fff;
 }
 
-#projetos{
+#criar-projetos{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,11 +104,11 @@ main{
     cursor: pointer;
 }
 
-#re{
+#descartar{
     background-color: #ffcdcd;
 }
 
-#ac{
+#requisitar{
     background-color: #d9fdd4;
 }
 
@@ -127,8 +127,44 @@ main{
     }
     
     #tot-card{
-        height: 420px;
-        max-width: 600px;
+        height: 480px;
+        max-width: 550px;
+    }
+
+    #criar-projetos{
+        width: 85%;
+        height: 370px;
+    }
+
+    #form{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #form p{
+        text-align: left;
+        font-size: 28px;
+        margin: 10px 10px;
+    }
+
+    #form input{
+        align-self: center;
+        width: 90%;
+        border: 1px solid black;
+        border-radius: 8px;
+        font-size: 20px;
+        padding: 4px;
+    }
+
+    #idescricao{
+        align-self: center;
+        width: 90%;
+        border: 1px solid black;
+        border-radius: 8px;
+        font-size: 20px;
+        padding: 4px;
+        height: auto;
     }
     
     #btns button{

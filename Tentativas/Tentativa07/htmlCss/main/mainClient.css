@@ -63,7 +63,8 @@ main{
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    height: 350px;
+    padding: 20px 0px;
+    height: auto;
     width: 90%;
     border: 1px solid black;
     border-radius: 8px;
@@ -74,17 +75,45 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
+    height: auto;
+    padding: 20px 0px;
     width: 80%;
     border: 1px solid black;
     border-radius: 8px;
     background-color: #c5c4c4;
 }
-
-#estrala{
-    position: relative;
+/*  */
+#form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
+#form p{
+    text-align: left;
+    font-size: 24px;
+    margin: 10px 10px;
+}
+
+#form input{
+    align-self: center;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 20px;
+    padding: 4px;
+}
+
+#idescricao{
+    align-self: center;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 20px;
+    padding: 4px;
+    height: auto;
+}
+/*  */
 #btns{
     display: flex;
     justify-content: center;

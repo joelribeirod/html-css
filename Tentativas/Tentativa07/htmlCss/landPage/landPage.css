@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{
     margin: 0;
@@ -9,7 +10,18 @@
 body{
     width: 100%;
     height: 100vh;
+   background-color: #e6e6e6;
+}
+
+main{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
     background-color: #b7bbfc;
+    padding-bottom: 60px;
+    border: 1px solid black;
+    border-bottom: 0px;
+    border-top: 0px;
 }
 
 #texto{
@@ -34,7 +46,8 @@ body{
     color: rgb(0, 24, 236);
     margin: 20px 5px;
     text-align: center;
-    font-family: "Poppins", serif;
+    font-family: "Arima", serif;
+    
 }
 
 #texto img{
@@ -51,7 +64,7 @@ body{
     margin: 30px auto;
     width: 250px;
     height: 40px;
-    font-size: 36px;
+    font-size: 30px;
     background-color: #0008ffc9;
     text-decoration: none;
     padding-top: 3px;
@@ -87,7 +100,6 @@ body{
 }
 
 footer{
-    margin-top: 60px;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -137,4 +149,23 @@ footer a img{
     #add p{
         width: 700px;
     }
+
+    footer{
+        flex-direction: row;
+        justify-content: end;
+        padding: 4px 4px 0px 4px;
+        gap: 20px;
+    }
+
+    footer p{
+        margin: 0;
+        padding-top: 10px;
+    }
+
+    #redesS{
+        display: flex;
+        gap: 30px;
+        margin: 0;
+    }
+    
 }

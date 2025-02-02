@@ -1,22 +1,30 @@
 const express = require("express");
 const app = express()
 const Project = require('./project')
+const cors = require('cors')
 
 const respostaSucesso ={
     resposta: "Requisição realizada com sucesso"
 }
 
 const respostaFalha ={
-    resposta: "Erro ao cadastrar o dado: "
+    resposta: "Erro na requisição: "
 }
 
+// Se precisar permitir apenas um domínio específico
+// app.use(cors({ origin: 'http://127.0.0.1:5500' }));
+
+app.use(cors())
 app.use(express.json())
+
+
+// Rota projects
 
 app.get('/projects', (req, res) => {
     Project.findAll().then((posts) =>{
         res.send(posts)
     }).catch((err) => {
-        res.status(500).send(`Erro recuperar os dados: ${err}`)
+        res.status(500).send(respostaFalha + err)
     })
 })
 
@@ -53,7 +61,8 @@ app.patch('/projects/:id', (req, res) => {
     })
 })
 
+// Fim Rota
 
 app.listen(8081, () => {
-    console.log("Servidor rodando na porta localhost:8081")
+    console.log("Servidor rodando na porta http://localhost:8081")
 })

@@ -141,6 +141,32 @@ main{
     background-color: #d9fdd4;
 }
 
+#succs{
+    position: absolute;
+    font-size: 30px;
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    z-index: 3;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#errs{
+    position: absolute;
+    font-size: 30px;
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    z-index: 3;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @media screen and (min-width : 768px) {
     #voltar{
         display: none;

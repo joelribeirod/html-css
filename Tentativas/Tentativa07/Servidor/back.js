@@ -3,6 +3,7 @@ const app = express()
 const Project = require('./project')
 const cors = require('cors');
 const Login = require("./login");
+const { where } = require("sequelize");
 
 const respostaSucesso ={
     resposta: "Requisição realizada com sucesso"
@@ -73,9 +74,29 @@ app.patch('/projects/:id', (req, res) => {
 
 // Rota Login
 
+app.get('/cadastro/:nome', (req, res) => {
+    Login.findOne({
+        where: {'nome': req.params.nome}
+    }).then((user) =>{
+        if(user){
+            res.send(user)
+        }else{
+            res.send({resp: "Usuario não encontrado"})
+        }
+        
+    }).catch((err) => {
+        res.status(500).send(respostaFalha + err)
+    })
+})
+
 app.get('/cadastro', (req, res) => {
-    Login.findAll().then((posts) =>{
-        res.send(posts)
+    Login.findAll().then((users) =>{
+        if(users){
+            res.send(users)
+        }else{
+            res.send({resp: "Usuario não encontrado"})
+        }
+        
     }).catch((err) => {
         res.status(500).send(respostaFalha + err)
     })

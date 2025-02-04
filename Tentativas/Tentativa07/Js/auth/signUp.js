@@ -5,6 +5,8 @@ const btn = document.getElementById("btn")
 const inp = document.getElementById('isenha')
 const email = document.getElementById('iemail')
 const nome = document.getElementById('inome')
+const caixaEmail = document.getElementById('caixaEmail')
+const caixaNome = document.getElementById('caixaNome')
 
 btn.addEventListener('click', () => {
     if(inp.type === 'password'){
@@ -25,39 +27,45 @@ enviar.addEventListener('click', (e) => {
 })
 
 function suc(resp){
-    // window.location.href = 'http://127.0.0.1:5500/htmlCss/main/mainDev.html'
     // redireciona o usuario para o link desejado
+    window.location.href = '../main/mainClient.html'
     console.log('Sucesso paizão')
 }
-
+const paragrafro = document.createElement('p')
 function campoDupli(campo){
+    
+    paragrafro.className = 'paragrafoErro'
+    paragrafro.innerText = `O ${campo} ja existe`
     //analisa qual campo está duplicado e lança o erro na tela do usuario
-    if(campo == 'email'){
-        window.alert('Esse email ja existe')
+    if(campo == 'email'){ 
         email.style.border = '2px solid red'
+        if(paragrafro){
+            caixaEmail.appendChild(paragrafro)
+        }
     }else if(campo == 'nome'){
-        window.alert('Esse nome ja existe')
         nome.style.border = '2px solid red'
+        if(paragrafro){
+            caixaNome.appendChild(paragrafro)
+        }
     }
 }
 // campo com estilo de erro
 email.addEventListener('click', () => {
     if(email.style.border == '2px solid red'){
         email.style.border = '2px solid black'
+        caixaEmail.removeChild(paragrafro)
     }
+    
 })
 
 nome.addEventListener('click', () => {
     if(nome.style.border == '2px solid red'){
         nome.style.border = '2px solid black'
+        caixaNome.removeChild(paragrafro)
     }
 })
 // fim campo com estilo de erro
 
-
-function Err(){
-    
-}
 
 function criarUsuario(){
     let email = String(document.getElementById('iemail').value)
@@ -97,7 +105,6 @@ function criarUsuario(){
             ).catch(
                 (err) => {
                     console.log(console.log("Erro na conexão: " + err))
-                    Err(err)
                 }
             )
         }

@@ -46,31 +46,17 @@ body{
     font-family: var(--fontePoppins);
 }
 
-#Form #caixa1, #caixa2{
+#Form #caixaNome, #caixaSenha{
     display: flex;
     flex-wrap: wrap;
 }
 
-#caixa0{
+#caixaEmail{
     font-weight: bold;
     font-size: 24px;
 }
 
-#caixa0 input{
-    font-size: 24px;
-    height: 28px;
-    max-width: 69%;
-    margin-left: 6px;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-#caixa1{
-    font-weight: bold;
-    font-size: 24px;
-}
-
-#caixa1 input{
+#caixaEmail input{
     font-size: 24px;
     height: 28px;
     max-width: 69%;
@@ -79,12 +65,26 @@ body{
     font-weight: bold;
 }
 
-#caixa2{
+#caixaNome{
     font-weight: bold;
     font-size: 24px;
 }
 
-#caixa2 input{
+#caixaNome input{
+    font-size: 24px;
+    height: 28px;
+    max-width: 69%;
+    margin-left: 6px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#caixaSenha{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#caixaSenha input{
     font-size: 24px;
     height: 28px;
     max-width: 69%;
@@ -118,4 +118,11 @@ body{
 
 .modificar a{
     color: black;
+}
+
+.paragrafoErro{
+    padding-top: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    color: red;
 }

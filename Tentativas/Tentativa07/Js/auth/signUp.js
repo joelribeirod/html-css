@@ -71,8 +71,9 @@ function criarUsuario(){
     let email = String(document.getElementById('iemail').value)
     let nome = String(document.getElementById('inome').value)
     let senha = String(document.getElementById('isenha').value)
+    let celular = String(document.getElementById('itelefone').value)
 
-    if(!email || !nome || !senha){
+    if(!email || !nome || !senha || !celular){
         window.alert("preecha os campos antes de enviar os dados")
     }else{
         if(senha.length < 4){
@@ -81,7 +82,8 @@ function criarUsuario(){
             const usuario = {
                 email,
                 nome,
-                senha
+                senha,
+                celular
             }
 
             fetch('http://localhost:8081/cadastro', {

@@ -11,6 +11,9 @@ const Login = db.sequelize.define('pessoas', {
     },
     senha: {
         type: db.Sequelize.STRING
+    },
+    telefone: {
+        type: db.Sequelize.INTEGER
     }
 })
 

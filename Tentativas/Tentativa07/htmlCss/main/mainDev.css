@@ -27,7 +27,7 @@ body span{
     height: 100vh;
     font-size: 32px;
     background-color: #f0f0f0;
-    padding-top: 45px;
+    padding: 45px 0px 0px 6px;
     border-right: 1px solid black;
     transition: 0.5s ease-in-out;
     transform: translateX(-140px);

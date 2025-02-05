@@ -19,14 +19,6 @@ const respostaFalha ={
 app.use(cors())
 app.use(express.json())
 
-// Processar erro
-function campoDupli(campo){
-    console.log(campo)
-}
-
-
-// fim processe
-
 // Rota projects
 
 app.get('/projects', (req, res) => {
@@ -106,9 +98,11 @@ app.post('/cadastro', async (req, res) => {
     try {
         //Tenta registrar o usuario
         await Login.create({
+            //os campos do req.body.<campo> tem que serem iguais aos que foram enviados pelo frontend
             email: req.body.email,
             nome:req.body.nome,
-            senha:req.body.senha
+            senha:req.body.senha,
+            telefone: req.body.celular
         })
         res.send(respostaSucesso)
     } catch (err) {

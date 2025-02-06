@@ -1,9 +1,12 @@
+require("dotenv").config()
+//dotenv não está sendo usado
 const express = require("express");
 const app = express()
 const Project = require('./project')
 const cors = require('cors');
 const Login = require("./login");
-const { where } = require("sequelize");
+const jwt = require("jsonwebtoken")
+const chaveSecreta = "minha_aplicacao"
 
 const respostaSucesso ={
     resposta: "Requisição realizada com sucesso"
@@ -18,6 +21,18 @@ const respostaFalha ={
 
 app.use(cors())
 app.use(express.json())
+
+// gerar token
+
+function gerarToken(user){
+    return jwt.sign(
+        {userId: user.id},
+        chaveSecreta,
+        {expiresIn: "1h"}
+    )
+}
+
+// fim gerar token
 
 // Rota projects
 
@@ -65,34 +80,23 @@ app.patch('/projects/:id', (req, res) => {
 // Fim Rota projects
 
 // Rota Login
-
-app.get('/cadastro/:nome', (req, res) => {
+//verificar se o usuario existe no banco (seria o GET na vdd, mas o get n permite envio de dados através do body)
+app.post('/verificar', (req, res) => {
     Login.findOne({
-        where: {'nome': req.params.nome}
+        where: {'nome': req.body.nome, 'senha': req.body.senha}
     }).then((user) =>{
         if(user){
-            res.send(user)
+            const token = gerarToken(user)
+            res.json({auth: true, token})
         }else{
-            res.send({resp: "Usuario não encontrado"})
-        }
-        
+            res.send({resp: "Usuario ou senha incorreta"})
+        } 
     }).catch((err) => {
         res.status(500).send(respostaFalha + err)
     })
 })
 
-app.get('/cadastro', (req, res) => {
-    Login.findAll().then((users) =>{
-        if(users){
-            res.send(users)
-        }else{
-            res.send({resp: "Usuario não encontrado"})
-        }
-        
-    }).catch((err) => {
-        res.status(500).send(respostaFalha + err)
-    })
-})
+
 
 app.post('/cadastro', async (req, res) => {
     try {

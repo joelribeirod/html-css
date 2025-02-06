@@ -74,10 +74,16 @@ body{
     font-size: 24px;
     height: 28px;
     max-width: 69%;
-    margin-left: 1px;
+    margin-left: 6px;
     
     border-radius: 8px;
     font-weight: bold;
+}
+
+#problema{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #btn{

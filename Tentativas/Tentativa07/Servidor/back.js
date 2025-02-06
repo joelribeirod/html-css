@@ -96,7 +96,17 @@ app.post('/verificar', (req, res) => {
     })
 })
 
-
+app.get('/cadastro', (req, res) => {
+    Login.findAll().then((users) =>{
+        if(users){
+            res.send(users)
+        }else{
+            res.send({resp: "Usuario não encontrado"})
+        }
+    }).catch((err) => {
+        res.status(500).send(respostaFalha + err)
+    })
+})
 
 app.post('/cadastro', async (req, res) => {
     try {

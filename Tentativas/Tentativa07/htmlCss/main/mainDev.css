@@ -63,7 +63,7 @@ main{
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    height: 350px;
+    height: 400px;
     width: 90%;
     border: 1px solid black;
     border-radius: 8px;
@@ -74,8 +74,8 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
-    width: 80%;
+    height: 300px;
+    width: 90%;
     border: 1px solid black;
     border-radius: 8px;
     background-color: #c5c4c4;
@@ -112,6 +112,43 @@ main{
     background-color: #d9fdd4;
 }
 
+.projeto{
+    width: 90%;
+    height: 90%;
+    background-color: rgb(238, 238, 238);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    flex-direction: center;
+    align-items: center;
+    border: 1px solid black;
+    padding-bottom: 6px;
+}
+
+.titulo{
+    font-size: 24px;
+    background-color: rgb(238, 238, 238);
+    width: 90%;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 4px;
+    margin: 4px;
+}
+
+.texto{
+    font-size: 18px;
+    background-color: rgb(238, 238, 238);
+    width: 90%;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 4px;
+    text-indent: 4px;
+    scrollbar-width: 2px;
+}
+
 @media screen and (min-width : 768px) {
     #voltar{
         display: none;
@@ -125,10 +162,11 @@ main{
         width: 160px;
         position: relative;
     }
+
     
     #tot-card{
         height: 420px;
-        max-width: 600px;
+        max-width: 580px;
     }
     
     #btns button{

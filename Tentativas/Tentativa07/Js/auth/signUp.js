@@ -7,6 +7,7 @@ const email = document.getElementById('iemail')
 const nome = document.getElementById('inome')
 const caixaEmail = document.getElementById('caixaEmail')
 const caixaNome = document.getElementById('caixaNome')
+const caixaSucesso = document.getElementById('sucesso')
 
 btn.addEventListener('click', () => {
     if(inp.type === 'password'){
@@ -26,10 +27,12 @@ enviar.addEventListener('click', (e) => {
     criarUsuario()
 })
 
-function suc(resp){
-    // redireciona o usuario para o link desejado
-    window.location.href = '../main/mainClient.html'
-    console.log('Sucesso paizão')
+function suc(){
+    // mostra que teve sucesso ao cadastrar o usuario e redireciona o usuario para o link desejado(fazer o login)
+    setTimeout(() => {
+        caixaSucesso.style.display = 'block'
+        window.location.href = '../auth/singIn.html'
+    }, 5000)
 }
 const paragrafro = document.createElement('p')
 function campoDupli(campo){
@@ -97,11 +100,11 @@ function criarUsuario(){
             ).then(
                 (data) => {
                     //aviso, mesmo que o dado não seja registrado na tabela pelo mesmo ja existir(dado duplicado), a requisição será considera como um sucesso e por isso cai nos then's
-                    console.log(data)
-                    if(data.resposta){
-                        suc()
-                    }else if(data.erro){
+                    if(data.erro){
                         campoDupli(data.erro)
+                        
+                    }else if(data.sucesso){
+                        suc()
                     }
                 }
             ).catch(
@@ -113,3 +116,27 @@ function criarUsuario(){
     }
     
 }
+
+
+// analisa se existe algum token
+
+const expira = localStorage.getItem('tokenExpiraEm')
+
+if(expira > Date.now()){
+    console.log(true)
+}else {
+    if (expira && Date.now() > expira) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiraEm");
+        console.log("Token expirado! Redirecionando...");
+    }
+
+}
+
+const token = localStorage.getItem('token')
+
+if(token){
+    window.location.href = '../explorar/explorar.html'
+}
+
+// fim analisa se existe algum token

@@ -16,9 +16,10 @@
             </p>
             <img src="../../imagens/maozinha.jpeg" alt="">
         </div>
-        <a href="../auth/singIn.html" id="link">
+        <!-- verificar se à token, se tiver, redireciona para o explorar, se não, redireciona para o login -->
+        <p id="link">
             Comece agora  
-        </a>
+        </p>
         <div id="add">
             <p>
                 O Site GetOrDrop é focado em facilitar a solicitação de projetos por partes dos clientes e a prestação dos serviços pelos desenvolvedores
@@ -33,5 +34,31 @@
             <a href="" target="_blank"><img src="../../imagens/logo-youtube.jpg" alt=""></a>
         </div>
     </footer>
+
+    <script>
+        const link = document.getElementById('link')
+
+        const expira = localStorage.getItem('tokenExpiraEm')
+        if(expira > Date.now()){
+            console.log(true)
+        }else {
+            if (expira && Date.now() > expira) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("tokenExpiraEm");
+                console.log("Token expirado! Redirecionando...");
+            }
+
+        }
+
+        const token = localStorage.getItem('token')
+
+        link.addEventListener('click', () => {
+            if(token){
+                window.location.href = '../explorar/explorar.html'
+            }else{
+                window.location.href = '../auth/singIn.html'
+            }
+        })
+    </script>
 </body>
 </html>

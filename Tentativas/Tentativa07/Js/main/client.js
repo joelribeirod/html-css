@@ -96,6 +96,7 @@ function criarPost(){
             method: "POST",
             headers: {
                 'Content-Type':'application/json'
+
             },
             body: JSON.stringify(project)
         }).then(
@@ -128,5 +129,27 @@ function descarte(){
 
 descartar.addEventListener('click', descarte)
 requisitar.addEventListener('click', criarPost)
+
+// analisar autentificação
+
+const expira = localStorage.getItem('tokenExpiraEm')
+
+if(expira > Date.now()){
+    console.log(true)
+}else {
+    if (expira && Date.now() > expira) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiraEm");
+        console.log("Token expirado! Redirecionando...");
+    }
+
+}
+
+const token = localStorage.getItem('token')
+if(!token){
+    window.location.href = '../auth/singIn.html'
+}
+
+// fim analisar autentificação
 
 //lembrete: tenho que desenvolver a parte de JWT, para poder salvar os dados do usuario no navegador, e quando o cliente criar um projeto, por baixo dos panos tambem vou enviar o nome do usuario junto com o projeto para o banco de dados, tendo o nome do cliente eu posso resgatar o numero de telefone dele, e assim quando o dev clicar em 'aceitar projeto', eu redireciono ele para a api do whatsapp, por ser um projeto simples, não vou me aprofundar em muitos conceitos, como criar uma intermediação de pagamento e chat para a comunicação, e tambem devo melhorar o formulario de criação de projetos no client, tipo, colocar uma parte de tecnologias necessarias, preço, nome do cliente

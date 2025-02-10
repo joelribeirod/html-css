@@ -105,19 +105,62 @@ function carregarProjeto(projects){
 // fim criação das divs com os projetos
 
 // lançando projeto indivudual
-let c = 1
+
+//essa função gera um numero aleatorio e guarda no array numeros
+let numeros = []
+function gerarNumero(min, max) {
+    if(numeros.length >= (max-min)){
+        console.log("todos os numeros utilizados")
+        return null
+    }
+    let n
+    do{
+        n = Math.floor(Math.random() * (max - min) + min)
+    }while(numeros.includes(n))
+
+    numeros.push(n)
+    return n
+}
+
+let c = 0
+
+// a função projeto serve para exibir os meus projetos que foram guardados no array totProjects, ela chama a função gerarNumero
 function projeto(){
-    if(totProjects.length > c){
+    if(numeros.length < totProjects.length){
+        c = gerarNumero(0, totProjects.length)
+
         const elemento = totProjects
         projetos.innerHTML = ''
         projetos.appendChild(elemento[c])
-        c += 1
+        console.log(c,numeros)
     }else{
-        console.log("Sem mais projetos")
+        numeros = []
     }}
     
 
 // fim lançando projeto indivudual
+
+// analisar autentificação
+
+const expira = localStorage.getItem('tokenExpiraEm')
+
+if(expira > Date.now()){
+    console.log(true)
+}else {
+    if (expira && Date.now() > expira) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiraEm");
+        console.log("Token expirado! Redirecionando...");
+    }
+
+}
+
+const token = localStorage.getItem('token')
+if(!token){
+    window.location.href = '../auth/singIn.html'
+}
+
+// fim analisar autentificação
 
 recusar.addEventListener('click', projeto)
 

@@ -12,7 +12,14 @@ const paragrafro = document.createElement('p')
 paragrafro.className = 'paragrafoErro'
 
 function analisarUsuario(user){
-    // localStorage.setItem(user.token)
+    localStorage.setItem("token", user.token)
+
+    //determina em qual horario o token
+    const expiraEm = Date.now() + 300 * 1000;
+    localStorage.setItem("tokenExpiraEm", expiraEm);
+
+    console.log(user.token, expiraEm)
+
     window.location.href = "../main/mainDev.html"
 }
 
@@ -100,3 +107,25 @@ enviar.addEventListener('click', (e)=>{
     }
 })
 
+// analisa se existe algum token
+
+const expira = localStorage.getItem('tokenExpiraEm')
+
+if(expira > Date.now()){
+    console.log(true)
+}else {
+    if (expira && Date.now() > expira) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiraEm");
+        console.log("Token expirado! Redirecionando...");
+    }
+
+}
+
+const token = localStorage.getItem('token')
+
+if(token){
+    window.location.href = '../explorar/explorar.html'
+}
+
+// fim analisa se existe algum token

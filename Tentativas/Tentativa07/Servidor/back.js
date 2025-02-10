@@ -24,11 +24,11 @@ app.use(express.json())
 
 // gerar token
 
-function gerarToken(user){
+function gerarTokenIn(user){
     return jwt.sign(
         {userId: user.id},
         chaveSecreta,
-        {expiresIn: "1h"}
+        {expiresIn: 300}
     )
 }
 
@@ -86,7 +86,7 @@ app.post('/verificar', (req, res) => {
         where: {'nome': req.body.nome, 'senha': req.body.senha}
     }).then((user) =>{
         if(user){
-            const token = gerarToken(user)
+            const token = gerarTokenIn(user)
             res.json({auth: true, token})
         }else{
             res.send({resp: "Usuario ou senha incorreta"})
@@ -118,16 +118,20 @@ app.post('/cadastro', async (req, res) => {
             senha:req.body.senha,
             telefone: req.body.celular
         })
-        res.send(respostaSucesso)
+
+        res.json({sucesso: true})
     } catch (err) {
         //analisa se o erro ao registrar foi por ja existir um campo igual ao que o usuario digitou
         if (err.name === 'SequelizeUniqueConstraintError') {
+
             //se o erro for de dado duplicado, ele pega qual foi o campo duplicado e envia para o singUp
             const erro = {
                 erro: err.errors[0].path
             }
+
             res.status(400).send(erro);
         } else {
+
             //se o erro não for identificado, ele envia um erro qualquer na requisição
             res.status(500).send(respostaFalha + err); 
         }

@@ -15,10 +15,10 @@ function analisarUsuario(user){
     localStorage.setItem("token", user.token)
 
     //determina em qual horario o token
-    const expiraEm = Date.now() + 300 * 1000;
+    const expiraEm = Date.now() + user.duracaoDoToken * 1000;
     localStorage.setItem("tokenExpiraEm", expiraEm);
 
-    console.log(user.token, expiraEm)
+    console.log(user.token, expiraEm, user.auth, user.duracaoDoToken)
 
     window.location.href = "../main/mainDev.html"
 }

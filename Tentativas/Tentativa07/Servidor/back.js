@@ -1,5 +1,3 @@
-require("dotenv").config()
-//dotenv não está sendo usado
 const express = require("express");
 const app = express()
 const Project = require('./project')
@@ -24,15 +22,37 @@ app.use(express.json())
 
 // gerar token
 
+const duracaoDoToken = 900
+
 function gerarTokenIn(user){
     return jwt.sign(
         {userId: user.id},
         chaveSecreta,
-        {expiresIn: 300}
+        {expiresIn: duracaoDoToken}
     )
 }
 
 // fim gerar token
+
+// validar autenticidade do token
+
+function verificarToken(req, res, next){
+    const token = req.headers.authorization?.split(" ")[1]
+
+    if(!token){
+        return res.status(401).json({erro: "Acesso negado, token não fornecido"})
+    }
+
+    jwt.verify(token, chaveSecreta, (err, decoded) => {
+        if(err){
+            return res.status(403).json({erro: "Token inválido!" })
+        }
+        req.usuario = decoded
+        next()
+    })
+}
+
+// fim validar autenticidade do token
 
 // Rota projects
 
@@ -44,10 +64,11 @@ app.get('/projects', (req, res) => {
     })
 })
 
-app.post('/projects', (req, res) => {
+app.post('/projects', verificarToken, (req, res) => {
     Project.create({
         titulo: req.body.titulo,
-        conteudo: req.body.conteudo
+        conteudo: req.body.conteudo,
+        cliente: req.usuario.userId
     }).then(
         res.send(respostaSucesso)
     ).catch((err) => {
@@ -80,19 +101,40 @@ app.patch('/projects/:id', (req, res) => {
 // Fim Rota projects
 
 // Rota Login
-//verificar se o usuario existe no banco (seria o GET na vdd, mas o get n permite envio de dados através do body)
+//verificar se o usuario existe no banco (seria o GET na vdd, mas o get n permite envio de dados através dos params)
+    //rota usada pelo signIn.js
 app.post('/verificar', (req, res) => {
     Login.findOne({
         where: {'nome': req.body.nome, 'senha': req.body.senha}
     }).then((user) =>{
         if(user){
             const token = gerarTokenIn(user)
-            res.json({auth: true, token})
+            res.json({auth: true, token, duracaoDoToken})
         }else{
             res.send({resp: "Usuario ou senha incorreta"})
         } 
     }).catch((err) => {
         res.status(500).send(respostaFalha + err)
+    })
+})
+    //rota usada pelo dev.js
+app.get('/cadastro/:id', (req,res)=>{
+    Login.findOne({
+        where: {'id': req.params.id}
+    }).then((user) => {
+        res.json(user)
+    }).catch((err) => {
+        res.status(404).send(respostaFalha + err)
+    })
+})
+    //rota usada pelo perfil.js
+app.get('/perfil', verificarToken,(req,res) => {
+    Login.findOne({
+        where: {'id': req.usuario.userId}
+    }).then((user)=>{
+        res.json(user)
+    }).catch((err)=>{
+        res.json(respostaFalha, err)
     })
 })
 
@@ -131,7 +173,6 @@ app.post('/cadastro', async (req, res) => {
 
             res.status(400).send(erro);
         } else {
-
             //se o erro não for identificado, ele envia um erro qualquer na requisição
             res.status(500).send(respostaFalha + err); 
         }

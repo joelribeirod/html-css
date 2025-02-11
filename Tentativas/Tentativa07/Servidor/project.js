@@ -5,6 +5,9 @@ const Project = db.sequelize.define('projects', {
     },
     conteudo: {
         type: db.Sequelize.TEXT
+    },
+    cliente: {
+        type: db.Sequelize.STRING
     }
 })
 

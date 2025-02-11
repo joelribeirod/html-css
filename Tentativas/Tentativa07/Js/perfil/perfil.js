@@ -54,4 +54,50 @@ arrow.addEventListener('click', () => {
 
 //fim responsividade
 
-//quando os projetos estiverem aqui, ter um botão para entregar em contato com o cliente usando a api do whatsapp
+//
+
+function mostrarPerfil(){
+    
+}
+
+//
+
+// analisa se o token ainda é valido
+const expira = localStorage.getItem('tokenExpiraEm')
+
+if(expira > Date.now()){
+    console.log(true)
+}else {
+    if (expira && Date.now() > expira) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiraEm");
+    }
+}
+
+const token = localStorage.getItem('token')
+if(!token){
+    window.location.href = '../auth/singIn.html'
+}
+// fim analisa se o token ainda é valido
+
+// resgata o usuario atual
+
+fetch('http://localhost:8081/perfil', {
+    method: "GET",
+    headers: {
+        'Content-Type':'application/json',
+        'Authorization': `Bearer ${token}`
+    }
+}).then(
+    (resp) => resp.json()
+).then(
+    (data) => {
+        console.log(data)
+    }
+).catch(
+    (err) => {
+        console.log(console.log(err))
+    }
+)
+
+// fim resgata o usuario atual

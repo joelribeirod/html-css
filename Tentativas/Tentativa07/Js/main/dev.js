@@ -80,11 +80,27 @@ async function resgatarProjetos(){
 // criação das divs com os projetos
 let totProjects = []
 function carregarProjeto(projects){
-    
+    //o forEach pega cada projeto indivual constroi um elemento html com os valores adicionados, e coloca dentro do array totProjects, o fetch dentro do forEach usa como parametro na url o e.cliente, pois cada projeto possui um campo chamado cliente, esse campo contem o ID do cliente que o requisitou, por isso, eu uso o fetch para resgatar os dados do cliente
+    projects.forEach(async (e) => {
+        let usuario
+        await fetch(`http://localhost:8081/cadastro/${e.cliente}`, {
+            method: "GET",
+            headers: {
+                'Content-Type':'application/json'
+            }
+        }).then(
+            (resp) => resp.json()
+        ).then(
+            (data) => {usuario = data.nome}
+        ).catch((err) => {console.log(err)})
 
-    projects.forEach((e) => {
+
         let project = document.createElement('div')
         project.className = 'projeto'
+
+        let user = document.createElement('h1')
+        user.className = "usuario"
+        user.textContent = usuario
 
         let titulo = document.createElement('h1')
         titulo.className = "titulo"
@@ -94,12 +110,14 @@ function carregarProjeto(projects){
         conteudo.className = 'texto'
         conteudo.textContent = e.conteudo
 
+        project.appendChild(user)
         project.appendChild(titulo)
         project.appendChild(conteudo)
 
         totProjects.push(project)
-    });
-    projetos.appendChild(totProjects[0])
+        projetos.appendChild(totProjects[0])
+    })
+    
 }
 
 // fim criação das divs com os projetos
@@ -124,19 +142,17 @@ function gerarNumero(min, max) {
 
 let c = 0
 
-// a função projeto serve para exibir os meus projetos que foram guardados no array totProjects, ela chama a função gerarNumero
+// a função projeto serve para exibir os meus projetos que foram guardados no array totProjects, ela chama a função gerarNumero, como ela chama a função gerarNumero, ela sempre recebe um numero aleatorio, isso faz com que os projetos que forem exibidos (projetos.appendChild(totProjects[c])) sejam aleatorios e evita de seguir uma sequencia do mais recente para o mais antigo
 function projeto(){
     if(numeros.length < totProjects.length){
         c = gerarNumero(0, totProjects.length)
-
-        const elemento = totProjects
         projetos.innerHTML = ''
-        projetos.appendChild(elemento[c])
+        projetos.appendChild(totProjects[c])
         console.log(c,numeros)
     }else{
         numeros = []
-    }}
-    
+    }
+}   
 
 // fim lançando projeto indivudual
 

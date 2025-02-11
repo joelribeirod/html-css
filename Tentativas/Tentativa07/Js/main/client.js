@@ -84,6 +84,11 @@ function criarPost(){
     let titulo = String(document.getElementById('ititulo').value)
     let conteudo = String(document.getElementById('idescricao').value)
 
+    const validarToken = localStorage.getItem("token")
+    if(!validarToken){
+        window.location.href = '../auth/singIn.html'
+    }
+
     if(!titulo || !conteudo){
         window.alert("preecha os campos antes de enviar os dados")
     }else{    
@@ -95,8 +100,8 @@ function criarPost(){
         fetch('http://localhost:8081/projects', {
             method: "POST",
             headers: {
-                'Content-Type':'application/json'
-
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${validarToken}`
             },
             body: JSON.stringify(project)
         }).then(

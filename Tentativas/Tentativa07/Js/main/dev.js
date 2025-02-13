@@ -125,7 +125,7 @@ function carregarProjeto(projects){
 // lançando projeto indivudual
 
 //essa função gera um numero aleatorio e guarda no array numeros
-let numeros = []
+let numeros = [0]
 function gerarNumero(min, max) {
     if(numeros.length >= (max-min)){
         console.log("todos os numeros utilizados")
@@ -140,15 +140,16 @@ function gerarNumero(min, max) {
     return n
 }
 
-let c = 0
-
 // a função projeto serve para exibir os meus projetos que foram guardados no array totProjects, ela chama a função gerarNumero, como ela chama a função gerarNumero, ela sempre recebe um numero aleatorio, isso faz com que os projetos que forem exibidos (projetos.appendChild(totProjects[c])) sejam aleatorios e evita de seguir uma sequencia do mais recente para o mais antigo
 function projeto(){
     if(numeros.length < totProjects.length){
-        c = gerarNumero(0, totProjects.length)
+        //remove o projeto anterior
         projetos.innerHTML = ''
-        projetos.appendChild(totProjects[c])
-        console.log(c,numeros)
+        //coloca um novo projeto com a posição sendo aleatoria
+        projetos.appendChild(totProjects[
+            gerarNumero(0, totProjects.length)
+        ])
+        console.log(numeros)
     }else{
         numeros = []
     }

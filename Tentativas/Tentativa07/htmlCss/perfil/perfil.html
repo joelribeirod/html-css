@@ -25,25 +25,50 @@
         <div id="perfil">
             <h1>Seu perfil</h1>
             <div id="nome" class="dadosUser">
-                <input type="text" name="" id="" class="info" placeholder="colocar nome">
-                <span class="material-symbols-outlined">edit</span>
+                <input 
+                    type="text" 
+                    name="" 
+                    id="userName" 
+                    class="info" 
+                    disabled
+                >
+                <span class="material-symbols-outlined" id="editarNome">edit</span>
             </div>
             <div id="email" class="dadosUser">
-                <input type="email" name="" id="" class="info" placeholder="colocar email">
+                <input 
+                    type="email"
+                    name="" 
+                    id="userEmail" 
+                    class="info" 
+                    disabled
+                >
                 <span class="material-symbols-outlined">edit</span>
             </div>
             <div id="telefone" class="dadosUser">
-                <input type="number" name="" id="" class="info" placeholder="colocar telefone">
+                <input 
+                    type="number"
+                    name=""
+                    id="userTel" 
+                    class="info" 
+                    disabled
+                >
                 <span class="material-symbols-outlined">edit</span>
             </div>
             <div id="senha" class="dadosUser">
-                <input type="password" name="" id="" class="info" placeholder="colocar senha">
+                <input 
+                    type="password"
+                    name=""
+                    id="userPassword" 
+                    class="info" 
+                    value=""
+                    disabled
+                >
                 <span class="material-symbols-outlined">edit</span>
             </div>
             <div id="confirmar">
-                <div>Salvar alterações</div>
-                <div>Deslogar conta</div>
-                <div>Excluir conta</div>
+                <div id="alterar">Salvar alterações</div>
+                <div id="deslogar">Deslogar conta</div>
+                <div id="deletar">Excluir conta</div>
                 <!-- 3 botoes, 1 para salvar as alterações, 1 para deslogar e outro para deletar a conta -->
             </div>
         </div>

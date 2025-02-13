@@ -2,6 +2,14 @@ const options = document.getElementById('options')
 const principal = document.getElementById('principal')
 const arrow = document.getElementById('voltar')
 const configs = document.getElementById('configs')
+const salvarAlteracaoBtn = document.getElementById('alterar')
+const deslogarContaBtn = document.getElementById('deslogar')
+const excluirContaBtn = document.getElementById('deletar')
+
+const inputName = document.getElementById('userName')
+const inputEmail = document.getElementById('userEmail')
+const inputTelefone = document.getElementById('userTel')
+const inputSenha = document.getElementById('userPassword')
 
 //responsividade
 if(window.innerWidth > 768){
@@ -54,11 +62,51 @@ arrow.addEventListener('click', () => {
 
 //fim responsividade
 
+// resgatar dados do usuario
+
+function mostrarPerfil(user){
+    inputName.placeholder = user.nome
+    inputEmail.placeholder = user.email
+    inputTelefone.placeholder = user.telefone
+    inputSenha.value = user.senha
+    
+    const editName = document.getElementById('editarNome')
+
+    editName.addEventListener('click', () => {
+        if(inputName.hasAttribute("Disabled")){
+            inputName.removeAttribute("disabled")
+            inputName.focus()
+            inputName.placeholder = ''
+        }
+    })
+
+    window.addEventListener('click', (e) =>{
+        if(inputName.focus && e.target != editName){
+            inputName.placeholder = user.nome
+            inputName.setAttribute("disabled", true)
+        }
+    })
+
+    console.log(user)
+}
+
+// fim resgatar dados do usuario
+
 //
 
-function mostrarPerfil(){
-    
-}
+salvarAlteracaoBtn.addEventListener('click', () =>{
+
+})
+
+deslogarContaBtn.addEventListener('click', ()=>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenExpiraEm");
+    window.location.href = '../auth/singIn.html'
+})
+
+excluirContaBtn.addEventListener('click', () => {
+
+})
 
 //
 
@@ -92,7 +140,7 @@ fetch('http://localhost:8081/perfil', {
     (resp) => resp.json()
 ).then(
     (data) => {
-        console.log(data)
+        mostrarPerfil(data)
     }
 ).catch(
     (err) => {

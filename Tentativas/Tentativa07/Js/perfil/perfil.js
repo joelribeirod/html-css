@@ -1,15 +1,35 @@
+//constante relacionadas a responsividade
 const options = document.getElementById('options')
 const principal = document.getElementById('principal')
 const arrow = document.getElementById('voltar')
 const configs = document.getElementById('configs')
+
+//constantes relacionadas aos botões de confirmação
 const salvarAlteracaoBtn = document.getElementById('alterar')
 const deslogarContaBtn = document.getElementById('deslogar')
 const excluirContaBtn = document.getElementById('deletar')
 
+//constantes relacionadas aos inputs do perfil
 const inputName = document.getElementById('userName')
 const inputEmail = document.getElementById('userEmail')
-const inputTelefone = document.getElementById('userTel')
+const inputTel = document.getElementById('userTel')
 const inputSenha = document.getElementById('userPassword')
+
+//constantes relacionadas aos botões de edição na lateral dos inputs
+const editNameBtn = document.getElementById('editarNome')
+const editEmailBtn = document.getElementById('editEmail')
+const editTelBtn = document.getElementById('editTel')
+const editSenhaBtn = document.getElementById('editSenha')
+
+//constantes relacionadas a edição de senha (1 div, 2 inputs, 2 erros, 1 botão)
+const confirmSenha = document.getElementById('confirmSenha')
+const analisarSenhaAnt = document.getElementById('senhaAntiga')
+const senhaNova = document.getElementById('senhaNova')
+const erroS = document.getElementById('erro')
+const erroTamanho = document.getElementById('erroTam')
+const enviarSenha = document.getElementById('enviar')
+
+//meu deus é muita constante kk
 
 //responsividade
 if(window.innerWidth > 768){
@@ -65,14 +85,14 @@ arrow.addEventListener('click', () => {
 // resgatar dados do usuario
 
 function mostrarPerfil(user){
+    //Pega os valores que vieram do banco de dados e coloca nos inputs
     inputName.placeholder = user.nome
     inputEmail.placeholder = user.email
-    inputTelefone.placeholder = user.telefone
+    inputTel.placeholder = user.telefone
     inputSenha.value = user.senha
     
-    const editName = document.getElementById('editarNome')
-
-    editName.addEventListener('click', () => {
+    //abre a edição do input nome
+    editNameBtn.addEventListener('click', () => {
         if(inputName.hasAttribute("Disabled")){
             inputName.removeAttribute("disabled")
             inputName.focus()
@@ -80,35 +100,218 @@ function mostrarPerfil(user){
         }
     })
 
+    //abre a edição do input email
+    editEmailBtn.addEventListener('click', () => {
+        if(inputEmail.hasAttribute("Disabled")){
+            inputEmail.removeAttribute("disabled")
+            inputEmail.focus()
+            inputEmail.placeholder = ''
+        }
+    })
+
+    //abre a edição do input telefone
+    editTelBtn.addEventListener('click', () => {
+        if(inputTel.hasAttribute("Disabled")){
+            inputTel.removeAttribute("disabled")
+            inputTel.focus()
+            inputTel.placeholder = ''
+        }
+    })
+
+    //abre a edição do input senha
+    editSenhaBtn.addEventListener('click', ()=>{
+        if(confirmSenha.style.display == 'none'){
+            confirmSenha.style.display = 'flex'
+        }
+    })
+
+    //fecha a edição do input nome
     window.addEventListener('click', (e) =>{
-        if(inputName.focus && e.target != editName){
+        if(!inputName.hasAttribute("disabled") && e.target != editNameBtn && e.target != inputName){
             inputName.placeholder = user.nome
             inputName.setAttribute("disabled", true)
         }
     })
+    
+    //fecha a edição do input email
+    window.addEventListener('click', (e) =>{
+        if(!inputEmail.hasAttribute("disabled") && e.target != editEmailBtn && e.target != inputEmail){
+            inputEmail.placeholder = user.email
+            inputEmail.setAttribute("disabled", true)
+        }
+    })
+    
+    //fecha a edição do input telefone
+    window.addEventListener('click', (e) =>{
+        if(!inputTel.hasAttribute("disabled") && e.target != editTelBtn && e.target != inputTel){
+            inputTel.placeholder = user.telefone
+            inputTel.setAttribute("disabled", true)
+        }
+    })
 
-    console.log(user)
+    //fecha a edição do input senha
+    window.addEventListener('click', (e) =>{
+        if(confirmSenha.style.display == 'flex' && e.target === confirmSenha && e.target != editSenhaBtn){
+            confirmSenha.style.display = 'none'
+        }
+    })
+
+    //Se havia um erro de senha, quando clicado na edição da senha antiga o erro some
+    analisarSenhaAnt.addEventListener('click', () => {
+        if(erroS.style.display == 'block'){
+            erroS.style.display = 'none'
+        }
+    })
+
+    //Se havia um erro de senha pequena(meno que 4 digitos), quando clicado na edição da nova senha o erro some
+    senhaNova.addEventListener('click', () => {
+        if(erroTamanho.style.display == 'block'){
+            erroTamanho.style.display = 'none'
+        }
+    })
+    
+    //analisa se a senha antiga digitada é a mesma que foi recebida pelo banco de dados, depois analisa se a nova senha é menos que 4 digitos, se passar pelas 2 confirmações, então o novo valor digitado é armazenado no input
+    enviarSenha.addEventListener('click', (e) => {
+        e.preventDefault()
+        if(analisarSenhaAnt.value != user.senha){
+            erroS.style.display = 'block'
+            console.log('oi')
+        }else{
+            if(senhaNova.value.length < 4){
+                erroTamanho.style.display = 'block'
+                
+            }else{
+                inputSenha.value = senhaNova.value
+                confirmSenha.style.display = 'none'
+            }
+        }
+    })
+
+    const deletarConta = document.getElementById('deletarConta')
+    const erroSenha = document.getElementById('erroSenha')
+    const delBtn = document.getElementById('del')
+    const inputDel = document.getElementById('inputDel')
+
+    inputDel.addEventListener('click', () => {
+        if(erroSenha.style.display == 'block'){
+            erroSenha.style.display = 'none'
+        }
+    })
+
+    deletarConta.addEventListener('click', (e) => {
+        if(deletarConta.style.display == 'flex' && e.target === deletarConta){
+            deletarConta.style.display = 'none'
+        }
+    })
+
+    excluirContaBtn.addEventListener('click', (e) => {
+        if(deletarConta.style.display == 'none'){
+            deletarConta.style.display = 'flex'
+        }
+    })
+
+    // botões de alterar dados, deslogar conta e excluir conta
+        //deletar conta
+    delBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        if(inputDel.value == user.senha){
+            // Criar o fetch para deletar a conta, e remover o token
+            fetch('http://localhost:8081/cadastro', {
+                method: "DELETE",
+                headers: {
+                    'Content-Type':'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(
+                (resp) => resp.json()
+            ).then(
+                localStorage.removeItem("token"),
+                localStorage.removeItem("tokenExpiraEm"),
+                window.location.href = '../auth/singIn.html'
+            ).catch(
+                (err) => {
+                    console.log(console.log(err))
+                }
+            ) 
+        }else{
+            erroSenha.style.display = 'block'
+        }
+    })
+
+        //alterar dados
+    salvarAlteracaoBtn.addEventListener('click', () =>{
+        const emailInvalido = document.getElementById('emailInvalido')
+        const novoNome = document.getElementById('userName')
+        const novoEmail = document.getElementById('userEmail')
+        const novoTel = document.getElementById('userTel')
+        const novaSenha = document.getElementById('userPassword')
+
+        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+        editEmailBtn.addEventListener('click', () => {
+            if(emailInvalido.style.display == 'block' ){
+                emailInvalido.style.display = 'none'
+            }
+        })
+
+        if(regex.test(novoEmail.value)){
+            console.log('oi')
+        }else if(novoEmail.value){
+            // para a execução da função
+            emailInvalido.style.display = 'block'
+            return null
+        }
+
+        const valoresAlterados = []
+
+        if(novoNome.value){
+            valoresAlterados.push({nome: novoNome.value})
+        }
+
+        if(novoEmail.value){
+            valoresAlterados.push({email: novoEmail.value})
+        }
+
+        if(novoTel.value){
+            valoresAlterados.push({telefone: novoTel.value})
+        }
+
+        if(novaSenha.value != user.senha){
+            valoresAlterados.push({senha: novaSenha.value})
+        }
+
+        console.log(valoresAlterados[1])
+
+        // fetch('http://localhost:8081/cadastro', {
+        //     method: "PATCH",
+        //     headers: {
+        //         'Content-Type':'application/json',
+        //         'Authorization': `Bearer ${token}`
+        //     },
+        //     body: JSON.stringify(valoresAlterados)
+        // }).then((resp)=>{
+        //     resp.json()
+        // }).then((data)=>{
+        //     console.log(data)
+        // }
+        // ).catch((err)=>{
+        //     console.log(err)
+        // })
+
+    })
+
+        //deslogar a conta
+    deslogarContaBtn.addEventListener('click', ()=>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiraEm");
+        window.location.href = '../auth/singIn.html'
+    })
+
+    // fim botões de alterar dados, deslogar conta e excluir conta
+
 }
 
 // fim resgatar dados do usuario
-
-//
-
-salvarAlteracaoBtn.addEventListener('click', () =>{
-
-})
-
-deslogarContaBtn.addEventListener('click', ()=>{
-    localStorage.removeItem("token");
-    localStorage.removeItem("tokenExpiraEm");
-    window.location.href = '../auth/singIn.html'
-})
-
-excluirContaBtn.addEventListener('click', () => {
-
-})
-
-//
 
 // analisa se o token ainda é valido
 const expira = localStorage.getItem('tokenExpiraEm')

@@ -9,6 +9,26 @@
     <script src="../../Js/perfil/perfil.js" defer></script>
 </head>
 <body>
+    <div id="deletarConta" style="display: none;">
+        <div id="confirmDel">
+            <span id="aviso">Essa ação é irreversível, prossiga apenas se tiver plena consciência do que esta fazendo.</span>
+            <label for="inputDel">Sua senha: </label>
+            <input type="password" id="inputDel">
+            <span id="erroSenha" style="display: none;">Senha incorreta</span>
+            <button type="submit" id="del">Deletar conta</button>
+        </div>
+    </div>
+    <div id="confirmSenha" style="display: none;">
+        <form id="mudarSenha">
+            <label for="senhaAntiga">Senha Antiga: </label>
+            <input type="password" id="senhaAntiga">
+            <span id="erro" style="display: none;">Senha incorreta</span>
+            <label for="senhaNova">Nova Senha: </label>
+            <input type="password" id="senhaNova">
+            <span id="erroTam" style="display: none;">Senha menor que 4 digitos</span>
+            <button type="submit" id="enviar">Salvar</button>
+        </form>
+    </div>
     <span class="material-symbols-outlined" id="voltar" style="rotate: 180deg;">arrow_back</span>
     <aside id="configs" >
 
@@ -42,7 +62,8 @@
                     class="info" 
                     disabled
                 >
-                <span class="material-symbols-outlined">edit</span>
+                <span class="material-symbols-outlined" id="editEmail">edit</span>
+                <p id="emailInvalido" style="display: none;">formato de email invalido</p>
             </div>
             <div id="telefone" class="dadosUser">
                 <input 
@@ -52,7 +73,7 @@
                     class="info" 
                     disabled
                 >
-                <span class="material-symbols-outlined">edit</span>
+                <span class="material-symbols-outlined" id="editTel">edit</span>
             </div>
             <div id="senha" class="dadosUser">
                 <input 
@@ -63,7 +84,7 @@
                     value=""
                     disabled
                 >
-                <span class="material-symbols-outlined">edit</span>
+                <span class="material-symbols-outlined" id="editSenha">edit</span>
             </div>
             <div id="confirmar">
                 <div id="alterar">Salvar alterações</div>

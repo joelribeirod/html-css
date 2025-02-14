@@ -101,7 +101,7 @@ app.patch('/projects/:id', (req, res) => {
 // Fim Rota projects
 
 // Rota Login
-//verificar se o usuario existe no banco (seria o GET na vdd, mas o get n permite envio de dados através dos params)
+  //verificar se o usuario existe no banco (seria o GET na vdd, mas o get n permite envio de dados através dos params)
     //rota usada pelo signIn.js
 app.post('/verificar', (req, res) => {
     Login.findOne({
@@ -179,9 +179,44 @@ app.post('/cadastro', async (req, res) => {
     }
 })
 
-// app.delete()
+app.delete('/cadastro',verificarToken, (req,res) => {
+    Login.destroy({
+        where: {'id': req.usuario.userId}
+    }).then(
+        res.json(respostaSucesso)
+    ).catch((err) => {res.json(err)})
+})
 
-// app.patch()
+app.patch('/cadastro',verificarToken, async (req,res) => {
+    try {
+        const resultado = await Login.update({
+            email: req.body.email,
+            nome: req.body.nome,
+            senha: req.body.senha,
+            telefone: req.body.telefone
+        },{
+            where: {'id': req.usuario.userId}
+        })
+
+        if (resultado[0] > 0) {
+            res.json({ sucesso: true });
+        } else {
+            res.status(404).json({ sucesso: false, mensagem: "Usuário não encontrado ou dados idênticos" });
+        }
+    } catch (err) {
+        if (err.name === 'SequelizeUniqueConstraintError') {
+
+            //se o erro for de dado duplicado, ele pega qual foi o campo duplicado e envia para o singUp
+            const erro = {
+                erro: err.errors[0].path
+            }
+            res.status(400).send(erro);
+        } else {
+            //se o erro não for identificado, ele envia um erro qualquer na requisição
+            res.status(500).send(respostaFalha); 
+        }
+    }
+})
 
 
 // Fim Rota Login 

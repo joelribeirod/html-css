@@ -82,9 +82,28 @@ arrow.addEventListener('click', () => {
 
 //fim responsividade
 
+// tratar erros/sucessos
+const erroNomeRepetido = document.getElementById('erroNomeRepetido')
+const erroEmailRepetido = document.getElementById('erroEmailRepetido')
+
+function tratarResp(resp){
+    if(resp.sucesso){
+        window.alert('sucesso na atualização dos dados')
+        window.location.reload()
+    }else if(resp.erro){
+        if(resp.erro == 'nome'){
+            erroNomeRepetido.style.display = 'block'
+        }else if(resp.erro == 'email'){
+            erroEmailRepetido.style.display = 'block'
+        }
+    }
+}
+// fim; tratar erros/sucessos
+
 // resgatar dados do usuario
 
 function mostrarPerfil(user){
+    console.log(user)
     //Pega os valores que vieram do banco de dados e coloca nos inputs
     inputName.placeholder = user.nome
     inputEmail.placeholder = user.email
@@ -98,6 +117,9 @@ function mostrarPerfil(user){
             inputName.focus()
             inputName.placeholder = ''
         }
+        if(erroNomeRepetido.style.display == 'block'){
+            erroNomeRepetido.style.display = 'none'
+        }
     })
 
     //abre a edição do input email
@@ -106,6 +128,9 @@ function mostrarPerfil(user){
             inputEmail.removeAttribute("disabled")
             inputEmail.focus()
             inputEmail.placeholder = ''
+        }
+        if(erroEmailRepetido.style.display = 'block'){
+            erroEmailRepetido.style.display = 'none'
         }
     })
 
@@ -175,7 +200,6 @@ function mostrarPerfil(user){
         e.preventDefault()
         if(analisarSenhaAnt.value != user.senha){
             erroS.style.display = 'block'
-            console.log('oi')
         }else{
             if(senhaNova.value.length < 4){
                 erroTamanho.style.display = 'block'
@@ -246,6 +270,7 @@ function mostrarPerfil(user){
         const novoTel = document.getElementById('userTel')
         const novaSenha = document.getElementById('userPassword')
 
+        //regex para analisar o formato do email
         let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
         editEmailBtn.addEventListener('click', () => {
@@ -254,9 +279,8 @@ function mostrarPerfil(user){
             }
         })
 
-        if(regex.test(novoEmail.value)){
-            console.log('oi')
-        }else if(novoEmail.value){
+        //analisa se o formato do email está correto
+        if(novoEmail.value && !regex.test(novoEmail.value)){
             // para a execução da função
             emailInvalido.style.display = 'block'
             return null
@@ -264,11 +288,12 @@ function mostrarPerfil(user){
 
         const valoresAlterados = []
 
-        if(novoNome.value){
+        // analisa e guarda os valores alterados
+        if(novoNome.value && novoNome.value !== user.nome){
             valoresAlterados.push({nome: novoNome.value})
         }
 
-        if(novoEmail.value){
+        if(novoEmail.value && novoEmail.value !== user.email){
             valoresAlterados.push({email: novoEmail.value})
         }
 
@@ -279,24 +304,30 @@ function mostrarPerfil(user){
         if(novaSenha.value != user.senha){
             valoresAlterados.push({senha: novaSenha.value})
         }
+        // fim; analisa e guarda os valores alterados
 
-        console.log(valoresAlterados[1])
+        // formata os valores para um unico objeto; [{w},{x},{y},{z}] => {w , x , y , z}
+        let dadosFormatados = valoresAlterados.reduce((acc, item) => {
+            return {...acc, ...item}
+        }, {})
 
-        // fetch('http://localhost:8081/cadastro', {
-        //     method: "PATCH",
-        //     headers: {
-        //         'Content-Type':'application/json',
-        //         'Authorization': `Bearer ${token}`
-        //     },
-        //     body: JSON.stringify(valoresAlterados)
-        // }).then((resp)=>{
-        //     resp.json()
-        // }).then((data)=>{
-        //     console.log(data)
-        // }
-        // ).catch((err)=>{
-        //     console.log(err)
-        // })
+        console.log(dadosFormatados)
+
+        fetch('http://localhost:8081/cadastro', {
+            method: "PATCH",
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(dadosFormatados)
+        }).then(
+            (resp)=> resp.json()
+        ).then((data)=>{
+            tratarResp(data)
+        }
+        ).catch((err)=>{
+            console.log(err)
+        })
 
     })
 

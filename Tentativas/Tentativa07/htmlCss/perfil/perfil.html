@@ -35,8 +35,8 @@
         <a href="../explorar/explorar.html">Explorar</a>
         <a href="">Configs</a>
         <!-- link temporario -->
-        <a href="../main/mainClient.html">criar projetos</a>
-        <a href="../main/mainDev.html">ver projetos</a>
+        <a href="../main/mainClient.html">Criar projetos</a>
+        <a href="../main/mainDev.html">Procurar projetos</a>
     </aside>
     <div id="options" style="display: none;">
         <!-- div para ocultar o fundo do menu "hamburger" -->
@@ -45,6 +45,7 @@
         <div id="perfil">
             <h1>Seu perfil</h1>
             <div id="nome" class="dadosUser">
+                <p class="parag">Nome:</p>
                 <input 
                     type="text" 
                     name="" 
@@ -53,8 +54,10 @@
                     disabled
                 >
                 <span class="material-symbols-outlined" id="editarNome">edit</span>
+                <p id="erroNomeRepetido" style="display: none;">Este nome ja existe!</p>
             </div>
             <div id="email" class="dadosUser">
+                <p class="parag">Email:</p>
                 <input 
                     type="email"
                     name="" 
@@ -63,9 +66,11 @@
                     disabled
                 >
                 <span class="material-symbols-outlined" id="editEmail">edit</span>
-                <p id="emailInvalido" style="display: none;">formato de email invalido</p>
+                <p id="emailInvalido" style="display: none;">Formato de email invalido</p>
+                <p id="erroEmailRepetido" style="display: none;">Este email ja existe!</p>
             </div>
             <div id="telefone" class="dadosUser">
+                <p class="parag">Telefone:</p>
                 <input 
                     type="number"
                     name=""
@@ -76,6 +81,7 @@
                 <span class="material-symbols-outlined" id="editTel">edit</span>
             </div>
             <div id="senha" class="dadosUser">
+                <p class="parag">Senha:</p>
                 <input 
                     type="password"
                     name=""

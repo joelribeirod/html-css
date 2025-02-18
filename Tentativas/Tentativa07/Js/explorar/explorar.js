@@ -57,18 +57,15 @@ const loading = document.getElementById('loading')
 //fim responsividade
 
 // carregar os projetos
-    let tot
-    let dados
     let quantidadePgns 
     const userData = []
     const total = []
-    let testeD = []
-    let testeP = []
-
+    
     function carregarProjetos(projects){
         quantidadePgns = Math.ceil(projects.length / 4)
-        
-        projects.forEach((e)=> {
+        loading.style.display = 'block'
+
+        let promises = projects.map((e) => 
             //console.log(e)
             fetch(`http://localhost:8081/cadastro/${e.cliente}`, {
                 method: "GET",
@@ -80,19 +77,21 @@ const loading = document.getElementById('loading')
             ).then(
                 (data) => {
                     userData.push(data)
-                    total.push(criarHtml(data, e))
+                    return criarHtml(data, e)
                 }
             ).catch((err) => {console.log(err)})
-        })
+        )
 
-        loading.style.display = 'block'
-
-        setTimeout(() => {
-            loading.style.display = 'none'
+        Promise.all(promises).then((res) => {
+            total.push(...res)
             exibirProjetos(total, quantidadePgns)
-        }, 2000)
+        }).catch(
+            (err) => console.log(`Erro: ${err}`)
+        ).finally(
+            () => {
+            loading.style.display = 'none'
+        })
     }
-    
 
     function criarHtml(userData, project){
     

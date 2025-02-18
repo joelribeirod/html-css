@@ -161,15 +161,10 @@ function projeto(){
 
 const expira = localStorage.getItem('tokenExpiraEm')
 
-if(expira > Date.now()){
-    console.log(true)
-}else {
-    if (expira && Date.now() > expira) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("tokenExpiraEm");
-        console.log("Token expirado! Redirecionando...");
-    }
-
+if(expira < Date.now()){
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenExpiraEm");
+    console.log("Token expirado! Redirecionando...");
 }
 
 const token = localStorage.getItem('token')

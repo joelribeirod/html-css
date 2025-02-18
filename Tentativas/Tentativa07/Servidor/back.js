@@ -117,12 +117,12 @@ app.post('/verificar', (req, res) => {
         res.status(500).send(respostaFalha + err)
     })
 })
-    //rota usada pelo dev.js
+    //rota usada pelo dev.js && explorar.js
 app.get('/cadastro/:id', (req,res)=>{
     Login.findOne({
         where: {'id': req.params.id}
     }).then((user) => {
-        res.json(user)
+        res.json({nome: user.nome, telefone: user.telefone})
     }).catch((err) => {
         res.status(404).send(respostaFalha + err)
     })

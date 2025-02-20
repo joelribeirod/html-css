@@ -57,12 +57,12 @@ const loading = document.getElementById('loading')
 //fim responsividade
 
 // carregar os projetos
-    let quantidadePgns 
-    const userData = []
-    const total = []
+    
     
     function carregarProjetos(projects){
-        quantidadePgns = Math.ceil(projects.length / 4)
+        const total = []
+        let quantidadePgns = Math.ceil(projects.length / 4)
+        
         loading.style.display = 'block'
 
         let promises = projects.map((e) => 
@@ -76,7 +76,6 @@ const loading = document.getElementById('loading')
                 (resp) => resp.json()
             ).then(
                 (data) => {
-                    userData.push(data)
                     return criarHtml(data, e)
                 }
             ).catch((err) => {console.log(err)})
@@ -131,7 +130,7 @@ const loading = document.getElementById('loading')
     let contador = 1
     function exibirProjetos(projects, Pgns){
         const barraRolagem = document.getElementById('rolagem')
-        barraRolagem.innerHTML = ''
+        
         for(let c = 1; c <= Pgns; c++){
             let btn = document.createElement('button')
             btn.textContent = c 

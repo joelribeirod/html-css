@@ -98,16 +98,16 @@ function carregarProjeto(projects){
         let project = document.createElement('div')
         project.className = 'projeto'
 
-        let user = document.createElement('h1')
-        user.className = "usuario"
+        let user = document.createElement('p')
+        user.className = "nome"
         user.textContent = usuario
 
-        let titulo = document.createElement('h1')
+        let titulo = document.createElement('p')
         titulo.className = "titulo"
         titulo.textContent = e.titulo
 
         let conteudo = document.createElement('p')
-        conteudo.className = 'texto'
+        conteudo.className = 'conteudo'
         conteudo.textContent = e.conteudo
 
         project.appendChild(user)

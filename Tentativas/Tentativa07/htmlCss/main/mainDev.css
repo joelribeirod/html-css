@@ -75,10 +75,7 @@ main{
     justify-content: center;
     align-items: center;
     height: 300px;
-    width: 90%;
-    border: 1px solid black;
-    border-radius: 8px;
-    background-color: #c5c4c4;
+    width: 100%;
 }
 
 #estrala{
@@ -113,40 +110,53 @@ main{
 }
 
 .projeto{
+    display: flex;
+    flex-direction: column;
     width: 90%;
     height: 90%;
     background-color: rgb(238, 238, 238);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    flex-direction: center;
-    align-items: center;
     border: 1px solid black;
-    padding-bottom: 6px;
+    padding: 6px;
+}
+
+.nome{
+    font-size: 20px;
+    color: rgb(58, 58, 58);
+    margin-left: 10px;
 }
 
 .titulo{
-    font-size: 24px;
-    background-color: rgb(238, 238, 238);
+    font-size: 28px;
+    font-weight: bold;
     width: 90%;
-    border-radius: 4px;
-    border: 1px solid black;
-    padding: 4px;
-    margin: 4px;
+    margin: 2px 10px;
 }
 
-.texto{
-    font-size: 18px;
-    background-color: rgb(238, 238, 238);
+.conteudo{
     width: 90%;
-    max-height: 200px;
+    height: 65%;
+    margin: 6px;
+    padding-top: 4px;
+    font-size: 20px;
     overflow: hidden;
-    overflow-y: scroll;
-    border-radius: 4px;
-    border: 1px solid black;
-    padding: 4px;
-    text-indent: 4px;
-    scrollbar-width: 2px;
+    overflow-y: auto;
+    align-self: center;
+}
+
+.conteudo::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+
+.conteudo::-webkit-scrollbar {
+    width: 2px;
+    background: #F4F4F4;
+}
+
+.conteudo::-webkit-scrollbar-thumb {
+    background: #dad7d7;
 }
 
 @media screen and (min-width : 768px) {

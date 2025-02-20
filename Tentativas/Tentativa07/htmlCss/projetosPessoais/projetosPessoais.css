@@ -37,7 +37,7 @@ body span{
 #options{
     display: none;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     position: fixed;
     background-color: rgba(15, 15, 15, 0.26);
 }
@@ -58,6 +58,12 @@ body span{
     background-color: #dbdbdb;
 }
 
+#alerta{
+    font-size: 30px;
+    color: rgb(56, 56, 56);
+    
+}
+
 #projetos{
     display: flex;
     justify-content: center;
@@ -70,13 +76,17 @@ body span{
     padding: 10px;
 }
 
+#projetos span{
+    position: relative;
+}
+
 .projeto{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 90%;
     max-width: 450px;
-    height: 350px;
+    min-height: auto;
     border: 1px solid black;
     border-radius: 8px;
     background-color: #fff;
@@ -99,16 +109,27 @@ body span{
     cursor: pointer;
 }
 
-.projeto div{
+.subDiv{
     width: 90%;
     height: 280px;
     margin-top: 10px;
 }
 
-.nome{
-    font-size: 18px;
-    color: rgb(58, 58, 58);
-    margin-left: 8px;
+.divBtns{
+    width: 90%;
+    display: flex;
+    gap: 10px;
+    flex-direction: row-reverse;
+    padding-bottom: 6px;
+}
+
+.divBtns span{
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.divBtns span:hover{
+    transform: scale(1.5);
 }
 
 .titulo{
@@ -141,31 +162,48 @@ body span{
     background: #dad7d7;
 }
 
-.projeto button{
-    margin: 16px;
-    font-size: 20px;
-    padding: 4px;
+#confirmDelBG{
+    position: fixed;
+    z-index: 4;
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.247);
+}
+
+#confirmDel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    width: 260px;
+    height: 220px;
     border: 1px solid black;
     border-radius: 12px;
+    padding: 8px;
+}
+
+#confirmDel h1{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#confirmDel button{
+    width: 85%;
+    font-size: 22px;
+    border: 1px solid black;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s ease-in-out;
 }
 
-.projeto button:hover{
-    transform: scale(1.05);
-}
-
-#loading{
-    border-radius: 50%;
-}
 
 @media screen and (min-width : 768px) {
     body{
         display: flex;
-    }
-
-    #voltar{
-        display: none;
     }
 
     #configs{
@@ -177,33 +215,28 @@ body span{
     #principal{
         min-height: 800px;
     }
+    
+    #voltar{
+        display: none;
+    }
+
+    #options{
+        position: relative;
+    }
+
+    .projeto{
+        width: 40%;
+        min-width: 298px;
+        max-width: 450px;
+    }
 
     #projetos{
         gap: 15px;
         height: 90%;
     }
-
-    .conteudo{
-        height: 50%;
-    }
-
-    .projeto{
-        width: 40%;
-        min-width: 350px;
-        max-width: 450px;
-        max-height: 350px;
-        transition: 0.5s ease-in-out;
-    }
-
-    .projeto div{
-        height: 70%;
-    }
     
-    .projeto:hover{
-        transform: scale(1.1);
-    }
-
     #rolagem{
         margin-top: 8px;
     }
+
 }

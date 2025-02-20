@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seus Projetos</title>
+    <link rel="stylesheet" href="projetosPessoais.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <script src="../../Js/projetosPessoais/projetosPessoais.js" defer></script>
+</head>
+<body>
+    <div id="confirmDelBG" style="display: none;">
+        <div id="confirmDel">
+            <h1>Deseja mesmo deletar este projeto?</h1>
+            <button id="cancelDelBtn">
+                Cancelar
+            </button>
+            <button id="confirmDelBtn">
+                Confirmar
+            </button>
+        </div>
+    </div>
+    <span class="material-symbols-outlined" id="voltar" style="rotate: 180deg;">arrow_back</span>
+    <aside id="configs" >
+        
+        <a href="../perfil/perfil.html">Ver perfil</a>
+        <a href="../explorar/explorar.html">Explorar</a>
+        <a href="../main/mainDev.html">Procurar projetos</a>
+        <a href="../main/mainClient.html">Criar projetos</a>
+    </aside>
+    <div id="options" style="display: none;">
+        <!-- div para ocultar o fundo do menu "hamburger" -->
+    </div>
+    <main id="principal">
+        <div id="alerta" style="display: none;">
+            Nenhum projeto cadastrado ainda.
+        </div>
+        <div id="projetos">
+
+        </div>
+        <div id="rolagem">
+            
+        </div>
+    </main>
+</body>
+</html>

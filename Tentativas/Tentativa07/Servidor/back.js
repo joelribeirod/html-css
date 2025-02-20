@@ -22,7 +22,7 @@ app.use(express.json())
 
 // gerar token
 
-const duracaoDoToken = 900
+const duracaoDoToken = 3600
 
 function gerarTokenIn(user){
     return jwt.sign(
@@ -55,12 +55,22 @@ function verificarToken(req, res, next){
 // fim validar autenticidade do token
 
 // Rota projects
-
+    //rota usada pelo dev.js && explorar.js
 app.get('/projects', (req, res) => {
     Project.findAll().then((posts) =>{
         res.send(posts)
     }).catch((err) => {
         res.status(500).send(respostaFalha + err)
+    })
+})
+    //rota usada pelo projetosPessoais.js
+app.get('/projetos', verificarToken, (req, res) => {
+    Project.findAll({
+        where: {'cliente': req.usuario.userId}
+    }).then((posts) => {
+        res.send(posts)
+    }).catch((err) => {
+        res.status(500).send(respostaFalha + {err})
     })
 })
 

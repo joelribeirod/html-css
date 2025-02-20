@@ -188,7 +188,7 @@ function mostrarPerfil(user){
         }
     })
 
-    //Se havia um erro de senha pequena(meno que 4 digitos), quando clicado na edição da nova senha o erro some
+    //Se havia um erro de senha pequena(menos que 4 digitos), quando clicado na edição da nova senha o erro some
     senhaNova.addEventListener('click', () => {
         if(erroTamanho.style.display == 'block'){
             erroTamanho.style.display = 'none'
@@ -211,28 +211,32 @@ function mostrarPerfil(user){
         }
     })
 
-    const deletarConta = document.getElementById('deletarConta')
-    const erroSenha = document.getElementById('erroSenha')
-    const delBtn = document.getElementById('del')
-    const inputDel = document.getElementById('inputDel')
+    // constantes relacionadas a verificação para deletar a conta
+        const deletarConta = document.getElementById('deletarConta')
+        const erroSenha = document.getElementById('erroSenha')
+        const delBtn = document.getElementById('del')
+        const inputDel = document.getElementById('inputDel')
 
-    inputDel.addEventListener('click', () => {
-        if(erroSenha.style.display == 'block'){
-            erroSenha.style.display = 'none'
-        }
-    })
+    //se tiver algum erro quando clicar no input, o erro some
+        inputDel.addEventListener('click', () => {
+            if(erroSenha.style.display == 'block'){
+                erroSenha.style.display = 'none'
+            }
+        })
 
-    deletarConta.addEventListener('click', (e) => {
-        if(deletarConta.style.display == 'flex' && e.target === deletarConta){
-            deletarConta.style.display = 'none'
-        }
-    })
+    //fecha a verificação de deletar conta
+        deletarConta.addEventListener('click', (e) => {
+            if(deletarConta.style.display == 'flex' && e.target === deletarConta){
+                deletarConta.style.display = 'none'
+            }
+        })
 
-    excluirContaBtn.addEventListener('click', (e) => {
-        if(deletarConta.style.display == 'none'){
-            deletarConta.style.display = 'flex'
-        }
-    })
+    //abre a verificação para deletar a conta
+        excluirContaBtn.addEventListener('click', (e) => {
+            if(deletarConta.style.display == 'none'){
+                deletarConta.style.display = 'flex'
+            }
+        })
 
     // botões de alterar dados, deslogar conta e excluir conta
         //deletar conta
@@ -289,30 +293,29 @@ function mostrarPerfil(user){
         const valoresAlterados = []
 
         // analisa e guarda os valores alterados
-        if(novoNome.value && novoNome.value !== user.nome){
-            valoresAlterados.push({nome: novoNome.value})
-        }
+            if(novoNome.value && novoNome.value !== user.nome){
+                valoresAlterados.push({nome: novoNome.value})
+            }
 
-        if(novoEmail.value && novoEmail.value !== user.email){
-            valoresAlterados.push({email: novoEmail.value})
-        }
+            if(novoEmail.value && novoEmail.value !== user.email){
+                valoresAlterados.push({email: novoEmail.value})
+            }
 
-        if(novoTel.value){
-            valoresAlterados.push({telefone: novoTel.value})
-        }
+            if(novoTel.value){
+                valoresAlterados.push({telefone: novoTel.value})
+            }
 
-        if(novaSenha.value != user.senha){
-            valoresAlterados.push({senha: novaSenha.value})
-        }
+            if(novaSenha.value != user.senha){
+                valoresAlterados.push({senha: novaSenha.value})
+            }
         // fim; analisa e guarda os valores alterados
 
         // formata os valores para um unico objeto; [{w},{x},{y},{z}] => {w , x , y , z}
-        let dadosFormatados = valoresAlterados.reduce((acc, item) => {
-            return {...acc, ...item}
-        }, {})
+            let dadosFormatados = valoresAlterados.reduce((acc, item) => {
+                return {...acc, ...item}
+            }, {})
 
-        console.log(dadosFormatados)
-
+        //Envia os dados formatados para o banco substituir os valores antigos pelos atuais
         fetch('http://localhost:8081/cadastro', {
             method: "PATCH",
             headers: {
@@ -331,12 +334,12 @@ function mostrarPerfil(user){
 
     })
 
-        //deslogar a conta
-    deslogarContaBtn.addEventListener('click', ()=>{
-        localStorage.removeItem("token");
-        localStorage.removeItem("tokenExpiraEm");
-        window.location.href = '../auth/singIn.html'
-    })
+    //deslogar a conta
+        deslogarContaBtn.addEventListener('click', ()=>{
+            localStorage.removeItem("token");
+            localStorage.removeItem("tokenExpiraEm");
+            window.location.href = '../auth/singIn.html'
+        })
 
     // fim botões de alterar dados, deslogar conta e excluir conta
 
@@ -345,18 +348,18 @@ function mostrarPerfil(user){
 // fim resgatar dados do usuario
 
 // analisa se o token ainda é valido
-const expira = localStorage.getItem('tokenExpiraEm')
+    const expira = localStorage.getItem('tokenExpiraEm')
 
-if(expira < Date.now()){
-    localStorage.removeItem("token");
-    localStorage.removeItem("tokenExpiraEm");
-    console.log("Token expirado! Redirecionando...");
-}
+    if(expira < Date.now()){
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiraEm");
+        console.log("Token expirado! Redirecionando...");
+    }
 
-const token = localStorage.getItem('token')
-if(!token){
-    window.location.href = '../auth/singIn.html'
-}
+    const token = localStorage.getItem('token')
+    if(!token){
+        window.location.href = '../auth/singIn.html'
+    }
 // fim analisa se o token ainda é valido
 
 // resgata o usuario atual

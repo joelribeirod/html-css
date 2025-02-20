@@ -20,7 +20,7 @@ function analisarUsuario(user){
 
     console.log(user.token, expiraEm, user.auth, user.duracaoDoToken)
 
-    window.location.href = "../main/mainDev.html"
+    window.location.href = "../projetosPessoais/projetosPessoais.html"
 }
 
 

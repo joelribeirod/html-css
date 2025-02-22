@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -45,6 +47,7 @@ body span{
 #configs a{
     color: rgb(0, 0, 97);
     text-decoration: none;
+    font-family: "Roboto", serif;
 }
 
 main{
@@ -62,10 +65,11 @@ main{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     padding: 20px 0px;
     height: auto;
     width: 90%;
+    max-width: 500px;
     border: 1px solid black;
     border-radius: 8px;
     background-color: #fff;
@@ -77,10 +81,8 @@ main{
     align-items: center;
     height: auto;
     padding: 20px 0px;
-    width: 80%;
-    border: 1px solid black;
-    border-radius: 8px;
-    background-color: #c5c4c4;
+    width: 100%;
+   
 }
 /*  */
 #form{
@@ -91,8 +93,9 @@ main{
 
 #form p{
     text-align: left;
-    font-size: 24px;
-    margin: 10px 10px;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 16px;
 }
 
 #form input{
@@ -112,21 +115,21 @@ main{
     font-size: 20px;
     padding: 4px;
     height: auto;
+    resize: none;
 }
 /*  */
 #btns{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10%;
-    height: 40px;
+    font-size: 28px;
     width: 90%;
-    
 }
 
 #btns button{
     width: 120px;
     height: 30px;
+    margin: 0px 10px;
     font-size: 26px;
     border: 1px solid black;
     border-radius: 6px;

@@ -128,35 +128,53 @@ const loading = document.getElementById('loading')
 
 // exibir projetos
     let contador = 1
+    
+    // função que gera a separação da quantidade de projetos em 'paginas'
     function exibirProjetos(projects, Pgns){
+
+        // pega a barra de rolagem
         const barraRolagem = document.getElementById('rolagem')
-        
-        for(let c = 1; c <= Pgns; c++){
-            let btn = document.createElement('button')
-            btn.textContent = c 
 
-            btn.addEventListener('click', () => {
-                totProjects.innerHTML = ''
-                contador = Number(btn.textContent) - 1
-                let inicio = (contador * 4)
-                let fim = inicio + 3
+        // analisa se precisa ter mais de uma pagina
+        if(Pgns > 1){
 
-                console.log(inicio, fim)
-                
-                for(let n = inicio; n <= fim; n++){
-                    if(projects[n]){
-                        totProjects.appendChild(projects[n])
-                    }else{
-                        console.log('Sem mais projetos...')
+            // cria um for que gera uma quantidade de botões igual a quantidade de paginas
+            for(let c = 1; c <= Pgns; c++){
+                let btn = document.createElement('button')
+                btn.textContent = c 
+                // cada botão quando clicado 'muda' a pagina, avançando ou voltando 4 projetos
+
+                btn.addEventListener('click', () => {
+                    totProjects.innerHTML = ''
+
+                    // eles fazem isso pegando a posição da pagina(1, 2, 3, etc), subtraem 1 para poderem se igual a um array
+                    contador = Number(btn.textContent) - 1
+
+                    // cria um 'inicio' multiplicando o contador por 4 (pagina atual multiplicado por quantidade de projetos em cada pagina), e um fim, que soma o inicio + 3 (Ex: 12 => 15), isso faz com que, dentro do array, se movam 4 posições, 4 projetos.
+                    let inicio = (contador * 4)
+                    let fim = inicio + 3
+
+                    // cria um for que move os projetos da pagina atual conforme a pagina atual, se é a pagina 1, será do 0 ao 3, se é a 2, será do 4 ao 7
+                    for(let n = inicio; n <= fim; n++){
+                        if(projects[n]){
+                            totProjects.appendChild(projects[n])
+                        }else{
+                            console.log('Sem mais projetos...')
+                        }
                     }
-                }
-            })
-            
-            barraRolagem.appendChild(btn)
-        }
+                })
 
+                // coloca os botões na barra de rolagem
+                    barraRolagem.appendChild(btn)
+            }
+        }
+        
         for(let c = 0; c <= 3; c++){
-            totProjects.appendChild(projects[c])
+            if(projects[c]){
+                totProjects.appendChild(projects[c])
+            }else{
+                console.log('Sem mais projetos...')
+            }
         }
     }
 

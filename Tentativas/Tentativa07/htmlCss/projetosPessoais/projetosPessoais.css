@@ -46,6 +46,7 @@ body span{
 #configs a{
     color: rgb(0, 0, 97);
     text-decoration: none;
+    font-family: "Roboto", serif;
 }
 
 #principal{
@@ -246,12 +247,18 @@ body span{
 }
 
 #atualizarDado button{
-    width: 140px;
-    font-size: 18px;
-    margin-top: 14px;
+    width: 160px;
+    font-size: 24px;
+    margin: 14px;
     border: 1px solid black;
     border-radius: 4px;
     cursor: pointer;
+}
+
+#atualizarDado div{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
 }
 
 #atualizarDado textarea::-webkit-scrollbar-track {
@@ -306,12 +313,32 @@ body span{
     }
 
     #atualizarDado{
-        width: 300px;
+        width: 500px;
+    }
+
+    #atualizarDado label, p{
+        font-size: 30px;
     }
 
     #atualizarDado button{
-        font-size: 24px;
+        font-size: 28px;
         width: 160px;
+        margin: 12px;
+    }
+    
+    #atualizarDado input{
+        font-size: 24px;
+        padding-right: 0px;
+        border-radius: 12px;
+    }
+    
+    #atualizarDado textarea{
+        width: 90%;
+        max-width: 350px;
+    }
+
+    #atualizarDado div{
+        margin-top: 0px;
     }
 
 }

@@ -316,22 +316,25 @@ function mostrarPerfil(user){
             }, {})
 
         //Envia os dados formatados para o banco substituir os valores antigos pelos atuais
-        fetch('http://localhost:8081/cadastro', {
+        if(Object.keys(dadosFormatados).length === 0){
+            window.alert('Nenhum dado foi alterado')
+        }else{
+            fetch('http://localhost:8081/cadastro', {
             method: "PATCH",
             headers: {
                 'Content-Type':'application/json',
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(dadosFormatados)
-        }).then(
-            (resp)=> resp.json()
-        ).then((data)=>{
-            tratarResp(data)
+            }).then(
+                (resp)=> resp.json()
+            ).then((data)=>{
+                tratarResp(data)
+            }
+            ).catch((err)=>{
+                console.log(err)
+            })
         }
-        ).catch((err)=>{
-            console.log(err)
-        })
-
     })
 
     //deslogar a conta

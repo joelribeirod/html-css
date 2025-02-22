@@ -16,7 +16,7 @@ body{
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-color: #eeeeee;
+    background-image: linear-gradient(rgb(128, 128, 255), rgb(28, 6, 49));
 }
 
 #LogCon{

@@ -7,63 +7,68 @@ const configs = document.getElementById('configs')
 const alerta = document.getElementById('alerta')
 const divProjetos = document.getElementById('projetos')
 
-const confirmDel = document.getElementById('confirmDel')
 const confirmDelBG = document.getElementById('confirmDelBG')
 const cancelBtn = document.getElementById('cancelDelBtn')
 const confirmBtn = document.getElementById('confirmDelBtn')
 
+const atualizarDadoBG = document.getElementById('atualizarDadoBG')
+const cancelarEdit = document.getElementById('cancelarEdit')
+const salvarEdit = document.getElementById('salvarEdit')
+
+const novoTitulo = document.getElementById('novoTitulo')
+const novoConteudo = document.getElementById('novoConteudo')
+
 //responsividade
-if(window.innerWidth > 768){
-    configs.style.transform = 'translateX(0)'
-}else{
-    configs.style.transform = 'translateX(-140px)'
-}
-
-window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 768 && configs.style.transform == 'translateX(-140px)'){
-        configs.style.transform = 'translateX(0px)'
-    }else if(window.innerWidth < 768 && configs.style.transform == 'translateX(0px)'){
-        principal.style.backgroundColor = '#ececec'
-        arrow.style.rotate = '180deg'
-        options.style.display = 'none'
-        configs.style.transform = 'translateX(-140px)'
-    }
-})
-
-window.addEventListener('click', (e) => {
-    if(e.target == options){
-        configs.style.transform = 'translateX(-140px)'
-
-        principal.style.backgroundColor = '#ececec'
-
-        arrow.style.rotate = '180deg'
-        options.style.display = 'none'
-    }
-})
-
-arrow.addEventListener('click', () => {
-    if(configs.style.transform == 'translateX(-140px)'){
-        // exibir configs
-        configs.style.transform = 'translateX(0px)'
-
-        principal.style.backgroundColor = '#7c7c7c'
-
-        arrow.style.rotate = '0deg'
-        options.style.display = 'block'
+    if(window.innerWidth > 768){
+        configs.style.transform = 'translateX(0)'
     }else{
-        // esconder configs
         configs.style.transform = 'translateX(-140px)'
-
-        principal.style.backgroundColor = '#ececec'
-
-        arrow.style.rotate = '180deg'
-        options.style.display = 'none'
     }
-})
 
+    window.addEventListener('resize', ()=>{
+        if(window.innerWidth > 768 && configs.style.transform == 'translateX(-140px)'){
+            configs.style.transform = 'translateX(0px)'
+        }else if(window.innerWidth < 768 && configs.style.transform == 'translateX(0px)'){
+            principal.style.backgroundColor = '#ececec'
+            arrow.style.rotate = '180deg'
+            options.style.display = 'none'
+            configs.style.transform = 'translateX(-140px)'
+        }
+    })
+
+    window.addEventListener('click', (e) => {
+        if(e.target == options){
+            configs.style.transform = 'translateX(-140px)'
+
+            principal.style.backgroundColor = '#ececec'
+
+            arrow.style.rotate = '180deg'
+            options.style.display = 'none'
+        }
+    })
+
+    arrow.addEventListener('click', () => {
+        if(configs.style.transform == 'translateX(-140px)'){
+            // exibir configs
+            configs.style.transform = 'translateX(0px)'
+
+            principal.style.backgroundColor = '#7c7c7c'
+
+            arrow.style.rotate = '0deg'
+            options.style.display = 'block'
+        }else{
+            // esconder configs
+            configs.style.transform = 'translateX(-140px)'
+
+            principal.style.backgroundColor = '#ececec'
+
+            arrow.style.rotate = '180deg'
+            options.style.display = 'none'
+        }
+    })
 //fim responsividade
 
-// deletar projetos
+// fazendo requisições de projetos
     // requisição para deletar um projeto
 function deletarProjeto(id){
     fetch(`http://localhost:8081/projects/${id}`, {
@@ -77,12 +82,48 @@ function deletarProjeto(id){
         window.location.reload()
     ).catch(
         (err) => {
-            console.log(console.log(err))
+            console.log(err)
         }
     ) 
 }
 
-// fim; deletar projetos
+    // requisição para atualizar um projeto
+function atualizarProjeto(id, tituloAnt, conteudoAnt ){
+    // pega os valores digitados pelo usuario
+        let tituloAtualizado = document.getElementById('novoTitulo').value
+        let conteudoAtualizado = document.getElementById('novoConteudo').value
+    // analise se eles não são valores nulos
+        if(!tituloAtualizado || !conteudoAtualizado){
+            return false
+        }
+    // analisa se ambos os valores não foram modificados
+        if(tituloAtualizado == tituloAnt && conteudoAtualizado == conteudoAnt){
+            return false
+        }
+    // cria o objeto com os novos valores e que será enviado para o servidor 
+        const projetoAtualizado = {
+            novoTitulo: tituloAtualizado,
+            novoConteudo: conteudoAtualizado
+        }
+    // retorna o promise que envia os dados para o servidor, se der certo, o segundo then retorna true, se não, o catch retorna false
+        return fetch(`http://localhost:8081/projects/${id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(projetoAtualizado)
+        }).then(
+            (resp) => resp.json()
+        ).then((data) => {
+            console.log(data)
+            return true
+        }).catch((err) => {
+            console.log(err)
+            return false
+        })
+}
+
+// fim; fazendo requisições de projetos
 
 // carregarProjetos
         //recebe todos os projetos do usuario atual
@@ -131,6 +172,21 @@ function deletarProjeto(id){
                     confirmBtn.removeEventListener('click', chamarDelete)
                 }
 
+            // Função que remove o reload automatico do botão 'salvar', chama a função que fará requisição de patch, e para isso envio o id, titulo e conteudo do projeto que esta sendo modificado, se houve sucesso, o return é true, se não, o return é false
+                async function chamarPatch(e){
+                    // remove o reload automatico ao clicar no botão
+                        e.preventDefault()
+                    // recebe a promise da função atualizar projeto, o valor recebido será ou true ou false
+                        let promise = await atualizarProjeto(projeto.id, projeto.titulo, projeto.conteudo)
+                    // analisa se a promise teve problemas em ser executada
+                        if(!promise){
+                            window.alert('Algo deu errado')
+                            return null
+                        }
+                    // se a promise teve sucesso, a pagina fará reload e mostrará os dados atualizados
+                        window.location.reload()         
+                }
+
             // quando clicado no icone de delete, ele abre a div de confirmação do delete, se o usuário clicar em confimar, a função chamarDelete() redireciona para outra função e remove o eventListener
                 btnRemover.addEventListener('click', () => {
                     confirmDelBG.style.display = 'flex'
@@ -142,6 +198,21 @@ function deletarProjeto(id){
                 cancelBtn.addEventListener('click', () => {
                     confirmDelBG.style.display = 'none'
                     confirmBtn.removeEventListener('click', chamarDelete)
+                })
+            //  quando clicado no icone de edit, ele abre a div de atualização dos dados, onde o input titulo recebe o titulo do projeto atual, e o conteudo recebe o conteudo da pagina atual, e é colocado o eventListener no botão de salvar, quando clicado ele chama a funcção chamarPatch
+                btnEditar.addEventListener('click', () => {
+                    atualizarDadoBG.style.display = 'flex'
+
+                    novoTitulo.value = projeto.titulo
+                    novoConteudo.value = projeto.conteudo
+
+                    salvarEdit.addEventListener('click', chamarPatch)
+                })
+            // Se o usuário clicar em cancelar, o reload automatico do botão é removido, a pagina de edição fecha, e o eventListener é removido para evitar acumulações
+                cancelarEdit.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    atualizarDadoBG.style.display = 'none'
+                    salvarEdit.removeEventListener('click', chamarPatch)
                 })
 
             subDiv.appendChild(paragTitulo)
@@ -242,7 +313,7 @@ fetch('http://localhost:8081/projetos', {
     }
 ).catch(
     (err) => {
-        console.log(console.log(err))
+        console.log(err)
     }
 )
 

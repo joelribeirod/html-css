@@ -73,7 +73,7 @@ app.get('/projetos', verificarToken, (req, res) => {
         res.status(500).send(respostaFalha + {err})
     })
 })
-
+    //rota usada pelo client.js
 app.post('/projects', verificarToken, (req, res) => {
     Project.create({
         titulo: req.body.titulo,
@@ -85,7 +85,7 @@ app.post('/projects', verificarToken, (req, res) => {
         res.send(respostaFalha + err)
     })
 })
-
+    //rota usada pelo projetosPessoais.js
 app.delete('/projects/:id', (req, res) => {
     Project.destroy({where: {'id': req.params.id}}).then(
         () => {res.send(respostaSucesso)}
@@ -93,16 +93,16 @@ app.delete('/projects/:id', (req, res) => {
         res.status(500).send(respostaFalha + err)
     })
 })
-
+    //rota usada pelo projetosPessoais.js
 app.patch('/projects/:id', (req, res) => {
     Project.update(
         {   
-            titulo: req.body.titulo,
-            conteudo: req.body.conteudo  
+            titulo: req.body.novoTitulo,
+            conteudo: req.body.novoConteudo  
         },
         {where: {'id': req.params.id}}
-    ).then( 
-       () => {res.send(respostaSucesso)}
+    ).then(
+        res.send(respostaSucesso)
     ).catch((err) => {
         res.status(500).send(respostaFalha + err)
     })
@@ -111,7 +111,7 @@ app.patch('/projects/:id', (req, res) => {
 // Fim Rota projects
 
 // Rota Login
-  //verificar se o usuario existe no banco (seria o GET na vdd, mas o get n permite envio de dados através dos params)
+  //verificar se o usuario existe no banco (seria o GET na verdade, mas o get n permite envio de dados através dos params)
     //rota usada pelo signIn.js
 app.post('/verificar', (req, res) => {
     Login.findOne({
@@ -147,7 +147,7 @@ app.get('/perfil', verificarToken,(req,res) => {
         res.json(respostaFalha, err)
     })
 })
-
+    //rota sem utilização
 app.get('/cadastro', (req, res) => {
     Login.findAll().then((users) =>{
         if(users){
@@ -159,7 +159,7 @@ app.get('/cadastro', (req, res) => {
         res.status(500).send(respostaFalha + err)
     })
 })
-
+    //rota usada pelo signUp.js
 app.post('/cadastro', async (req, res) => {
     try {
         //Tenta registrar o usuario
@@ -188,7 +188,7 @@ app.post('/cadastro', async (req, res) => {
         }
     }
 })
-
+    //rota usada pelo perfil.js
 app.delete('/cadastro',verificarToken, (req,res) => {
     Login.destroy({
         where: {'id': req.usuario.userId}
@@ -196,7 +196,7 @@ app.delete('/cadastro',verificarToken, (req,res) => {
         res.json(respostaSucesso)
     ).catch((err) => {res.json(err)})
 })
-
+    //rota usada pelo perfil.js
 app.patch('/cadastro',verificarToken, async (req,res) => {
     try {
         const resultado = await Login.update({
@@ -227,7 +227,6 @@ app.patch('/cadastro',verificarToken, async (req,res) => {
         }
     }
 })
-
 
 // Fim Rota Login 
 

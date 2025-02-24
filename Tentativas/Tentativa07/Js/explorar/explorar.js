@@ -67,7 +67,7 @@ const loading = document.getElementById('loading')
 
         let promises = projects.map((e) => 
             //console.log(e)
-            fetch(`http://localhost:8081/cadastro/${e.cliente}`, {
+            fetch(`https://projetot7.onrender.com/cadastro/${e.cliente}`, {
                 method: "GET",
                 headers: {
                     'Content-Type':'application/json'
@@ -196,7 +196,7 @@ const loading = document.getElementById('loading')
 
 // resgatando os projetos
 
-    fetch('http://localhost:8081/projects', {
+    fetch('https://projetot7.onrender.com/projects', {
         method: "GET",
         headers: {
             'Content-Type':'application/json'

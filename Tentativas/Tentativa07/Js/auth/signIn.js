@@ -83,7 +83,7 @@ enviar.addEventListener('click', (e)=>{
         if(senha.length < 4){
             window.alert("A senha deve conter mais de 4 digitos")
         }else{
-            fetch(`http://localhost:8081/verificar`, {
+            fetch(`https://projetot7.onrender.com/verificar`, {
                 method: "POST",
                 headers: {
                     'Content-Type':'application/json'

@@ -71,7 +71,7 @@ const novoConteudo = document.getElementById('novoConteudo')
 // fazendo requisições de projetos
     // requisição para deletar um projeto
 function deletarProjeto(id){
-    fetch(`http://localhost:8081/projects/${id}`, {
+    fetch(`https://projetot7.onrender.com/projects/${id}`, {
         method: "DELETE",
         headers: {
             'Content-Type':'application/json'
@@ -106,7 +106,7 @@ function atualizarProjeto(id, tituloAnt, conteudoAnt ){
             novoConteudo: conteudoAtualizado
         }
     // retorna o promise que envia os dados para o servidor, se der certo, o segundo then retorna true, se não, o catch retorna false
-        return fetch(`http://localhost:8081/projects/${id}`, {
+        return fetch(`https://projetot7.onrender.com/projects/${id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type':'application/json'
@@ -299,7 +299,7 @@ if(!token){
 
 // resgatar projetos pessoais
 
-fetch('http://localhost:8081/projetos', {
+fetch('https://projetot7.onrender.com/projetos', {
     method: "GET",
     headers: {
         'Content-Type':'application/json',

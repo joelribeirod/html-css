@@ -89,7 +89,7 @@ function criarUsuario(){
                 celular
             }
 
-            fetch('http://localhost:8081/cadastro', {
+            fetch('https://projetot7.onrender.com/cadastro', {
                 method: "POST",
                 headers: {
                     'Content-Type':'application/json'

@@ -97,7 +97,7 @@ function criarPost(){
             conteudo
         }
 
-        fetch('http://localhost:8081/projects', {
+        fetch('https://projetot7.onrender.com/projects', {
             method: "POST",
             headers: {
                 'Content-Type':'application/json',

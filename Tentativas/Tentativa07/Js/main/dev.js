@@ -61,7 +61,7 @@ arrow.addEventListener('click', () => {
 // resgatar projetos
 
 async function resgatarProjetos(){
-    await fetch('http://localhost:8081/projects', {
+    await fetch('https://projetot7.onrender.com/projects', {
         method: "GET",
         headers: {
             'Content-Type':'application/json'
@@ -83,7 +83,7 @@ function carregarProjeto(projects){
     //o forEach pega cada projeto indivual constroi um elemento html com os valores adicionados, e coloca dentro do array totProjects, o fetch dentro do forEach usa como parametro na url o e.cliente, pois cada projeto possui um campo chamado cliente, esse campo contem o ID do cliente que o requisitou, por isso, eu uso o fetch para resgatar os dados do cliente
     projects.forEach(async (e) => {
         let usuario
-        await fetch(`http://localhost:8081/cadastro/${e.cliente}`, {
+        await fetch(`https://projetot7.onrender.com/cadastro/${e.cliente}`, {
             method: "GET",
             headers: {
                 'Content-Type':'application/json'

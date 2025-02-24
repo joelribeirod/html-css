@@ -244,7 +244,7 @@ function mostrarPerfil(user){
         e.preventDefault()
         if(inputDel.value == user.senha){
             // Criar o fetch para deletar a conta, e remover o token
-            fetch('http://localhost:8081/cadastro', {
+            fetch('https://projetot7.onrender.com/cadastro', {
                 method: "DELETE",
                 headers: {
                     'Content-Type':'application/json',
@@ -319,7 +319,7 @@ function mostrarPerfil(user){
         if(Object.keys(dadosFormatados).length === 0){
             window.alert('Nenhum dado foi alterado')
         }else{
-            fetch('http://localhost:8081/cadastro', {
+            fetch('https://projetot7.onrender.com/cadastro', {
             method: "PATCH",
             headers: {
                 'Content-Type':'application/json',
@@ -367,7 +367,7 @@ function mostrarPerfil(user){
 
 // resgata o usuario atual
 
-fetch('http://localhost:8081/perfil', {
+fetch('https://projetot7.onrender.com/perfil', {
     method: "GET",
     headers: {
         'Content-Type':'application/json',

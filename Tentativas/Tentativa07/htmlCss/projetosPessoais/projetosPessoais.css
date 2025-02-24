@@ -61,6 +61,7 @@ body span{
 }
 
 #alerta{
+    position: absolute;
     font-size: 30px;
     color: rgb(56, 56, 56);
     

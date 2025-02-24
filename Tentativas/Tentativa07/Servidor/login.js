@@ -18,6 +18,6 @@ const Login = db.sequelize.define('pessoas', {
 })
 
 //Derruba a tabela atual e cria outra igual
-//Login.sync({force: true})
+//Login.sync()
 
 module.exports = Login

@@ -16,7 +16,6 @@ body{
 main{
     margin: 0 auto;
     width: 100%;
-    max-width: 1200px;
     /* background-color: #b7bbfc; */
     background-image: linear-gradient(rgb(128, 128, 255), rgb(28, 6, 49));
     padding-bottom: 60px;

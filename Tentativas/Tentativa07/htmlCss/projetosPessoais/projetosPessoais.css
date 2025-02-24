@@ -56,8 +56,13 @@ body span{
     align-items: center;
     gap: 20px;
     width: 100%;
-    height: auto;
+    height: 100dvh;
+    position: fixed;
     background-color: #dbdbdb;
+}
+
+#projetos-rolagem{
+    overflow-y: scroll;
 }
 
 #alerta{

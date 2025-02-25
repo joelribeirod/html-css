@@ -9,23 +9,23 @@ const loading = document.getElementById('loading')
     if(window.innerWidth > 768){
         configs.style.transform = 'translateX(0)'
     }else{
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
     }
 
     window.addEventListener('resize', ()=>{
-        if(window.innerWidth > 768 && configs.style.transform == 'translateX(-140px)'){
+        if(window.innerWidth > 768 && configs.style.transform == 'translateX(-160px)'){
             configs.style.transform = 'translateX(0px)'
         }else if(window.innerWidth < 768 && configs.style.transform == 'translateX(0px)'){
             principal.style.backgroundColor = '#ececec'
             arrow.style.rotate = '180deg'
             options.style.display = 'none'
-            configs.style.transform = 'translateX(-140px)'
+            configs.style.transform = 'translateX(-160px)'
         }
     })
 
     window.addEventListener('click', (e) => {
         if(e.target == options){
-            configs.style.transform = 'translateX(-140px)'
+            configs.style.transform = 'translateX(-160px)'
 
             principal.style.backgroundColor = '#ececec'
 
@@ -35,7 +35,7 @@ const loading = document.getElementById('loading')
     })
 
     arrow.addEventListener('click', () => {
-        if(configs.style.transform == 'translateX(-140px)'){
+        if(configs.style.transform == 'translateX(-160px)'){
             // exibir configs
             configs.style.transform = 'translateX(0px)'
 
@@ -45,7 +45,7 @@ const loading = document.getElementById('loading')
             options.style.display = 'block'
         }else{
             // esconder configs
-            configs.style.transform = 'translateX(-140px)'
+            configs.style.transform = 'translateX(-160px)'
 
             principal.style.backgroundColor = '#ececec'
 
@@ -66,7 +66,6 @@ const loading = document.getElementById('loading')
         loading.style.display = 'block'
 
         let promises = projects.map((e) => 
-            //console.log(e)
             fetch(`https://projetot7.onrender.com/cadastro/${e.cliente}`, {
                 method: "GET",
                 headers: {
@@ -180,20 +179,6 @@ const loading = document.getElementById('loading')
 
 // fim; exibir projetos
 
-// Estrutura dos projects
-    // cliente: 
-    // "1"
-    // conteudo: 
-    // "teste com banco de dados 3"
-    // createdAt: 
-    // "2025-02-11T12:47:23.000Z"
-    // id: 
-    // 2
-    // titulo: 
-    // "teste"
-    // updatedAt: 
-    // "2025-02-11T12:47:23.000Z"
-
 // resgatando os projetos
 
     fetch('https://projetot7.onrender.com/projects', {
@@ -216,7 +201,6 @@ const loading = document.getElementById('loading')
     if(expira < Date.now()){
         localStorage.removeItem("token");
         localStorage.removeItem("tokenExpiraEm");
-        console.log("Token expirado! Redirecionando...");
     }
 
     const token = localStorage.getItem('token')

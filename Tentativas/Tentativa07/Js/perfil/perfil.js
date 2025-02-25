@@ -35,23 +35,23 @@ const enviarSenha = document.getElementById('enviar')
 if(window.innerWidth > 768){
     configs.style.transform = 'translateX(0)'
 }else{
-    configs.style.transform = 'translateX(-140px)'
+    configs.style.transform = 'translateX(-160px)'
 }
 
 window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 768 && configs.style.transform == 'translateX(-140px)'){
+    if(window.innerWidth > 768 && configs.style.transform == 'translateX(-160px)'){
         configs.style.transform = 'translateX(0px)'
     }else if(window.innerWidth < 768 && configs.style.transform == 'translateX(0px)'){
         principal.style.backgroundColor = '#ececec'
         arrow.style.rotate = '180deg'
         options.style.display = 'none'
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
     }
 })
 
 window.addEventListener('click', (e) => {
     if(e.target == options){
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
 
         principal.style.backgroundColor = '#ececec'
 
@@ -61,7 +61,7 @@ window.addEventListener('click', (e) => {
 })
 
 arrow.addEventListener('click', () => {
-    if(configs.style.transform == 'translateX(-140px)'){
+    if(configs.style.transform == 'translateX(-160px)'){
         // exibir configs
         configs.style.transform = 'translateX(0px)'
 
@@ -71,7 +71,7 @@ arrow.addEventListener('click', () => {
         options.style.display = 'block'
     }else{
         // esconder configs
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
 
         principal.style.backgroundColor = '#ececec'
 
@@ -103,7 +103,6 @@ function tratarResp(resp){
 // resgatar dados do usuario
 
 function mostrarPerfil(user){
-    console.log(user)
     //Pega os valores que vieram do banco de dados e coloca nos inputs
     inputName.placeholder = user.nome
     inputEmail.placeholder = user.email
@@ -258,7 +257,7 @@ function mostrarPerfil(user){
                 window.location.href = '../auth/singIn.html'
             ).catch(
                 (err) => {
-                    console.log(console.log(err))
+                    console.log(err)
                 }
             ) 
         }else{
@@ -381,7 +380,7 @@ fetch('https://projetot7.onrender.com/perfil', {
     }
 ).catch(
     (err) => {
-        console.log(console.log(err))
+        console.log(err)
     }
 )
 

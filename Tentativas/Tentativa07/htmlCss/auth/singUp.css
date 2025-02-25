@@ -59,8 +59,8 @@ body{
 #caixaEmail input{
     font-size: 24px;
     height: 28px;
-    max-width: 69%;
-    margin-left: 6px;
+    max-width: 100%;
+    margin-top: 6px;
     border-radius: 8px;
     font-weight: bold;
 }
@@ -73,8 +73,8 @@ body{
 #caixaNome input{
     font-size: 24px;
     height: 28px;
-    max-width: 69%;
-    margin-left: 6px;
+    max-width: 100%;
+    margin-top: 6px;
     border-radius: 8px;
     font-weight: bold;
     transform: translateY(3px);
@@ -88,8 +88,8 @@ body{
 #caixaSenha input{
     font-size: 24px;
     height: 28px;
-    max-width: 69%;
-    margin-left: 6px;
+    max-width: 100%;
+    margin-top: 6px;
     margin-bottom: 15px;
     border-radius: 8px;
     font-weight: bold;
@@ -103,8 +103,8 @@ body{
 #caixaTelefone input{
     font-size: 24px;
     height: 28px;
-    max-width: 69%;
-    margin-left: 6px;
+    max-width: 100%;
+    margin-top: 6px;
     border-radius: 8px;
     font-weight: bold;
 }
@@ -125,6 +125,7 @@ body{
     width: 120px;
     margin-bottom: 10px;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .modificar{
@@ -162,4 +163,23 @@ body{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 768px){
+    #caixaEmail input{
+        max-width: 69%;
+        margin-left: 6px;
+    }
+    #caixaNome input{
+        max-width: 69%;
+        margin-left: 6px;
+    }
+    #caixaSenha input{
+        max-width: 69%;
+        margin-left: 6px;
+    }
+    #caixaTelefone input{
+        max-width: 69%;
+        margin-left: 6px;
+    }
 }

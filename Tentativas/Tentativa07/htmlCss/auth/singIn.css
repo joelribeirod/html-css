@@ -61,8 +61,8 @@ body{
     font-size: 24px;
     height: 28px;
     min-width: 160px;
-    max-width: 69%;
-    margin-left: 6px;
+    width: 100%;
+    margin-top: 6px;
     border-radius: 8px;
     font-weight: bold;
 }
@@ -76,8 +76,8 @@ body{
     font-size: 24px;
     height: 28px;
     min-width: 160px;
-    max-width: 69%;
-    margin-left: 6px;
+    width: 100%;
+    margin-top: 6px;
     border-radius: 8px;
     font-weight: bold;
 }
@@ -119,4 +119,14 @@ body{
     font-weight: 500;
     font-size: 16px;
     color: red;
+}
+@media screen and (min-width: 768px){
+    #caixaNome input{
+        width: 70%;
+        margin-left: 6px;
+    }
+    #caixaSenha input{
+        width: 70%;
+        margin-left: 6px;
+    }
 }

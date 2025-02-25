@@ -232,5 +232,5 @@ app.patch('/cadastro',verificarToken, async (req,res) => {
 // Fim Rota Login 
 
 app.listen(8081, () => {
-    console.log("Servidor rodando na porta http://localhost:8081")
+    console.log("Servidor rodando...")
 })

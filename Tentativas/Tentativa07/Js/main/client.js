@@ -11,23 +11,23 @@ const caixaErro = document.getElementById('errs')
 if(window.innerWidth > 768){
     configs.style.transform = 'translateX(0)'
 }else{
-    configs.style.transform = 'translateX(-140px)'
+    configs.style.transform = 'translateX(-160px)'
 }
 
 window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 768 && configs.style.transform == 'translateX(-140px)'){
+    if(window.innerWidth > 768 && configs.style.transform == 'translateX(-160px)'){
         configs.style.transform = 'translateX(0px)'
     }else if(window.innerWidth < 768 && configs.style.transform == 'translateX(0px)'){
         principal.style.backgroundColor = '#ececec'
         arrow.style.rotate = '180deg'
         options.style.display = 'none'
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
     }
 })
 
 window.addEventListener('click', (e) => {
     if(e.target == options){
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
 
         principal.style.backgroundColor = '#ececec'
 
@@ -44,7 +44,7 @@ window.addEventListener('click', (e) => {
 })
 
 arrow.addEventListener('click', () => {
-    if(configs.style.transform == 'translateX(-140px)'){
+    if(configs.style.transform == 'translateX(-160px)'){
         // exibir configs
         configs.style.transform = 'translateX(0px)'
 
@@ -54,7 +54,7 @@ arrow.addEventListener('click', () => {
         options.style.display = 'block'
     }else{
         // esconder configs
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
 
         principal.style.backgroundColor = '#ececec'
 
@@ -113,8 +113,8 @@ function criarPost(){
             }
         ).catch(
             (err) => {
-                console.log(console.log(err))
-                Err()
+                console.log(err)
+                Err() 
             }
         )
     }
@@ -152,4 +152,4 @@ if(!token){
 
 // fim analisar autentificação
 
-//lembrete: tenho que desenvolver a parte de JWT, para poder salvar os dados do usuario no navegador, e quando o cliente criar um projeto, por baixo dos panos tambem vou enviar o nome do usuario junto com o projeto para o banco de dados, tendo o nome do cliente eu posso resgatar o numero de telefone dele, e assim quando o dev clicar em 'aceitar projeto', eu redireciono ele para a api do whatsapp, por ser um projeto simples, não vou me aprofundar em muitos conceitos, como criar uma intermediação de pagamento e chat para a comunicação, e tambem devo melhorar o formulario de criação de projetos no client, tipo, colocar uma parte de tecnologias necessarias, preço, nome do cliente
+//lembrete: tambem devo melhorar o formulario de criação de projetos no client, tipo, colocar uma parte de tecnologias necessarias, preço, nome do cliente

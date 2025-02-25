@@ -22,23 +22,23 @@ const novoConteudo = document.getElementById('novoConteudo')
     if(window.innerWidth > 768){
         configs.style.transform = 'translateX(0)'
     }else{
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
     }
 
     window.addEventListener('resize', ()=>{
-        if(window.innerWidth > 768 && configs.style.transform == 'translateX(-140px)'){
+        if(window.innerWidth > 768 && configs.style.transform == 'translateX(-160px)'){
             configs.style.transform = 'translateX(0px)'
         }else if(window.innerWidth < 768 && configs.style.transform == 'translateX(0px)'){
             principal.style.backgroundColor = '#ececec'
             arrow.style.rotate = '180deg'
             options.style.display = 'none'
-            configs.style.transform = 'translateX(-140px)'
+            configs.style.transform = 'translateX(-160px)'
         }
     })
 
     window.addEventListener('click', (e) => {
         if(e.target == options){
-            configs.style.transform = 'translateX(-140px)'
+            configs.style.transform = 'translateX(-160px)'
 
             principal.style.backgroundColor = '#ececec'
 
@@ -48,7 +48,7 @@ const novoConteudo = document.getElementById('novoConteudo')
     })
 
     arrow.addEventListener('click', () => {
-        if(configs.style.transform == 'translateX(-140px)'){
+        if(configs.style.transform == 'translateX(-160px)'){
             // exibir configs
             configs.style.transform = 'translateX(0px)'
 
@@ -58,7 +58,7 @@ const novoConteudo = document.getElementById('novoConteudo')
             options.style.display = 'block'
         }else{
             // esconder configs
-            configs.style.transform = 'translateX(-140px)'
+            configs.style.transform = 'translateX(-160px)'
 
             principal.style.backgroundColor = '#ececec'
 

@@ -29,12 +29,15 @@ enviar.addEventListener('click', (e) => {
 
 function suc(){
     // mostra que teve sucesso ao cadastrar o usuario e redireciona o usuario para o link desejado(fazer o login)
+    caixaSucesso.style.display = 'block'
     setTimeout(() => {
-        caixaSucesso.style.display = 'block'
+        
         window.location.href = '../auth/singIn.html'
-    }, 5000)
+    }, 2000)
 }
+
 const paragrafro = document.createElement('p')
+
 function campoDupli(campo){
     
     paragrafro.className = 'paragrafoErro'
@@ -109,7 +112,7 @@ function criarUsuario(){
                 }
             ).catch(
                 (err) => {
-                    console.log(console.log("Erro na conexão: " + err))
+                    console.log("Erro na conexão: " + err)
                 }
             )
         }
@@ -120,23 +123,18 @@ function criarUsuario(){
 
 // analisa se existe algum token
 
-const expira = localStorage.getItem('tokenExpiraEm')
+    const expira = localStorage.getItem('tokenExpiraEm')
 
-if(expira > Date.now()){
-    console.log(true)
-}else {
-    if (expira && Date.now() > expira) {
+    if (expira < Date.now()) {
         localStorage.removeItem("token");
         localStorage.removeItem("tokenExpiraEm");
         console.log("Token expirado! Redirecionando...");
     }
 
-}
+    const token = localStorage.getItem('token')
 
-const token = localStorage.getItem('token')
-
-if(token){
-    window.location.href = '../explorar/explorar.html'
-}
+    if(token){
+        window.location.href = '../explorar/explorar.html'
+    }
 
 // fim analisa se existe algum token

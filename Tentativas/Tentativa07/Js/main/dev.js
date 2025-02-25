@@ -10,23 +10,23 @@ const projetos = document.getElementById('projetos')
 if(window.innerWidth > 768){
     configs.style.transform = 'translateX(0)'
 }else{
-    configs.style.transform = 'translateX(-140px)'
+    configs.style.transform = 'translateX(-160px)'
 }
 
 window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 768 && configs.style.transform == 'translateX(-140px)'){
+    if(window.innerWidth > 768 && configs.style.transform == 'translateX(-160px)'){
         configs.style.transform = 'translateX(0px)'
     }else if(window.innerWidth < 768 && configs.style.transform == 'translateX(0px)'){
         principal.style.backgroundColor = '#ececec'
         arrow.style.rotate = '180deg'
         options.style.display = 'none'
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
     }
 })
 
 window.addEventListener('click', (e) => {
     if(e.target == options){
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
 
         principal.style.backgroundColor = '#ececec'
 
@@ -37,7 +37,7 @@ window.addEventListener('click', (e) => {
 })
 
 arrow.addEventListener('click', () => {
-    if(configs.style.transform == 'translateX(-140px)'){
+    if(configs.style.transform == 'translateX(-160px)'){
         // exibir configs
         configs.style.transform = 'translateX(0px)'
 
@@ -47,7 +47,7 @@ arrow.addEventListener('click', () => {
         options.style.display = 'block'
     }else{
         // esconder configs
-        configs.style.transform = 'translateX(-140px)'
+        configs.style.transform = 'translateX(-160px)'
 
         principal.style.backgroundColor = '#ececec'
 
@@ -128,7 +128,6 @@ function carregarProjeto(projects){
 let numeros = [0]
 function gerarNumero(min, max) {
     if(numeros.length >= (max-min)){
-        console.log("todos os numeros utilizados")
         return null
     }
     let n
@@ -149,7 +148,6 @@ function projeto(){
         projetos.appendChild(totProjects[
             gerarNumero(0, totProjects.length)
         ])
-        console.log(numeros)
     }else{
         numeros = []
     }

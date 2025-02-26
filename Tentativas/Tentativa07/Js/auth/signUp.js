@@ -9,6 +9,9 @@ const caixaEmail = document.getElementById('caixaEmail')
 const caixaNome = document.getElementById('caixaNome')
 const caixaSucesso = document.getElementById('sucesso')
 
+const loadingBG = document.getElementById('loadingBG')
+const loading = document.getElementById('loading')
+
 btn.addEventListener('click', () => {
     if(inp.type === 'password'){
         ver.innerHTML = 'visibility_off'
@@ -31,9 +34,8 @@ function suc(){
     // mostra que teve sucesso ao cadastrar o usuario e redireciona o usuario para o link desejado(fazer o login)
     caixaSucesso.style.display = 'block'
     setTimeout(() => {
-        
         window.location.href = '../auth/singIn.html'
-    }, 2000)
+    }, 1500)
 }
 
 const paragrafro = document.createElement('p')
@@ -85,6 +87,8 @@ function criarUsuario(){
         if(senha.length < 4){
             window.alert("Insira uma senha maior que 4 digitos")
         }else{
+            loadingBG.style.display = 'flex'
+
             const usuario = {
                 email,
                 nome,
@@ -92,7 +96,7 @@ function criarUsuario(){
                 celular
             }
 
-            fetch('https://projetot7.onrender.com/cadastro', {
+            let promise = fetch('https://projetot7.onrender.com/cadastro', {
                 method: "POST",
                 headers: {
                     'Content-Type':'application/json'
@@ -100,21 +104,24 @@ function criarUsuario(){
                 body: JSON.stringify(usuario)
             }).then(
                 (resp) => resp.json()
-            ).then(
-                (data) => {
-                    //aviso, mesmo que o dado não seja registrado na tabela pelo mesmo ja existir(dado duplicado), a requisição será considera como um sucesso e por isso cai nos then's
-                    if(data.erro){
-                        campoDupli(data.erro)
-                        
-                    }else if(data.sucesso){
-                        suc()
-                    }
-                }
             ).catch(
                 (err) => {
                     console.log("Erro na conexão: " + err)
                 }
             )
+
+            Promise.resolve(promise).then((data) => {
+                //aviso, mesmo que o dado não seja registrado na tabela pelo mesmo ja existir(dado duplicado), a requisição será considera como um sucesso e por isso cai nos then's
+                if(data.erro){
+                    campoDupli(data.erro)
+                }else if(data.sucesso){
+                    suc()
+                }
+            }).catch((err) => {
+                console.log(err)
+            }).finally(() => {
+                loadingBG.style.display = 'none'
+            })
         }
     }
     

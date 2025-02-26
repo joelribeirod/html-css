@@ -281,6 +281,22 @@ body span{
     background: #dad7d7;
 }
 
+#loadingBG{
+    background-color: rgba(0, 0, 0, 0.219);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 7;
+}
+
+#loading{
+    opacity: 1;
+    border-radius: 50%;
+}
+
 @media screen and (min-width : 768px) {
     body{
         display: flex;

@@ -8,6 +8,9 @@ const caixaNome = document.getElementById('caixaNome')
 const caixaSenha = document.getElementById('caixaSenha')
 const problema = document.getElementById('problema')
 
+const loadingBG = document.getElementById('loadingBG')
+const loading = document.getElementById('loading')
+
 const paragrafro = document.createElement('p')
 paragrafro.className = 'paragrafoErro'
 
@@ -81,7 +84,9 @@ enviar.addEventListener('click', (e)=>{
         if(senha.length < 4){
             window.alert("A senha deve conter mais de 4 digitos")
         }else{
-            fetch(`https://projetot7.onrender.com/verificar`, {
+            loadingBG.style.display = 'flex'
+
+            let promise = fetch(`https://projetot7.onrender.com/verificar`, {
                 method: "POST",
                 headers: {
                     'Content-Type':'application/json'
@@ -89,18 +94,22 @@ enviar.addEventListener('click', (e)=>{
                 body: JSON.stringify(user)
             }).then(
                 (resp) => resp.json()
-            ).then(
-                (data) => {
-                    if(data.resp){
-                        usuarioNaoEncontrado()
-                    }else{
-                        analisarUsuario(data)
-                    }
-                    
-                }
             ).catch((err)=>{
                 console.log(err)
             })
+
+            Promise.resolve(promise).then((data) => {
+                if(data.resp){
+                    usuarioNaoEncontrado()
+                }else{
+                    analisarUsuario(data)
+                }     
+            }).catch((err) => {
+                console.log(err)
+            }).finally(() => {
+                loadingBG.style.display = 'none'
+            })
+
         }
     }
 })

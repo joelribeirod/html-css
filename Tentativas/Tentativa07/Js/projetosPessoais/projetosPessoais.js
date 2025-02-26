@@ -18,6 +18,9 @@ const salvarEdit = document.getElementById('salvarEdit')
 const novoTitulo = document.getElementById('novoTitulo')
 const novoConteudo = document.getElementById('novoConteudo')
 
+const loadingBG = document.getElementById('loadingBG')
+const loading = document.getElementById('loading')
+
 //responsividade
     if(window.innerWidth > 768){
         configs.style.transform = 'translateX(0)'
@@ -71,20 +74,27 @@ const novoConteudo = document.getElementById('novoConteudo')
 // fazendo requisições de projetos
     // requisição para deletar um projeto
 function deletarProjeto(id){
-    fetch(`https://projetot7.onrender.com/projects/${id}`, {
+    loadingBG.style.display = 'flex'
+    let promise = fetch(`https://projetot7.onrender.com/projects/${id}`, {
         method: "DELETE",
         headers: {
             'Content-Type':'application/json'
         }
     }).then(
         (resp) => resp.json()
-    ).then(
-        window.location.reload()
     ).catch(
         (err) => {
             console.log(err)
         }
     ) 
+
+    Promise.resolve(promise).then(()=>{
+        window.location.reload()
+    }).catch((err) => {
+        console.log(err)
+    }).finally(() => {
+        loadingBG.style.display = 'none'
+    })
 }
 
     // requisição para atualizar um projeto
@@ -94,11 +104,13 @@ function atualizarProjeto(id, tituloAnt, conteudoAnt ){
         let conteudoAtualizado = document.getElementById('novoConteudo').value
     // analise se eles não são valores nulos
         if(!tituloAtualizado || !conteudoAtualizado){
-            return false
+            window.alert('Não é permitido enviar dados vazios')
+            return null
         }
     // analisa se ambos os valores não foram modificados
         if(tituloAtualizado == tituloAnt && conteudoAtualizado == conteudoAnt){
-            return false
+            window.alert('Dados não foram alterados para serem enviados')
+            return null
         }
     // cria o objeto com os novos valores e que será enviado para o servidor 
         const projetoAtualizado = {
@@ -106,7 +118,8 @@ function atualizarProjeto(id, tituloAnt, conteudoAnt ){
             novoConteudo: conteudoAtualizado
         }
     // retorna o promise que envia os dados para o servidor, se der certo, o segundo then retorna true, se não, o catch retorna false
-        return fetch(`https://projetot7.onrender.com/projects/${id}`, {
+        loadingBG.style.display = 'flex'
+        let promise = fetch(`https://projetot7.onrender.com/projects/${id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type':'application/json'
@@ -114,12 +127,18 @@ function atualizarProjeto(id, tituloAnt, conteudoAnt ){
             body: JSON.stringify(projetoAtualizado)
         }).then(
             (resp) => resp.json()
-        ).then((data) => {
+        ).catch((err) => {
+            console.log(err)
+        })
+
+        Promise.resolve(promise).then((data) => {
             console.log(data)
-            return true
+            window.location.reload()
         }).catch((err) => {
             console.log(err)
-            return false
+            window.alert("Algo deu errado")
+        }).finally(() => {
+            loadingBG.style.display = 'none'
         })
 }
 
@@ -173,18 +192,12 @@ function atualizarProjeto(id, tituloAnt, conteudoAnt ){
                 }
 
             // Função que remove o reload automatico do botão 'salvar', chama a função que fará requisição de patch, e para isso envio o id, titulo e conteudo do projeto que esta sendo modificado, se houve sucesso, o return é true, se não, o return é false
-                async function chamarPatch(e){
+                function chamarPatch(e){
                     // remove o reload automatico ao clicar no botão
                         e.preventDefault()
+
                     // recebe a promise da função atualizar projeto, o valor recebido será ou true ou false
-                        let promise = await atualizarProjeto(projeto.id, projeto.titulo, projeto.conteudo)
-                    // analisa se a promise teve problemas em ser executada
-                        if(!promise){
-                            window.alert('Algo deu errado')
-                            return null
-                        }
-                    // se a promise teve sucesso, a pagina fará reload e mostrará os dados atualizados
-                        window.location.reload()         
+                        atualizarProjeto(projeto.id, projeto.titulo, projeto.conteudo)        
                 }
 
             // quando clicado no icone de delete, ele abre a div de confirmação do delete, se o usuário clicar em confimar, a função chamarDelete() redireciona para outra função e remove o eventListener

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        body{
+            width: 100%;
+            height: 100dvh;
+            padding: 60px;
+            
+        }
+
+        #BG{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+        }
+
+        #Bg-Circle{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s ease-in-out;
+            z-index: 2;
+        }
+
+        #circle{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255);
+            transition: 0.3s ease-out;
+            z-index: 4;
+        }
+
+        #teste{
+            position: absolute;
+            z-index: 5;
+            /* width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red; */
+        }
+
+        #bolinhas{
+            position: absolute;
+            width: 100%;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="BG">           
+        <div id="Bg-Circle">
+            <div id="circle">
+
+            </div>
+            <div id="bolinhas">
+                <p id="teste">acb</p>
+            </div>          
+        </div> 
+        
+        <!-- <div> fundo
+            <div> objetos
+
+            </div>
+            <div> fundo do circulo
+                <div> circulo
+
+                </div>
+            </div>
+        </div> -->
+        
+    </div>
+    <h2>Coordenadas: X = <span id="addX">0</span>, Y = <span id="addY">0</span></h2>
+    
+    <script>
+        const bolinha = document.getElementById('circle')
+        const teste = document.getElementById('teste')
+        const BG = document.getElementById('Bg-Circle')
+        const coordenadaX = document.getElementById('addX')
+        const coordenadaY = document.getElementById('addY')
+
+        let contagemTotal = 10
+        let contagemYmenos = 0
+        let contagemXmenos = 0
+        let contagemYmais = 0
+        let contagemXmais = 0
+        
+        let XPosition = 0
+        let YPosition = 0
+
+        window.addEventListener('keydown', (e) => {
+            if(e.key == 'w'){
+                contagemYmenos += contagemTotal
+                
+            }
+            if(e.key == 's'){
+                contagemYmais += contagemTotal
+                
+            }
+            if(e.key == 'a'){
+                contagemXmenos += contagemTotal
+                
+            }
+            if(e.key == 'd'){
+                contagemXmais += contagemTotal
+                
+            }
+
+            XPosition = contagemXmais - contagemXmenos
+            YPosition = contagemYmais - contagemYmenos
+            
+
+            bolinha.style.transform = `translate(${XPosition}px, ${YPosition}px)`
+
+            coordenadaX.innerText = XPosition
+            coordenadaY.innerText = YPosition
+            
+        })
+
+        teste.style.transform = 'translate(0,0)'
+
+        setTimeout(()=>{
+            BG.style.backgroundColor = 'black'
+        }, 2000)
+
+        
+    </script>
+</body>
+</html>

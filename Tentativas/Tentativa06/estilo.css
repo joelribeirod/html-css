@@ -154,6 +154,7 @@ span{
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
+    color: black;
 }
 
 #editDesc{
@@ -229,7 +230,7 @@ span{
     width: 95%;
     font-size: 25px;
     resize: none;
-    
+    color: black;
 }
 
 #descricaoFlash{
@@ -239,6 +240,7 @@ span{
     font-size: 25px;
     resize: none;
     margin-bottom: 20px;
+    color: black;
 }
 
 #itens{

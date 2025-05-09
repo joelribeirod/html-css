@@ -39,6 +39,8 @@
     const aviso2 = document.getElementById('aviso2')
     const cliqueAviso = document.getElementById('cliqueAviso')
     const textoAviso = document.getElementById('textoAviso')
+    const avisoHeigth = textoAviso.offsetHeight
+    console.log(avisoHeigth)
 
     // Edição de categoria
     const bgEditCateg = document.getElementById('bg-editCateg')
@@ -129,19 +131,21 @@
 
     // Exibe o aviso do localStorage
     cliqueAviso.addEventListener('click', ()=>{
-        if(aviso2.style.transform == "translateY(290px)"){
+        if(aviso2.style.transform == `translateY(${avisoHeigth}px)`){
             aviso2.style.transform = "translateY(0px)"
         }else if(aviso2.style.transform == "translateY(0px)"){
-            aviso2.style.transform = "translateY(290px)"
+            aviso2.style.transform = `translateY(${avisoHeigth}px)`
         }
     })
 
     // Fecha o aviso do localStorage
     window.addEventListener('click', (e)=>{
         if(aviso2.style.transform == "translateY(0px)" && !textoAviso.contains(e.target) && !cliqueAviso.contains(e.target)){
-            aviso2.style.transform = "translateY(290px)"
+            aviso2.style.transform = `translateY(${avisoHeigth}px)`
         }
     })
+    // Fecha o aviso do localStorage quando a pagina carrega
+    aviso2.style.transform = `translateY(${avisoHeigth}px)`
 
     // Cancela a edição de categorias
     cancelarEditCateg.addEventListener('click', ()=>{

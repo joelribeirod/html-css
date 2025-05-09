@@ -9,12 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
 <body>
+    
+
     <p id="aviso">Sua anotações ficaram salvas mesmo ao sair</p>
 
     <div id="bg-edit" style="display: none;">
         <div id="edit">
             <p>Qual é o novo resumo?</p>
             <textarea id="editResumo"></textarea>
+
+            <p>Qual a nova categoria?</p>
+            <select name="" id="editarCategoriaCard">
+                <option value="0">Sem categoria</option>
+            </select>
 
             <p>Qual é a nova descrição?</p>
             <textarea id="editDesc"></textarea>
@@ -37,6 +44,12 @@
                 <p>Escreva o resumo do FlashCard</p>
                 <textarea id="resumoFlash" rows="2"></textarea>
 
+                <p>Escolha uma categoria</p>
+                <select id="selectDeCategorias">
+                    <option value="0" selected>Sem categoria</option>
+                    <!-- Corrigir CSS, quando tem muitas categorias, as options do select vazão da tela -->
+                </select>
+
                 <p>Escreva a descricao do FlashCard</p>
                 <textarea id="descricaoFlash" rows="10"></textarea>
 
@@ -44,9 +57,75 @@
             </div> 
     </div>
     <div id="central">
-        <div id="itens" >
-            
+        <div id="itens" > 
             <span class="material-symbols-outlined" id="adicionar">add</span>
+        </div>
+    </div>
+
+    <select name="" id="selecionarCategorias">
+        <option value="0" selected>Todas as categoria</option>
+        
+    </select>
+
+    <aside id="criarCategorias">
+        <div id="abrirFechar">
+            <p>Categorias</p>
+            <span class="material-symbols-outlined" id="iconeAbrirFechar">add</span>   
+        </div>
+        <div id="manipularCategorias" style="width: 0px;">
+            <button id="novaCategoria">Criar categoria</button>
+
+            <div id="todasCategorias">
+                
+            </div>
+        </div>
+    </aside>
+
+    <div id="bg-criarCategoria" style="display: none;">
+        <div id="criarCategoria">
+            <div id="criarCategoriaInputs">
+                <p>Nome da categoria:</p>
+                <input type="text" id="categoriaNome">
+                <p>Cor da categoria:</p>
+                <input type="color" name="" id="categoriaCor">
+            </div>
+            <button id="salvarCategoria">Salvar categoria</button>
+            <!-- Categorias vão ter nome, cor em hexadecimal e id -->
+        </div> 
+    </div>
+
+    <div id="bg-editCateg" style="display: none;">
+        <div id="editCateg">
+            <div id="editCategInputs">
+                <p class="info">Editar Valores</p>
+                <p>Novo Nome:</p>
+                <input type="text" id="novoNome">
+                <p>Nova Cor:</p>
+                <input type="color" name="" id="novaCor">
+            </div>
+            <div id="editCategButtons">
+                <button id="salvarEditCateg">Salvar Edição</button>
+                <button id="cancelarEditCateg">Cancelar Edição</button>
+            </div> 
+            <div id="delCateg">
+                <p class="info">Deletar a categoria</p>
+                <button id="deletarCateg">Deletar Categoria</button>
+                <div id="confirmDelCateg" style="display: none;">
+                    <p>Essa ação é irreversível, e todas as anotações que possuem essa categoria também serão deletas. Tem certeza de que quer prosseguir?</p>
+                    <button id="delConfirmado">Prosseguir</button>
+                    <button id="delCancelado">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="aviso2" style="display: flex; transform: translateY(290px);">
+        <div id="cliqueAviso">
+            <p>!</p>
+        </div>
+        <hr style="width: 100%;">
+        <div id="textoAviso">
+            <p>Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, e caso o navegador tenha todas as informações de todos os sites deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
         </div>
     </div>
 

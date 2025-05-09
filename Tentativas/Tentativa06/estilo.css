@@ -14,7 +14,10 @@ body{
     justify-content: center;
     height: 100dvh;
     width: 100%;
+    padding-top: 70px;
+    padding-bottom: 50px;
     background-color: rgb(0, 0, 0);
+    overflow: hidden;
 }
 
 span{
@@ -22,6 +25,7 @@ span{
     cursor: pointer;
     font-size: 35px;
     transition: all 0.3s ease-in-out;
+    user-select: none;
 }
 
 #aviso{
@@ -42,7 +46,7 @@ span{
     min-height: 50px;
     max-height: 600px;
     margin-top: 4px;
-    border: 1px solid rgb(0, 95, 16);
+    border: 1px solid rgb(0, 0, 0);
     box-shadow: 0px 0px 15px rgb(202, 132, 248);
     overflow: hidden;
     overflow-y: auto;
@@ -63,6 +67,7 @@ span{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.486);
+    z-index: 3;
 }
 
 #add-flash{
@@ -117,6 +122,7 @@ span{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.486);
+    z-index: 3;
 }
 
 #edit{
@@ -184,19 +190,22 @@ span{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.486);
+    z-index: 3;
 }
 
 #confirm{
-    background-color: rgba(0, 81, 255, 0.959);
     display: flex;
     flex-direction: column;
     gap: 5px;
     text-align: center;
     width: 220px;
     height: 200px;
-    color: white;
     padding: 10px;
-    border-radius: 8px;
+    background-color: rgba(77, 77, 255, 0.979);
+    color: white;
+    border: 1px solid rgba(136, 93, 255, 0.5);
+    box-shadow: 0px 0px 120px rgba(136, 93, 255, 0.5);
+    border-radius: 12px;
 }
 
 #confirm > p{
@@ -228,7 +237,7 @@ span{
 #resumoFlash{
     align-self: center;
     width: 95%;
-    font-size: 25px;
+    font-size: 24px;
     resize: none;
     color: black;
 }
@@ -236,11 +245,19 @@ span{
 #descricaoFlash{
     align-self: center;
     width: 95%;
-    height: 320px;
-    font-size: 25px;
+    height: 260px;
+    font-size: 24px;
     resize: none;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     color: black;
+}
+
+#selectDeCategorias{
+    align-self: center;
+    width: 62%;
+    font-size: 24px;
+    margin-bottom: 18px;
+    border: 1px solid black;
 }
 
 #itens{
@@ -277,11 +294,16 @@ span{
 .config{
     display: flex;
     flex-direction: row;
+    height: 40px;
     gap: 8px;
 }
 
 .config > span{
     font-size: 32px;
+}
+
+.config > span:hover{
+    transform: scale(1.3);
 }
 
 .resumo{
@@ -309,12 +331,330 @@ span{
     text-indent: 8px;
 }
 
+#selecionarCategorias{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    padding: 4px 8px;
+    font-size: 20px;
+    border: 1px solid rgb(92, 0, 128);
+    box-shadow: 0px 0px 16px rgb(202, 132, 248);
+    opacity: .9;
+    max-width: 215px;
+}
+
+#criarCategorias{
+    background-color: black;
+    border: 1px solid white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 20px 4px;
+    color: white;
+}
+
+#abrirFechar{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 8px;
+    cursor: pointer;
+    background-color: black;
+    user-select: none
+}
+
+#abrirFechar p{
+    font-size: 20px;
+    margin-top: 8px;
+}
+
+#iconeAbrirFechar{
+    font-size: 30px;
+    margin: 4px 0px 0px 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+#manipularCategorias{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 0px;
+    z-index: 3;
+    overflow: hidden;
+}
+
+#novaCategoria{
+    all: unset;
+    width: 90%;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    margin-top: 10px;
+    padding: 4px 0px;
+    text-align: center;
+    border-radius: 2px;
+    border: 1px solid rgb(122, 0, 192);
+    cursor: pointer;
+    user-select: none;
+}
+
+#bg-criarCategoria{
+    display: flex;
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.486);
+    z-index: 3;
+}
+
+#criarCategoria{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: start;
+    width: 80%;
+    max-width: 360px;
+    min-height: 200px;
+    height: auto;
+    padding: 4px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(136, 93, 255, 0.5);
+    box-shadow: 0px 0px 120px rgba(136, 93, 255, 0.5);
+    border-radius: 12px;
+}
+
+#criarCategoriaInputs{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+    padding: 8px;
+    font-size: 24px;
+}
+
+#categoriaNome{
+    border: 1px solid black;
+    padding: 2px 4px;
+    font-size: 20px;
+    width: 100%;
+}
+
+#categoriaCor{
+    border-radius: 4px;
+}
+
+#criarCategoria button{
+    all: unset;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px 4px;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0px 0px 10px rgba(136, 93, 255, 0.5);
+    margin: 14px 0px 0px 8px;
+    transition: 0.2s ease-in-out;
+}
+
+#criarCategoria button:hover{
+    background-color: rgba(136, 93, 255, 0.233);
+}
+
+#todasCategorias{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 90%;
+    height: 160px;
+    margin-top: 12px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+#todasCategorias::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+
+#todasCategorias::-webkit-scrollbar {
+    width: 4px;
+    background: #F4F4F4;
+}
+
+#todasCategorias::-webkit-scrollbar-thumb {
+    background: #cf94f7;
+}
+
+.categoria{
+    display: flex;
+    width: 100%;
+    min-height: 32px;
+    font-size: 22px;
+    border: 1px solid white;
+    white-space: nowrap;
+    align-items: end;
+    cursor: pointer;
+}
+
+.categoria p {
+    overflow-x: hidden;
+}
+
+#aviso2{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgba(136, 93, 255, 0.5);
+    box-shadow: 0px 0px 100px rgba(136, 93, 255, 0.5);
+    border-radius: 12px 12px 0 0;
+    width: 240px;
+    font-size: 20px;
+    margin-left: 4px;
+    bottom: 0;
+    left: 0;
+    transition: 0.4s ease-in-out;
+}
+
+#cliqueAviso{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 4px 0px;
+    cursor: pointer;
+}
+
+#cliqueAviso p{
+    background-color: red;
+    border-radius: 50%;
+    padding: 0px 8px;
+}
+
+#textoAviso{
+    padding-top: 10px;
+    padding: 4px;
+    color: black;
+    background-color: white;
+}
+
+#bg-editCateg{
+    display: flex;
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.486);
+    z-index: 3;
+}
+
+#editCateg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    min-height: 200px;
+    height: auto;
+    padding: 8px 0px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(136, 93, 255, 0.5);
+    box-shadow: 0px 0px 120px rgba(136, 93, 255, 0.5);
+    border-radius: 12px;
+    font-size: 24px;
+}
+
+#editCategInputs{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 90%;
+    margin-bottom: 12px;
+}
+
+#editCategInputs input{
+    margin-bottom: 8px;
+}
+
+#novoNome{
+    border: 1px solid black;
+    padding: 2px 4px;
+    font-size: 20px;
+    width: 100%;
+}
+
+#editCateg button{
+    all: unset;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px 4px;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0px 0px 10px rgba(136, 93, 255, 0.5);
+    transition: 0.2s ease-in-out;
+}
+
+#editCategButtons{
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    justify-content: start;
+    margin-bottom: 12px;
+}
+
+#delCateg{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 90%;
+    margin: 12px 0px;
+}
+
+.info{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#deletarCateg:hover{
+    background-color: rgb(255, 191, 191);
+}
+
+#confirmDelCateg p{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px 0px;
+    color: rgb(136, 19, 19);
+}
+
+#editarCategoriaCard{
+    font-size: 23px;
+    padding: 2px 4px;
+    border: 1px solid black;
+}
+
+
 @media screen and (min-width: 768px) {
+    body{
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
     #central{
         max-width: 700px;
     }
 
-    span:hover{
+    #adicionar:hover{
         transform: scale(1.3);
     }
 
@@ -324,5 +664,32 @@ span{
 
     .setinha{
         transform: translateY(2px);
+    }
+    
+    #abrirFechar p{
+        font-size: 24px;
+    }
+}
+
+@keyframes abrirCategorias {
+    0% {
+        border: 1px solid white;
+        width: 0px;
+        height: 0px;
+    }
+    100% {
+        width: 220px;
+        height: 220px;
+    }
+} 
+@keyframes fecharCategorias {
+    0% {
+        width: 220px;
+        height: 220px;
+    }
+    100% {
+        width: 0px;
+        height: 0px;
+        border: 0px solid white;
     }
 }

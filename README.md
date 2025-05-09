@@ -6,3 +6,5 @@
 [Projeto E-Commerce](https://joelribeirod.github.io/html-css/Tentativas/Tentativa05/index.html)
 <br>
 [Projeto Get Or Drop](https://joelribeirod.github.io/html-css/Tentativas/Tentativa07/htmlCss/landPage/index.html)
+<br>
+[Projeto de FlashCards](https://joelribeirod.github.io/html-css/Tentativas/Tentativa06/index.html)

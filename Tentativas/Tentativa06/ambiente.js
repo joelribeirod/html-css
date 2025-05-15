@@ -39,8 +39,8 @@
     const aviso2 = document.getElementById('aviso2')
     const cliqueAviso = document.getElementById('cliqueAviso')
     const textoAviso = document.getElementById('textoAviso')
-    const avisoHeigth = textoAviso.offsetHeight
-    console.log(avisoHeigth)
+    const avisoHeigth = textoAviso.offsetHeight + 2
+    // + 2 pois a borda tbm tem width, 1 pixel em cima e 1 pixel em baixo
 
     // Edição de categoria
     const bgEditCateg = document.getElementById('bg-editCateg')
@@ -163,7 +163,7 @@
     })
 
     // Analise qual opção está selecionada no filtro de categorias
-    selecionarCategorias.addEventListener('click', (e)=>{
+    selecionarCategorias.addEventListener('change', (e)=>{
         // Remover todos os cards
         let totCard = document.querySelectorAll('.card')
         totCard.forEach((card)=>{
@@ -229,15 +229,17 @@
                     //pega os valores que foram digitados na edit
                     let novoR = document.getElementById('editResumo').value
                     let novoC = document.getElementById('editDesc').value
+                    let novaCateg = document.getElementById('editarCategoriaCard').value
     
                     if (!novoC || !novoR) {
                         window.alert("Escreva algo para atualizar")
                     }else{
-                        const att = anotacoes.filter((anotation) => anotation.id === anotacao.id)
-    
-                        att[0].resumo = novoR
-                        att[0].descricao = novoC
-    
+                        const cardAtualizado = anotacoes.find((anotation) => anotation.id === anotacao.id)
+
+                        cardAtualizado.resumo = novoR
+                        cardAtualizado.descricao = novoC
+                        cardAtualizado.categId = novaCateg
+
                         localStorage.setItem('anotacoes', JSON.stringify(anotacoes))
                         window.location.reload()
                     }
@@ -283,8 +285,16 @@
     
             //edita um card ja existente
             settings.addEventListener('click', () => {
+                // Resgata a categoria da anotação e ja mantem selecionada
+                let editarOptions = document.querySelectorAll('#editarCategoriaCard option')
+                let option = Array.from(editarOptions).find(option => option.value === anotacao.categId)
+
+                // Coloca os valores da anotação nos inputs
                 editR.value = anotacao.resumo
                 editC.value = anotacao.descricao
+                option.selected = true
+
+                // Abre a edição
                 edit.style.display = 'flex'
                 edit.addEventListener('click', atualizarP)
             })

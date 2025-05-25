@@ -26,3 +26,20 @@ function prox(){
 setInterval(prox, 2000)
 
 //DEU CERTO!!!
+
+
+const resgatarCor = document.getElementById('resgatarCor')
+const enviarCor = document.getElementById('enviarCor')
+
+enviarCor.addEventListener('click', (e) => {
+    console.log(resgatarCor.value)
+})
+
+
+
+const selecaoDeCategs = document.getElementById('selecaoDeCategs')
+const enviarOpt = document.getElementById("enviarOpt")
+
+enviarOpt.addEventListener('click',()=>{
+    console.log(selecaoDeCategs.value)
+})

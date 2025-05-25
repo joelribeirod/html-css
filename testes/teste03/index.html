@@ -14,6 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             background-color: black;
             color: white;
             height: 100vh;
@@ -29,9 +30,16 @@
             margin: 2px;
         }
 
+        div > button{
+            margin-top: 4px;
+        }
+
         div > input{
             font-size: 20px;
             height: 40px;
+        }
+        #valoresAdicionados{
+            margin-top: 20px;
         }
     </style>
     <script src="ambiente.js" defer></script>
@@ -40,9 +48,23 @@
     <div>
         <p>TESTE DE CALCULO</p>
         <input type="number" id="num">
-        <button id="addNUM">adicionar</button>
-        <button id="reset">RESETAR</button>
-        <button id="calc" type="submit">calcular</button>
+        <button id="addNUM">Adicionar</button>
+        <button id="reset">Resetar</button>
+        <button id="calc" type="submit">Calcular</button>
     </div>
+    <div>
+        <h2>Valores adicionados:</h2>
+        <div id="valoresAdicionados">
+            0
+        </div>
+    </div>
+    
+    <div>
+        <h2>Resultado:</h2>
+        <div>
+            <p>S² = <span id="res"></span></p>
+        </div>
+    </div>
+    
 </body>
 </html>

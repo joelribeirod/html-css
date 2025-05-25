@@ -2,6 +2,8 @@
 let add = document.getElementById('addNUM')
 let reset = document.getElementById('reset')
 let calc = document.getElementById('calc')
+const valoresAdicionados = document.getElementById('valoresAdicionados')
+const res = document.getElementById('res')
 
 let numeros = []
 
@@ -11,6 +13,8 @@ add.addEventListener('click', () => {
     numeros.push(nums)
     totDiv.value = ''
 
+    valoresAdicionados.textContent = numeros
+
     console.log(numeros)
 })
 
@@ -18,6 +22,7 @@ reset.addEventListener('click', () => {
     let totDiv = document.getElementById('num')
     totDiv.value = ''
     numeros = []
+    valoresAdicionados.textContent = numeros
     console.log(numeros)
 })
 
@@ -43,10 +48,14 @@ calc.addEventListener('click', () => {
 
     if(s == 0){
         window.alert('Digite mais de um valor')
+        return null
     }else{
         console.log(`S^2 é igual a: ${s}`)
-        window.alert(`S^2 é igual a: ${s}`)
-    }    
+        // window.alert(`S^2 é igual a: ${s}`)
+    }  
+
+    res.textContent = s
+      
     Xbah = 0
     tot = 0
     s = 0

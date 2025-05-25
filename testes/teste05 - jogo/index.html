@@ -38,30 +38,40 @@
             z-index: 2;
         }
 
-        #circle{
+        #player{
             width: 40px;
             height: 40px;
             position: absolute;
             border-radius: 50%;
             border: 1px solid rgb(255, 255, 255);
             background-color: rgb(255, 255, 255);
-            transition: 0.3s ease-out;
+            transition: 0.3s ease-in-out;
             z-index: 4;
         }
 
-        #teste{
+        .circulo{
             position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 5;
-            /* width: 20px;
+            width: 40px;
+            height: 40px;
+            transition: 0.1s ease-out;
+        }
+
+        .clique{
+            display: block;
+            position: relative;
+            width: 20px;
             height: 20px;
             border-radius: 50%;
-            background-color: red; */
+            background-color: red;
         }
 
         #bolinhas{
-            position: absolute;
             width: 100%;
-            height: 100dvh;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -70,38 +80,29 @@
     </style>
 </head>
 <body>
+    <h2>Use o WASD</h2>
     <div id="BG">           
         <div id="Bg-Circle">
-            <div id="circle">
-
+            <div id="player">
+                
             </div>
             <div id="bolinhas">
-                <p id="teste">acb</p>
+                <p id="teste" class="circulo"><span class="clique"></span></p>
             </div>          
-        </div> 
-        
-        <!-- <div> fundo
-            <div> objetos
-
-            </div>
-            <div> fundo do circulo
-                <div> circulo
-
-                </div>
-            </div>
-        </div> -->
-        
+        </div>         
     </div>
     <h2>Coordenadas: X = <span id="addX">0</span>, Y = <span id="addY">0</span></h2>
-    
+
     <script>
-        const bolinha = document.getElementById('circle')
+        const player = document.getElementById('player')
         const teste = document.getElementById('teste')
         const BG = document.getElementById('Bg-Circle')
         const coordenadaX = document.getElementById('addX')
         const coordenadaY = document.getElementById('addY')
+        const bolinhas = document.querySelectorAll('.circulo')
+        console.log(bolinhas)
 
-        let contagemTotal = 10
+        let contagemTotal = 40
         let contagemYmenos = 0
         let contagemXmenos = 0
         let contagemYmais = 0
@@ -109,6 +110,18 @@
         
         let XPosition = 0
         let YPosition = 0
+
+        function verificarColisao(circuloMaior, circuloMenor) {
+            let rect1 = circuloMaior.getBoundingClientRect();
+            let rect2 = circuloMenor.getBoundingClientRect();
+
+            return (
+                rect1.right == rect2.right &&
+                rect1.left == rect2.left &&
+                rect1.bottom ==  rect2.bottom &&
+                rect1.top == rect2.top
+            );
+        }
 
         window.addEventListener('keydown', (e) => {
             if(e.key == 'w'){
@@ -132,10 +145,19 @@
             YPosition = contagemYmais - contagemYmenos
             
 
-            bolinha.style.transform = `translate(${XPosition}px, ${YPosition}px)`
+            player.style.transform = `translate(${XPosition}px, ${YPosition}px)`
 
             coordenadaX.innerText = XPosition
             coordenadaY.innerText = YPosition
+
+            setTimeout(()=>{
+                console.log(verificarColisao(player, teste))
+                if(verificarColisao(player, teste)){
+                    teste.style.opacity = '1'
+                }else{
+                    teste.style.opacity = '0'
+                }
+            }, 300)     
             
         })
 
@@ -143,6 +165,7 @@
 
         setTimeout(()=>{
             BG.style.backgroundColor = 'black'
+            teste.style.opacity = '0'
         }, 2000)
 
         

@@ -25,22 +25,28 @@
 ## Visual
 ### Anotações
 <img src="readme-images/img6.png" alt="" width="400"/>
+<hr>
 
 ### Relacionando Anotações com categorias
 <img src="readme-images/img7.png" alt="" width="400"/>
+<hr>
 
 ### Adicionar FlashCards
 <img src="readme-images/img2.png" alt="Criar anotação" width="400"/>
+<hr>
 
 ### Div central
 <img src="readme-images/img1.png" alt="" width="400"/>
+<hr>
 
 ### Aviso de LocalStorage
 - Avisando para o usuário que suas anotações ficam salvas naquele navegador, naquele dispositivo
 <img src="readme-images/img3.png" alt="" width="400"/>
+<hr>
 
 ### Criar e manipular categorias
 <img src="readme-images/img4.png" alt="" width="400"/>
+<hr>
 
 ### Filtrar anotações através das categorias
 <img src="readme-images/img5.png" alt="" width="400"/>

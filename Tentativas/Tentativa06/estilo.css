@@ -161,10 +161,12 @@ span{
     font-weight: 500;
     font-style: normal;
     color: black;
+    padding: 4px;
 }
 
 #editDesc{
     height: 120px;
+    padding: 4px;
 }
 
 #edit > button{
@@ -240,6 +242,7 @@ span{
     font-size: 24px;
     resize: none;
     color: black;
+    padding: 4px;
 }
 
 #descricaoFlash{
@@ -250,6 +253,7 @@ span{
     resize: none;
     margin-bottom: 18px;
     color: black;
+    padding: 4px;
 }
 
 #selectDeCategorias{

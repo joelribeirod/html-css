@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shot</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 99%;
+            height: 97dvh;
+            background-color: black;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        #shot{
+            position: absolute;
+        }
+
+        #imgCannon{
+            position: absolute;
+            bottom: 0;
+            transform: translateY(300px);
+            
+        }
+
+        @keyframes subirCanhao{
+            0%{
+                transform: translateY(300px);
+            }
+
+            100%{
+                transform: translateY(-300px);
+            }
+        }
+
+        @keyframes descerCanhao{
+            0%{
+                transform: translateY(-300px);
+            }
+
+            100%{
+                transform: translateY(300px);
+            }
+        }
+
+        @keyframes subirBtn{
+            0%{
+                transform: translateY(0px);
+            }
+
+            100%{
+                transform: translateY(-900px);
+            }
+        }
+
+        @keyframes descerBtn{
+            0%{
+                transform: translateY(-900px);
+            }
+
+            100%{
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="shot">Shot</button>
+    <img id="imgCannon" src="cannonFrame.png" alt="" width="300px">
+
+    <script>
+        const shotBtn = document.getElementById('shot')
+        const img = document.getElementById('imgCannon')
+
+        shotBtn.addEventListener('click', ()=>{
+            img.src = 'cannonGif.gif'
+            img.style.animation = 'subirCanhao .5s ease-in-out'
+            img.style.transform = "translateY(-300px)"
+
+            shotBtn.style.animation = 'subirBtn .5s ease-in-out'
+            shotBtn.style.transform = "translateY(-900px)"
+
+            setTimeout(()=>{
+                img.src = 'cannonFrame.png'
+                img.style.animation = 'descerCanhao 1s ease-in-out'
+                img.style.transform = "translateY(300px)"
+
+                shotBtn.style.animation = 'descerBtn 1s ease-in-out'
+                shotBtn.style.transform = "translateY(0px)"
+            },1800)
+        })
+    </script>
+</body>
+</html>

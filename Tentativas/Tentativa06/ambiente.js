@@ -20,6 +20,9 @@
 
     // Carrega todos os Cards
     const central = document.getElementById('central')
+
+    // Resgatar borda para animação
+    const animatedBorder = document.getElementById('animatedBorder')
     
     // Configurações das categorias
     const iconeAbrirFechar = document.getElementById('iconeAbrirFechar')
@@ -42,6 +45,9 @@
     const avisoHeigth = textoAviso.offsetHeight + 2
     // + 2 pois a borda tbm tem width, 1 pixel em cima e 1 pixel em baixo
 
+    // Warn for mobile devices
+    const warnForMobileBg = document.getElementById('warnForMobileBg')
+
     // Edição de categoria
     const bgEditCateg = document.getElementById('bg-editCateg')
     const novaCor = document.getElementById('novaCor')
@@ -49,6 +55,7 @@
     const salvarEditCateg = document.getElementById('salvarEditCateg')
     const cancelarEditCateg = document.getElementById('cancelarEditCateg')
 
+    // Controls which category will suffer changes
     let idCateg
 
     // Deletar Categoria
@@ -59,6 +66,9 @@
 
     // Filtrar por categorias
     const selecionarCategorias = document.getElementById('selecionarCategorias')
+
+    // Holder for animated border
+    const holder = document.getElementById('holder')
 
 // Fim Declarando Variaveis
 
@@ -131,21 +141,59 @@
 
     // Exibe o aviso do localStorage
     cliqueAviso.addEventListener('click', ()=>{
-        if(aviso2.style.transform == `translateY(${avisoHeigth}px)`){
-            aviso2.style.transform = "translateY(0px)"
-        }else if(aviso2.style.transform == "translateY(0px)"){
+        if(window.innerWidth >= 768){
+            if(aviso2.style.transform == `translateY(${avisoHeigth}px)`){
+                aviso2.style.transform = "translateY(0px)"
+            }else if(aviso2.style.transform == "translateY(0px)"){
+                aviso2.style.transform = `translateY(${avisoHeigth}px)`
+            }
+        }else{
+            console.log('oi')
+            warnForMobileBg.style.display = 'flex'
+        }
+        
+    })
+
+    // Executed just once, did for eventlisteners get configurated
+    if(window.innerWidth >= 768){
+        // Fecha o aviso do localStorage quando a pagina carrega
+        aviso2.style.transform = `translateY(${avisoHeigth}px)`
+    }else{
+        // Se a tela for mobile, configura o aviso para tal
+        textoAviso.style.display = 'none'
+        aviso2.style.width = '60px'
+    }
+
+    // Fecha o aviso do localStorage && Fecha o aviso para dispositivo mobile
+    window.addEventListener('click', (e)=>{
+        if(aviso2.style.transform == "translateY(0px)" && !textoAviso.contains(e.target) && !cliqueAviso.contains(e.target) && textoAviso.style.display == 'block'){
             aviso2.style.transform = `translateY(${avisoHeigth}px)`
+        }
+
+        if(warnForMobileBg.style.display == 'flex' && e.target === warnForMobileBg){
+            warnForMobileBg.style.display = 'none'
         }
     })
 
-    // Fecha o aviso do localStorage
-    window.addEventListener('click', (e)=>{
-        if(aviso2.style.transform == "translateY(0px)" && !textoAviso.contains(e.target) && !cliqueAviso.contains(e.target)){
+    // Closes the localStorage warn when the screen resizes
+    window.addEventListener('resize', (e)=>{
+        
+
+        if(e.target.innerWidth < 768){
+            console.log('i')
+            aviso2.style.transform = `translateY(0px)`
+            textoAviso.style.display = 'none'
+            aviso2.style.width = '60px'
+        }else{
+            
+            console.log(avisoHeigth)
+
             aviso2.style.transform = `translateY(${avisoHeigth}px)`
+            textoAviso.style.display = 'block'
+        
+            aviso2.style.width = '240px'
         }
     })
-    // Fecha o aviso do localStorage quando a pagina carrega
-    aviso2.style.transform = `translateY(${avisoHeigth}px)`
 
     // Cancela a edição de categorias
     cancelarEditCateg.addEventListener('click', ()=>{
@@ -165,8 +213,7 @@
     // Analise qual opção está selecionada no filtro de categorias
     selecionarCategorias.addEventListener('change', (e)=>{
         // Remover todos os cards
-        let totCard = document.querySelectorAll('.card')
-        totCard.forEach((card)=>{
+        document.querySelectorAll('.card').forEach((card)=>{
             card.remove()
         })
         // Fim Remover todos os cards
@@ -323,6 +370,13 @@
     
         })
     })
+
+    // Analizys when the border needs an atualization for its values
+    const observer = new ResizeObserver(() => {
+        loadBorderAnimation()
+    });
+
+    observer.observe(holder)
 
     // Criar categoria
     salvarCategoria.addEventListener('click', ()=>{
@@ -562,6 +616,25 @@ function loadCategorys(){
     })
 }
 
+function loadBorderAnimation(){
+    const holderHeigth = holder.offsetHeight - 10
+    const holderWidth = holder.offsetWidth - 10
+
+    animatedBorder.animate(
+        [
+            {transform: `translateX(${holderWidth}px)`},
+            {transform: `translateY(${holderHeigth}px)`},
+            {transform: `translateX(-${holderWidth}px)`},
+            {transform: `translateY(-${holderHeigth}px)`},
+            {transform: `translateX(${holderWidth}px)`}
+        ],
+        {
+            duration: 5000,
+            iterations: Infinity
+        }
+    )
+}
+
 // Atualiza os valores da categoria que o usuário quer, adiciona de volta no localStorage e da um reload na pagina
 function salvarEdit() {
     const atualizarCateg = categorias.find((categoria) => categoria.id === idCateg)
@@ -600,3 +673,4 @@ function editCateg(nome, cor){
 
 loadNotations()
 loadCategorys()
+loadBorderAnimation()

@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlashCards</title>
     <link rel="stylesheet" href="estilo.css">
-
+    <link rel="shortcut icon" href="pixil-frame-0 (1).png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <script src="ambiente.js" defer></script>
 </head>
 <body>
-    
-
     <p id="aviso">Sua anotações ficaram salvas mesmo ao sair</p>
 
     <div id="bg-edit" style="display: none;">
@@ -56,12 +55,19 @@
                 <button id="enviarFlash">Adicionar</button>
             </div> 
     </div>
-    <div id="central">
-        <div id="itens" > 
-            <span class="material-symbols-outlined" id="adicionar">add</span>
+
+    <div id="holder">
+        <div id="animatedBorder">
+
+        </div>
+        <div id="central">
+            <div id="itens" > 
+                <span class="material-symbols-outlined" id="adicionar">add</span>
+            </div>
+                <!--  -->
         </div>
     </div>
-
+    
     <select name="" id="selecionarCategorias">
         <option value="0" selected>Todas as categoria</option>
         
@@ -128,6 +134,14 @@
         </div>
     </div>
 
-    <script src="ambiente.js"></script>
+    <div id="warnForMobileBg" style="display: none;">
+        <div id="warnForMobile">
+            <p>Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, no seu dispostivo e caso o navegador tenha as informações desse site deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
+        </div>
+    </div>
+
+    <!-- <div id="changeLanguage">
+
+    </div> -->
 </body>
 </html>

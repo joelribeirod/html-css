@@ -1,44 +1,40 @@
-// Declarando Variaveis
-    // Edição de Cards
-    const edit = document.getElementById('bg-edit')
-    const editR = document.getElementById('editResumo')
-    const editC = document.getElementById('editDesc')
-    const editarCategoriaCard = document.getElementById('editarCategoriaCard')
+// Importando arquivos
+    import { loadLanguage } from "./js/loadLanguage.js";
+    import { loadBorderAnimation } from "./js/loadBorderAnimation.js";
+    import { loadCategories, idCateg, bgEditCateg, novaCor, novoNome } from "./js/loadCategories.js";
+    import { loadNotations } from "./js/loadNotations.js";
 
-    // Deletar Cards
-    const confirmDel = document.getElementById('bg-confirm')
+// Declarando Variaveis
 
     // Atualizar Cards
     const adicionarCard = document.getElementById('config-tot')
-    const enviar = document.getElementById('enviarFlash')
+    const enviar = document.getElementById('sendNote')
     
     // Adicionar Cards
     const adicionar = document.getElementById('adicionar')
     var textareaUm = document.getElementById('resumoFlash')
     var textareaDois = document.getElementById('descricaoFlash')
-    const selectDeCategorias = document.getElementById('selectDeCategorias')
-
-    // Carrega todos os Cards
-    const central = document.getElementById('central')
-
-    // Resgatar borda para animação
-    const animatedBorder = document.getElementById('animatedBorder')
     
-    // Configurações das categorias
-    const iconeAbrirFechar = document.getElementById('iconeAbrirFechar')
-    const bgCriarCategoria = document.getElementById('bg-criarCategoria')
-    const novaCategoria = document.getElementById('novaCategoria')
-    const abrirFechar = document.getElementById('abrirFechar')
-    const manipularCategorias = document.getElementById('manipularCategorias')
+    // All Category variables
+        // Category configuration
+        const iconeAbrirFechar = document.getElementById('iconeAbrirFechar')
+        const bgCriarCategoria = document.getElementById('bg-criarCategoria')
+        const newCategory = document.getElementById('newCategory')
+        const abrirFechar = document.getElementById('abrirFechar')
+        const manipularCategorias = document.getElementById('manipularCategorias')
     
-    // Criar categoria
-    const criarCategoria = document.getElementById('criarCategoria')
-    const salvarCategoria = document.getElementById('salvarCategoria')
+        // Create category
+        const saveNewCategory = document.getElementById('saveNewCategory')
 
-    // Resgatar as categorias
-    const todasCategorias = document.getElementById('todasCategorias')
+        // Edit of categories
+        
+        const salvarEditCateg = document.getElementById('salvarEditCateg')
 
-    // Aviso 2
+        // Delete categories
+        const delConfirmado = document.getElementById('delConfirmado')
+        
+        
+    // Warn 2
     const aviso2 = document.getElementById('aviso2')
     const cliqueAviso = document.getElementById('cliqueAviso')
     const textoAviso = document.getElementById('textoAviso')
@@ -48,35 +44,44 @@
     // Warn for mobile devices
     const warnForMobileBg = document.getElementById('warnForMobileBg')
 
-    // Edição de categoria
-    const bgEditCateg = document.getElementById('bg-editCateg')
-    const novaCor = document.getElementById('novaCor')
-    const novoNome = document.getElementById('novoNome')
-    const salvarEditCateg = document.getElementById('salvarEditCateg')
-    const cancelarEditCateg = document.getElementById('cancelarEditCateg')
-
-    // Controls which category will suffer changes
-    let idCateg
-
-    // Deletar Categoria
-    const deletarCateg = document.getElementById('deletarCateg')
-    const confirmDelCateg = document.getElementById('confirmDelCateg')
-    const delConfirmado = document.getElementById('delConfirmado')
-    const delCancelado = document.getElementById('delCancelado')
-
-    // Filtrar por categorias
-    const selecionarCategorias = document.getElementById('selecionarCategorias')
-
     // Holder for animated border
     const holder = document.getElementById('holder')
 
+    // Language section
+    const changeLanguage = document.getElementById('changeLanguage')
+    const langsNodelist = document.querySelectorAll('.lang')
+    const langsFormatted = Array.from(langsNodelist)
+
 // Fim Declarando Variaveis
 
-// resgata as anotações e as categorias que estão no local storage, se n tiver nenhuma eles recebem arrays vazios
-    const anotacoes = JSON.parse(localStorage.getItem('anotacoes')) || []
-    const categorias = JSON.parse(localStorage.getItem('categorias')) || []
-// Adicionando os EventListeners
+// Configuration for localStorage and language changer
+const langFromLocalStorage = localStorage.getItem('lang')
 
+if(!langFromLocalStorage){
+    localStorage.setItem('lang', JSON.stringify({lang: 'br'}))
+}
+
+langsFormatted.forEach((lang)=>{
+    const language = JSON.parse(langFromLocalStorage).lang
+    console.log(lang.id, language)
+
+    if(lang.id == language){
+        lang.className = 'lang selected'
+    }else{
+        lang.className = 'lang unSelected'
+    }
+})
+
+// resgata as anotações e as categorias que estão no local storage, se n tiver nenhuma eles recebem arrays vazios
+    const categorias = JSON.parse(localStorage.getItem('categorias')) || []
+    const anotacoes = JSON.parse(localStorage.getItem('anotacoes')) || []
+
+// Function to simplify the use of styles
+function aplyStyles(element, styles) {
+    Object.assign(element.style, styles)
+}
+
+// Adicionando os EventListeners
     // Abre a criação de um novo card
     adicionar.addEventListener('click', () => {
         textareaUm.value = ""
@@ -98,44 +103,43 @@
         }
     })
 
-    // Fechar a edição de categoria
-    bgEditCateg.addEventListener('click', (e)=>{
-        if(e.target === bgEditCateg){
-            bgEditCateg.style.display = 'none'
-            confirmDelCateg.style.display = 'none'
-        }
-    })
-
+    
     // Analisa se a edição de categorias está aberta, e se ao mesmo tempo o usuario clicou em outro lugar da tela, fazendo com que a edição de categorias seja fechada, também analisa se a edição de categoria está aberta, se estiver aberta, ele não fecha a mostragem de todas as categorias 
     window.addEventListener('click', (e)=>{
         if(!manipularCategorias.contains(e.target) && !abrirFechar.contains(e.target) && manipularCategorias.style.width == '220px' && !bgEditCateg.contains(e.target)){
-            manipularCategorias.style.animation = 'fecharCategorias 1s ease-in-out'
-            manipularCategorias.style.width = '0px'
-            manipularCategorias.style.border = '0px solid white'
-            manipularCategorias.style.height = '0px'
-            iconeAbrirFechar.style.rotate = '0deg'
+            aplyStyles(manipularCategorias, {
+                animation : 'fecharCategorias 1s ease-in-out',
+                width : '0px',
+                border : '0px solid white',
+                height : '0px',
+            })
         }
     })
 
     // Abre e fecha as categorias usando uma animação para deixar elegante
     abrirFechar.addEventListener('click', ()=>{
         if(manipularCategorias.style.width == '220px'){
-            manipularCategorias.style.animation = 'fecharCategorias 1s ease-in-out'
-            manipularCategorias.style.width = '0px'
-            manipularCategorias.style.border = '0px solid white'
-            manipularCategorias.style.height = '0px'
+            aplyStyles(manipularCategorias, {
+                animation : 'fecharCategorias 1s ease-in-out',
+                width : '0px',
+                border : '0px solid white',
+                height : '0px',
+            })
+
             iconeAbrirFechar.style.rotate = '0deg'
         }else if(manipularCategorias.style.width == '0px'){
-            manipularCategorias.style.animation = 'abrirCategorias 1s ease-in-out'
-            manipularCategorias.style.width = '220px'
-            manipularCategorias.style.border = '1px solid white'
-            manipularCategorias.style.height = '220px'
+            aplyStyles(manipularCategorias, {
+                animation : 'abrirCategorias 1s ease-in-out',
+                width : '220px',
+                border : '1px solid white',
+                height : '220px',
+            })
             iconeAbrirFechar.style.rotate = '135deg'
         }
     })
 
     // Abre a criação de uma nova categoria
-    novaCategoria.addEventListener('click', ()=>{
+    newCategory.addEventListener('click', ()=>{
         bgCriarCategoria.style.display = 'flex'
     })
 
@@ -195,182 +199,6 @@
         }
     })
 
-    // Cancela a edição de categorias
-    cancelarEditCateg.addEventListener('click', ()=>{
-        bgEditCateg.style.display = 'none'
-    })
-
-    // Cancela o deletar de categorias
-    delCancelado.addEventListener('click', ()=>{
-        confirmDelCateg.style.display = 'none'
-    })
-
-    // Abre a confirmação de delete de categorias
-    deletarCateg.addEventListener('click', ()=>{
-        confirmDelCateg.style.display = 'block'
-    })
-
-    // Analise qual opção está selecionada no filtro de categorias
-    selecionarCategorias.addEventListener('change', (e)=>{
-        // Remover todos os cards
-        document.querySelectorAll('.card').forEach((card)=>{
-            card.remove()
-        })
-        // Fim Remover todos os cards
-
-        let anotacoesFiltradas = []
-
-        // Analisa se o valor do filtro é 0, se for, o filtro vai selecionar todos os cards, se não ele vai somente selecionar os cards de uma determinada categoria
-        if(e.target.value == 0){
-            anotacoesFiltradas = anotacoes
-        }else{
-            anotacoesFiltradas = anotacoes.filter((anotacao) => anotacao.categId === e.target.value)
-        }
-        // Fim analise
-
-        // Recria todos os cards com base no que foi filtrado (a estrutura é a mesmo do LoadNotations)
-        anotacoesFiltradas.forEach(anotacao => {
-            //Recuperando a categoria
-                let categoria = categorias.find(categ=> categ.id === anotacao.categId)
-            //Estrutura
-                let card = document.createElement('div')
-                card.className = 'card'
-    
-                if(categoria){
-                    card.style.backgroundColor = categoria.cor
-                }
-                
-                let configCard = document.createElement('div')
-                configCard.className = 'configCard'
-    
-                var setinha = document.createElement('span')
-                setinha.className = 'material-symbols-outlined setinha'
-                setinha.textContent = 'arrow_drop_down'
-    
-                let config = document.createElement('div')
-                config.className = 'config'
-    
-                let settings = document.createElement('span')
-                settings.className = 'material-symbols-outlined spanconfig'
-                settings.textContent = 'settings'
-    
-                let deletar = document.createElement('span')
-                deletar.className = 'material-symbols-outlined deletar'
-                deletar.textContent = 'delete'
-    
-                let resumo = document.createElement('p')
-                resumo.appendChild(setinha)
-                resumo.innerHTML += ` ${anotacao.resumo}`
-                resumo.className = 'resumo'
-    
-                let total = document.createElement('div')
-                total.className = 'total'
-                total.textContent = anotacao.descricao
-            // Fim Estrutura
-    
-            function atualizarP(clicou) {
-                if(clicou.target.value == 1){
-                    edit.style.display = 'none'
-                    edit.removeEventListener('click', atualizarP)
-                }else if(clicou.target.value == 2){
-                    //pega os valores que foram digitados na edit
-                    let novoR = document.getElementById('editResumo').value
-                    let novoC = document.getElementById('editDesc').value
-                    let novaCateg = document.getElementById('editarCategoriaCard').value
-    
-                    if (!novoC || !novoR) {
-                        window.alert("Escreva algo para atualizar")
-                    }else{
-                        const cardAtualizado = anotacoes.find((anotation) => anotation.id === anotacao.id)
-
-                        cardAtualizado.resumo = novoR
-                        cardAtualizado.descricao = novoC
-                        cardAtualizado.categId = novaCateg
-
-                        localStorage.setItem('anotacoes', JSON.stringify(anotacoes))
-                        window.location.reload()
-                    }
-    
-                    //faz a edição sumir
-                    edit.style.display = 'none'
-                    edit.removeEventListener('click', atualizarP)
-                }
-            }
-        
-            function deletarP(clicou) {
-                if(clicou.target.value == 1){
-                    confirmDel.style.display = 'none'
-                    const del = anotacoes.filter((anotation) => anotation.id !== anotacao.id)
-    
-                    localStorage.setItem('anotacoes', JSON.stringify(del))
-                    window.location.reload()
-                }else if(clicou.target.value == 2){
-                    confirmDel.style.display = 'none'
-                    confirmDel.removeEventListener('click', deletarP)
-                }
-            }
-    
-            confirmDel.addEventListener('click', (event) => {
-                if(event.target === confirmDel){
-                    confirmDel.style.display = 'none'
-                    confirmDel.removeEventListener('click', deletarP)
-                }
-            })
-        
-            edit.addEventListener('click', (event) => {
-                if(event.target === edit){
-                    edit.style.display = 'none'
-                    edit.removeEventListener('click', atualizarP)
-                }
-            })
-    
-            //remove o card que foi clicado
-            deletar.addEventListener('click', () => {
-                confirmDel.style.display = 'flex'
-                confirmDel.addEventListener('click', deletarP)  
-            })
-    
-            //edita um card ja existente
-            settings.addEventListener('click', () => {
-                // Resgata a categoria da anotação e ja mantem selecionada
-                let editarOptions = document.querySelectorAll('#editarCategoriaCard option')
-                let option = Array.from(editarOptions).find(option => option.value === anotacao.categId)
-
-                // Coloca os valores da anotação nos inputs
-                editR.value = anotacao.resumo
-                editC.value = anotacao.descricao
-                option.selected = true
-
-                // Abre a edição
-                edit.style.display = 'flex'
-                edit.addEventListener('click', atualizarP)
-            })
-    
-            //faz com que a descricao apareça quando clicar no resumo
-            configCard.addEventListener('click', (event) => {
-                if(event.target === configCard || event.target.closest(".resumo")){
-                    if(total.style.display == 'block'){
-                        total.style.display = 'none';
-                        //nao esta funcionando -> setinha.classList.remove('setinha');
-                    }else{
-                        total.style.display = 'block';
-                        //nao esta funcionando -> setinha.classList.add('setinha');
-                    }
-                }
-            })
-    
-            card.appendChild(configCard)
-            card.appendChild(total)
-            configCard.appendChild(resumo)
-            configCard.appendChild(config)
-            config.appendChild(settings)
-            config.appendChild(deletar)
-    
-            central.appendChild(card)
-    
-        })
-    })
-
     // Analizys when the border needs an atualization for its values
     const observer = new ResizeObserver(() => {
         loadBorderAnimation()
@@ -379,7 +207,7 @@
     observer.observe(holder)
 
     // Criar categoria
-    salvarCategoria.addEventListener('click', ()=>{
+    saveNewCategory.addEventListener('click', ()=>{
         let categoriaNome = document.getElementById('categoriaNome').value
         let categoriaCor = document.getElementById('categoriaCor').value
 
@@ -420,220 +248,35 @@
         window.location.reload()
     })
 
-// Fim Adicionando os EventListeners
-
-// Pega os cards do local storage que foram armazenados na const 'anotacoes' e cria o front com suas features
-function loadNotations(){
-    anotacoes.forEach(anotacao => {
-        //Recuperando a categoria
-            let categoria = categorias.find(categ=> categ.id === anotacao.categId)
-        //Estrutura
-            let card = document.createElement('div')
-            card.className = 'card'
-
-            if(categoria){
-                card.style.backgroundColor = categoria.cor
-            }
+    changeLanguage.addEventListener('click', (e)=>{
+        if(changeLanguage.className == 'offSelection'){
+            changeLanguage.className = 'onSelection'
             
-            let configCard = document.createElement('div')
-            configCard.className = 'configCard'
+            langsFormatted.forEach((lang)=>lang.className = 'lang selection')
+        }else{
+            if(e.target === changeLanguage){
+                return;
+            }
 
-            var setinha = document.createElement('span')
-            setinha.className = 'material-symbols-outlined setinha'
-            setinha.textContent = 'arrow_drop_down'
+            const userClick = langsFormatted.find(lang => lang.id == e.target.id)
+            
+            localStorage.setItem('lang', JSON.stringify({lang: userClick.id}))
 
-            let config = document.createElement('div')
-            config.className = 'config'
+            changeLanguage.className = 'offSelection'
 
-            let settings = document.createElement('span')
-            settings.className = 'material-symbols-outlined spanconfig'
-            settings.textContent = 'settings'
+            langsFormatted.forEach((lang)=>{
+                const language = userClick.id
 
-            let deletar = document.createElement('span')
-            deletar.className = 'material-symbols-outlined deletar'
-            deletar.textContent = 'delete'
-
-            let resumo = document.createElement('p')
-            resumo.appendChild(setinha)
-            resumo.innerHTML += ` ${anotacao.resumo}`
-            resumo.className = 'resumo'
-
-            let total = document.createElement('div')
-            total.className = 'total'
-            total.textContent = anotacao.descricao
-        // Fim Estrutura
-
-        function atualizarP(clicou) {
-            if(clicou.target.value == 1){
-                edit.style.display = 'none'
-                edit.removeEventListener('click', atualizarP)
-            }else if(clicou.target.value == 2){
-                //pega os valores que foram digitados na edit
-                let novoR = document.getElementById('editResumo').value
-                let novoC = document.getElementById('editDesc').value
-                let novaCateg = document.getElementById('editarCategoriaCard').value
-
-                if (!novoC || !novoR) {
-                    window.alert("Escreva algo para atualizar")
+                if(lang.id == language){
+                    lang.className = 'lang selected'
                 }else{
-                    const cardAtualizado = anotacoes.find((anotation) => anotation.id === anotacao.id)
-
-                    cardAtualizado.resumo = novoR
-                    cardAtualizado.descricao = novoC
-                    cardAtualizado.categId = novaCateg
-
-                    localStorage.setItem('anotacoes', JSON.stringify(anotacoes))
-                    window.location.reload()
+                    lang.className = 'lang unSelected'
                 }
-
-                //faz a edição sumir
-                edit.style.display = 'none'
-                edit.removeEventListener('click', atualizarP)
-            }
+            })
         }
-    
-        function deletarP(clicou) {
-            if(clicou.target.value == 1){
-                confirmDel.style.display = 'none'
-                const del = anotacoes.filter((anotation) => anotation.id !== anotacao.id)
-
-                localStorage.setItem('anotacoes', JSON.stringify(del))
-                window.location.reload()
-            }else if(clicou.target.value == 2){
-                confirmDel.style.display = 'none'
-                confirmDel.removeEventListener('click', deletarP)
-            }
-        }
-
-        confirmDel.addEventListener('click', (event) => {
-            if(event.target === confirmDel){
-                confirmDel.style.display = 'none'
-                confirmDel.removeEventListener('click', deletarP)
-            }
-        })
-    
-        edit.addEventListener('click', (event) => {
-            if(event.target === edit){
-                edit.style.display = 'none'
-                edit.removeEventListener('click', atualizarP)
-            }
-        })
-
-        //remove o card que foi clicado
-        deletar.addEventListener('click', () => {
-            confirmDel.style.display = 'flex'
-            confirmDel.addEventListener('click', deletarP)  
-        })
-
-        //edita um card ja existente
-        settings.addEventListener('click', () => {
-            // Resgata a categoria da anotação e ja mantem selecionada
-            let editarOptions = document.querySelectorAll('#editarCategoriaCard option')
-            let option = Array.from(editarOptions).find(option => option.value === anotacao.categId)
-
-            // Coloca os valores da anotação nos inputs
-            editR.value = anotacao.resumo
-            editC.value = anotacao.descricao
-            option.selected = true
-
-            // Abre a edição
-            edit.style.display = 'flex'
-            edit.addEventListener('click', atualizarP)
-        })
-
-        //faz com que a descricao apareça quando clicar no resumo
-        configCard.addEventListener('click', (event) => {
-            if(event.target === configCard || event.target.closest(".resumo")){
-                if(total.style.display == 'block'){
-                    total.style.display = 'none';
-                    //nao esta funcionando -> setinha.classList.remove('setinha');
-                }else{
-                    total.style.display = 'block';
-                    //nao esta funcionando -> setinha.classList.add('setinha');
-                }
-            }
-        })
-
-        card.appendChild(configCard)
-        card.appendChild(total)
-        configCard.appendChild(resumo)
-        configCard.appendChild(config)
-        config.appendChild(settings)
-        config.appendChild(deletar)
-
-        central.appendChild(card)
-
-    })
-}
-
-function loadCategorys(){
-    // Carrega as categorias no select de filtragem
-    categorias.forEach((categoria)=>{
-        let opcao = document.createElement('option')
-
-        opcao.value = categoria.id
-        opcao.textContent = categoria.nome
-
-        selecionarCategorias.appendChild(opcao)
     })
 
-    // Carrega as categorias no select da criação de cards
-    categorias.forEach((categoria)=>{
-        let opcao = document.createElement('option')
-
-        opcao.value = categoria.id
-        opcao.textContent = categoria.nome
-
-        selectDeCategorias.appendChild(opcao)
-    })
-
-    // Carrega as categorias no menu de categorias
-    categorias.forEach((categoria)=>{
-        let category = document.createElement('div')
-        category.classList = 'categoria'
-
-        let categoriaNome = document.createElement('p')
-        categoriaNome.textContent = categoria.nome
-
-        category.appendChild(categoriaNome)
-
-        category.addEventListener('click', ()=>{
-            idCateg = categoria.id
-            editCateg(categoria.nome, categoria.cor) 
-        })
-
-        todasCategorias.appendChild(category)
-    })
-
-    // Carrega as categorias na edição de card
-    categorias.forEach((categoria)=>{
-        let opcao = document.createElement('option')
-
-        opcao.value = categoria.id
-        opcao.textContent = categoria.nome
-
-        editarCategoriaCard.appendChild(opcao)
-    })
-}
-
-function loadBorderAnimation(){
-    const holderHeigth = holder.offsetHeight - 10
-    const holderWidth = holder.offsetWidth - 10
-
-    animatedBorder.animate(
-        [
-            {transform: `translateX(${holderWidth}px)`},
-            {transform: `translateY(${holderHeigth}px)`},
-            {transform: `translateX(-${holderWidth}px)`},
-            {transform: `translateY(-${holderHeigth}px)`},
-            {transform: `translateX(${holderWidth}px)`}
-        ],
-        {
-            duration: 5000,
-            iterations: Infinity
-        }
-    )
-}
+// Fim Adicionando os EventListeners
 
 // Atualiza os valores da categoria que o usuário quer, adiciona de volta no localStorage e da um reload na pagina
 function salvarEdit() {
@@ -664,13 +307,13 @@ function delCateg(){
 }
 delConfirmado.addEventListener('click', delCateg)
 
-// Abre a edição da categoria e ja deixa com os valores da categoria nos inputs
-function editCateg(nome, cor){
-    bgEditCateg.style.display = 'flex'
-    novoNome.value = nome
-    novaCor.value = cor
-}
 
-loadNotations()
-loadCategorys()
+
+// it didn't need to call loadBorderAnimation(), 'cause when the observer starts to observer the div, it already call the function, but for now, i'll let it there, 'cause it looks cool xD
 loadBorderAnimation()
+// Gets all cards on the localStorage that has been put on the const 'anotacoes' and create the frontend with it || Pega os cards do local storage que foram armazenados na const 'anotacoes' e cria o front com suas features
+loadNotations()
+// Gets the categories on the localStorage, and load the selects with it, and controls wich category the user is editing
+loadCategories()
+// Sets the site language
+loadLanguage()

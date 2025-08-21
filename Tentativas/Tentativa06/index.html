@@ -5,54 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlashCards</title>
     <link rel="stylesheet" href="estilo.css">
-    <link rel="shortcut icon" href="pixil-frame-0 (1).png" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/faviconImg/faviconFCs.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <script src="ambiente.js" defer></script>
+    <script type="module" src="ambiente.js" defer></script>
 </head>
 <body>
     <p id="aviso">Sua anotações ficaram salvas mesmo ao sair</p>
 
     <div id="bg-edit" style="display: none;">
         <div id="edit">
-            <p>Qual é o novo resumo?</p>
+            <p id="infoNewSummary">Qual é o novo resumo?</p>
             <textarea id="editResumo"></textarea>
 
-            <p>Qual a nova categoria?</p>
+            <p id="infoNewCategory">Qual a nova categoria?</p>
             <select name="" id="editarCategoriaCard">
-                <option value="0">Sem categoria</option>
+                <option value="0" id="infoNoCategory1">Sem categoria</option>
             </select>
 
-            <p>Qual é a nova descrição?</p>
+            <p id="infoNewDescription">Qual é a nova descrição?</p>
             <textarea id="editDesc"></textarea>
 
             <button id="cancel" value="1">Cancelar</button>
-            <button id="enviarEdit" value="2">Concluir</button>
+            <button id="sendEdit" value="2">Concluir</button>
         </div>
     </div>
 
     <div id="bg-confirm" style="display: none;">
         <div id="confirm">
-            <p>Tem certeza que deseja apagar o Card?</p>
-            <button id="sim" value="1">Sim</button>
-            <button id="nao" value="2">Não</button>
+            <p id="infoConfirmDelCard">Tem certeza que deseja apagar o Card?</p>
+            <button id="confirmDel" value="1">Sim</button>
+            <button id="cancelDel" value="2">Não</button>
         </div>
     </div>
 
     <div id="config-tot" style="display: none;">
             <div id="add-flash">
-                <p>Escreva o resumo do FlashCard</p>
+                <p id="infoCreateSummary">Escreva o resumo do FlashCard</p>
                 <textarea id="resumoFlash" rows="2"></textarea>
 
-                <p>Escolha uma categoria</p>
+                <p id="infoChooseCategory">Escolha uma categoria</p>
                 <select id="selectDeCategorias">
-                    <option value="0" selected>Sem categoria</option>
+                    <option value="0" selected id="infoNoCategory2">Sem categoria</option>
                     <!-- Corrigir CSS, quando tem muitas categorias, as options do select vazão da tela -->
                 </select>
 
-                <p>Escreva a descricao do FlashCard</p>
+                <p id="infoCreateDescription">Escreva a descricao do FlashCard</p>
                 <textarea id="descricaoFlash" rows="10"></textarea>
 
-                <button id="enviarFlash">Adicionar</button>
+                <button id="sendNote">Adicionar</button>
             </div> 
     </div>
 
@@ -68,18 +68,18 @@
         </div>
     </div>
     
-    <select name="" id="selecionarCategorias">
-        <option value="0" selected>Todas as categoria</option>
+    <select name="" id="selectCategories">
+        <option value="0" selected id="infoDefaultCategory">Todas as categoria</option>
         
     </select>
 
     <aside id="criarCategorias">
         <div id="abrirFechar">
-            <p>Categorias</p>
+            <p id="infoCategory">Categorias</p>
             <span class="material-symbols-outlined" id="iconeAbrirFechar">add</span>   
         </div>
         <div id="manipularCategorias" style="width: 0px;">
-            <button id="novaCategoria">Criar categoria</button>
+            <button id="newCategory">Criar categoria</button>
 
             <div id="todasCategorias">
                 
@@ -90,12 +90,12 @@
     <div id="bg-criarCategoria" style="display: none;">
         <div id="criarCategoria">
             <div id="criarCategoriaInputs">
-                <p>Nome da categoria:</p>
+                <p id="infoCategoryName">Nome da categoria:</p>
                 <input type="text" id="categoriaNome">
-                <p>Cor da categoria:</p>
+                <p id="infoCategoryColor">Cor da categoria:</p>
                 <input type="color" name="" id="categoriaCor">
             </div>
-            <button id="salvarCategoria">Salvar categoria</button>
+            <button id="saveNewCategory">Salvar categoria</button>
             <!-- Categorias vão ter nome, cor em hexadecimal e id -->
         </div> 
     </div>
@@ -103,10 +103,10 @@
     <div id="bg-editCateg" style="display: none;">
         <div id="editCateg">
             <div id="editCategInputs">
-                <p class="info">Editar Valores</p>
-                <p>Novo Nome:</p>
+                <p class="info" id="infoEditValue">Editar Valores</p>
+                <p id="infoNewCategName">Novo Nome:</p>
                 <input type="text" id="novoNome">
-                <p>Nova Cor:</p>
+                <p id="infoNewCategColor">Nova Cor:</p>
                 <input type="color" name="" id="novaCor">
             </div>
             <div id="editCategButtons">
@@ -114,10 +114,10 @@
                 <button id="cancelarEditCateg">Cancelar Edição</button>
             </div> 
             <div id="delCateg">
-                <p class="info">Deletar a categoria</p>
+                <p class="info" id="infoDelCateg">Deletar a categoria</p>
                 <button id="deletarCateg">Deletar Categoria</button>
                 <div id="confirmDelCateg" style="display: none;">
-                    <p>Essa ação é irreversível, e todas as anotações que possuem essa categoria também serão deletas. Tem certeza de que quer prosseguir?</p>
+                    <p id="infoWarnForDelCateg">Essa ação é irreversível, e todas as anotações que possuem essa categoria também serão deletas. Tem certeza de que quer prosseguir?</p>
                     <button id="delConfirmado">Prosseguir</button>
                     <button id="delCancelado">Cancelar</button>
                 </div>
@@ -130,18 +130,19 @@
             <p>!</p>
         </div>
         <div id="textoAviso">
-            <p>Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, no seu dispostivo e caso o navegador tenha as informações desse site deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
+            <p id="infoWarn2">Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, no seu dispostivo e caso o navegador tenha as informações desse site deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
         </div>
     </div>
 
     <div id="warnForMobileBg" style="display: none;">
         <div id="warnForMobile">
-            <p>Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, no seu dispostivo e caso o navegador tenha as informações desse site deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
+            <p id="infoWarn2ForMobile">Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, no seu dispostivo e caso o navegador tenha as informações desse site deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
         </div>
     </div>
 
-    <!-- <div id="changeLanguage">
-
-    </div> -->
+    <div id="changeLanguage" class="offSelection">
+        <img src="images/countryImgs/br.svg" id="br" width="40" alt="PT-BR" class="lang">
+        <img src="images/countryImgs/us.svg" id="us" width="40" alt="EN-US" class="lang">
+    </div>
 </body>
 </html>

@@ -1,0 +1,1 @@
+ideia: será que tem como fazer o sombreamento da div se mover junto da borda anima?? seria mt fd kk

@@ -121,7 +121,7 @@ span{
     font-style: normal;
 }
 
-#enviarFlash{
+#sendNote{
     font-family: "Poppins", sans-serif;
     font-size: 20px;
     font-weight: 500;
@@ -714,7 +714,7 @@ span{
     height: 80px;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     flex-direction: column;
     gap: 8px;
     animation: openLangSelection 1s ease-in-out;

@@ -1,58 +1,7 @@
-// Main warn
-const aviso = document.getElementById('aviso')
-
-// Editing a card
-const infoNewSummary = document.getElementById('infoNewSummary')
-const infoNewCategory = document.getElementById('infoNewCategory')
-const infoNoCategory1 = document.getElementById('infoNoCategory1')
-const infoNewDescription = document.getElementById('infoNewDescription')
-const cancel = document.getElementById('cancel')
-const sendEdit = document.getElementById('sendEdit')
-
-// Deleting a card
-const infoConfirmDelCard = document.getElementById('infoConfirmDelCard')
-const confirmDel = document.getElementById('confirmDel')
-const cancelDel = document.getElementById('cancelDel')
-
-// Creating a new card
-const infoCreateSummary = document.getElementById('infoCreateSummary')
-const infoChooseCategory = document.getElementById('infoChooseCategory')
-const infoNoCategory2 = document.getElementById('infoNoCategory2')
-const infoCreateDescription = document.getElementById('infoCreateDescription')
-const sendNote = document.getElementById('sendNote')
-
-// Creating a new category
-const infoCategoryName = document.getElementById('infoCategoryName')
-const infoCategoryColor = document.getElementById('infoCategoryColor')
-const saveNewCategory = document.getElementById('saveNewCategory')
-
-// Default category for the filter
-const infoDefaultCategory = document.getElementById('infoDefaultCategory')
-
-// Controls for the div where the user creates a new category
-const infoCategory = document.getElementById('infoCategory')
-const newCategory = document.getElementById('newCategory')
-
-// Editing a category
-const infoEditValue = document.getElementById('infoEditValue')
-const infoNewCategName = document.getElementById('infoNewCategName')
-const infoNewCategColor = document.getElementById('infoNewCategColor')
-const salvarEditCateg = document.getElementById('salvarEditCateg')
-const cancelarEditCateg = document.getElementById('cancelarEditCateg')
-
-// Deleting a category
-const infoDelCateg = document.getElementById('infoDelCateg')
-const deletarCateg = document.getElementById('deletarCateg')
-const infoWarnForDelCateg = document.getElementById('infoWarnForDelCateg')
-const delConfirmado = document.getElementById('delConfirmado')
-const delCancelado = document.getElementById('delCancelado')
-
-// Warn 2
-const infoWarn2 = document.getElementById('infoWarn2')
-const infoWarn2ForMobile = document.getElementById('infoWarn2ForMobile')
+const allElements = document.querySelectorAll('[data-i18n]')
 
 const textsForLanguages = {
-    aviso: {
+    warn1: {
         br: 'Sua anotações ficaram salvas mesmo ao sair',
         us: 'Your notes remain even after you leave the site'
     },
@@ -80,6 +29,18 @@ const textsForLanguages = {
         br: 'Concluir',
         us: 'Finish'
     },
+    infoConfirmDelCard:{
+        br: 'Tem certeza que deseja apagar o Card?',
+        us: 'Are you sure that you want to delete this card?'
+    },
+    confirmDel:{
+        br: 'Sim',
+        us: 'Yes'
+    },
+    cancelDel:{
+        br: 'Não',
+        us: 'No'
+    },
     infoCreateSummary: {
         br: 'Escreva o resumo do FlashCard',
         us: 'Write the FlashCard summary'
@@ -100,6 +61,10 @@ const textsForLanguages = {
         br: 'Criar FlashCard',
         us: 'Create FlashCard'
     },
+    infoDefaultCategory: {
+        br: 'Todas as categorias',
+        us: 'All categories'
+    },
     infoCategory: {
         br: 'Categorias',
         us: 'Categories'
@@ -107,6 +72,18 @@ const textsForLanguages = {
     newCategory: {
         br: 'Criar categoria',
         us: 'Create category'
+    },
+    infoCategoryName: {
+        br: 'Nome da categoria',
+        us: 'Category name'
+    },
+    infoCategoryColor: {
+        br: 'Cor da categoria',
+        us: 'Category color'
+    },
+    saveNewCategory: {
+        br: 'Salvar categoria',
+        us: 'Save category'
     },
     infoEditValue: {
         br: 'Editar Valores',
@@ -138,7 +115,7 @@ const textsForLanguages = {
     },
     infoWarnForDelCateg: {
         br: 'Essa ação é irreversível, e todas as anotações que possuem essa categoria também serão deletas. Tem certeza de que quer prosseguir?',
-        us: 'This action is irreversible, and all notes with this category will be deleted also. Are you sure that you want to continue?'
+        us: 'This action is irreversible, and all notes with this category will be deleted also. Are you sure you want to continue?'
     },
     delConfirmado: {
         br: 'Prosseguir',
@@ -158,8 +135,16 @@ const textsForLanguages = {
     },
 }
 
-export function loadLanguage(){
-    const textoAviso = document.getElementById('textoAviso')
-    console.log(textsForLanguages.aviso['us'])
+export function loadLanguage(language){
+    console.log(language)
+
+    allElements.forEach(el => {
+        const eA = el.getAttribute("data-i18n")
+        const lang = language
+
+        el.innerHTML = textsForLanguages[eA][lang]
+        
+    });
+    
 }
 

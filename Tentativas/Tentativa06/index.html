@@ -10,49 +10,49 @@
     <script type="module" src="ambiente.js" defer></script>
 </head>
 <body>
-    <p id="aviso">Sua anotações ficaram salvas mesmo ao sair</p>
+    <p data-i18n="warn1" id="aviso">Sua anotações ficaram salvas mesmo ao sair</p>
 
     <div id="bg-edit" style="display: none;">
         <div id="edit">
-            <p id="infoNewSummary">Qual é o novo resumo?</p>
+            <p data-i18n="infoNewSummary">Qual é o novo resumo?</p>
             <textarea id="editResumo"></textarea>
 
-            <p id="infoNewCategory">Qual a nova categoria?</p>
+            <p data-i18n="infoNewCategory">Qual a nova categoria?</p>
             <select name="" id="editarCategoriaCard">
-                <option value="0" id="infoNoCategory1">Sem categoria</option>
+                <option value="0" data-i18n="infoNoCategory1">Sem categoria</option>
             </select>
 
-            <p id="infoNewDescription">Qual é a nova descrição?</p>
+            <p data-i18n="infoNewDescription">Qual é a nova descrição?</p>
             <textarea id="editDesc"></textarea>
 
-            <button id="cancel" value="1">Cancelar</button>
-            <button id="sendEdit" value="2">Concluir</button>
+            <button data-i18n= "cancel" id="cancel" value="1">Cancelar</button>
+            <button data-i18n= "sendEdit" id="sendEdit" value="2">Concluir</button>
         </div>
     </div>
 
     <div id="bg-confirm" style="display: none;">
         <div id="confirm">
-            <p id="infoConfirmDelCard">Tem certeza que deseja apagar o Card?</p>
-            <button id="confirmDel" value="1">Sim</button>
-            <button id="cancelDel" value="2">Não</button>
+            <p data-i18n="infoConfirmDelCard">Tem certeza que deseja apagar o Card?</p>
+            <button data-i18n="confirmDel" id="confirmDel" value="1">Sim</button>
+            <button data-i18n="cancelDel" id="cancelDel" value="2">Não</button>
         </div>
     </div>
 
     <div id="config-tot" style="display: none;">
             <div id="add-flash">
-                <p id="infoCreateSummary">Escreva o resumo do FlashCard</p>
+                <p data-i18n="infoCreateSummary">Escreva o resumo do FlashCard</p>
                 <textarea id="resumoFlash" rows="2"></textarea>
 
-                <p id="infoChooseCategory">Escolha uma categoria</p>
+                <p data-i18n="infoChooseCategory">Escolha uma categoria</p>
                 <select id="selectDeCategorias">
-                    <option value="0" selected id="infoNoCategory2">Sem categoria</option>
+                    <option value="0" selected data-i18n="infoNoCategory2">Sem categoria</option>
                     <!-- Corrigir CSS, quando tem muitas categorias, as options do select vazão da tela -->
                 </select>
 
-                <p id="infoCreateDescription">Escreva a descricao do FlashCard</p>
+                <p data-i18n="infoCreateDescription">Escreva a descricao do FlashCard</p>
                 <textarea id="descricaoFlash" rows="10"></textarea>
 
-                <button id="sendNote">Adicionar</button>
+                <button data-i18n="sendNote" id="sendNote">Adicionar</button>
             </div> 
     </div>
 
@@ -69,17 +69,17 @@
     </div>
     
     <select name="" id="selectCategories">
-        <option value="0" selected id="infoDefaultCategory">Todas as categoria</option>
+        <option value="0" selected data-i18n="infoDefaultCategory">Todas as categoria</option>
         
     </select>
 
     <aside id="criarCategorias">
         <div id="abrirFechar">
-            <p id="infoCategory">Categorias</p>
+            <p data-i18n="infoCategory">Categorias</p>
             <span class="material-symbols-outlined" id="iconeAbrirFechar">add</span>   
         </div>
         <div id="manipularCategorias" style="width: 0px;">
-            <button id="newCategory">Criar categoria</button>
+            <button data-i18n="newCategory" id="newCategory">Criar categoria</button>
 
             <div id="todasCategorias">
                 
@@ -90,12 +90,12 @@
     <div id="bg-criarCategoria" style="display: none;">
         <div id="criarCategoria">
             <div id="criarCategoriaInputs">
-                <p id="infoCategoryName">Nome da categoria:</p>
+                <p data-i18n="infoCategoryName">Nome da categoria:</p>
                 <input type="text" id="categoriaNome">
-                <p id="infoCategoryColor">Cor da categoria:</p>
+                <p data-i18n="infoCategoryColor">Cor da categoria:</p>
                 <input type="color" name="" id="categoriaCor">
             </div>
-            <button id="saveNewCategory">Salvar categoria</button>
+            <button data-i18n="saveNewCategory" id="saveNewCategory">Salvar categoria</button>
             <!-- Categorias vão ter nome, cor em hexadecimal e id -->
         </div> 
     </div>
@@ -103,23 +103,23 @@
     <div id="bg-editCateg" style="display: none;">
         <div id="editCateg">
             <div id="editCategInputs">
-                <p class="info" id="infoEditValue">Editar Valores</p>
-                <p id="infoNewCategName">Novo Nome:</p>
+                <p class="info" data-i18n="infoEditValue">Editar Valores</p>
+                <p data-i18n="infoNewCategName">Novo Nome:</p>
                 <input type="text" id="novoNome">
-                <p id="infoNewCategColor">Nova Cor:</p>
+                <p data-i18n="infoNewCategColor">Nova Cor:</p>
                 <input type="color" name="" id="novaCor">
             </div>
             <div id="editCategButtons">
-                <button id="salvarEditCateg">Salvar Edição</button>
-                <button id="cancelarEditCateg">Cancelar Edição</button>
+                <button data-i18n="salvarEditCateg" id="salvarEditCateg">Salvar Edição</button>
+                <button data-i18n="cancelarEditCateg" id="cancelarEditCateg">Cancelar Edição</button>
             </div> 
             <div id="delCateg">
-                <p class="info" id="infoDelCateg">Deletar a categoria</p>
-                <button id="deletarCateg">Deletar Categoria</button>
+                <p class="info" data-i18n="infoDelCateg">Deletar a categoria</p>
+                <button data-i18n="deletarCateg" id="deletarCateg">Deletar Categoria</button>
                 <div id="confirmDelCateg" style="display: none;">
-                    <p id="infoWarnForDelCateg">Essa ação é irreversível, e todas as anotações que possuem essa categoria também serão deletas. Tem certeza de que quer prosseguir?</p>
-                    <button id="delConfirmado">Prosseguir</button>
-                    <button id="delCancelado">Cancelar</button>
+                    <p data-i18n="infoWarnForDelCateg">Essa ação é irreversível, e todas as anotações que possuem essa categoria também serão deletas. Tem certeza de que quer prosseguir?</p>
+                    <button data-i18n="delConfirmado" id="delConfirmado">Prosseguir</button>
+                    <button data-i18n="delCancelado" id="delCancelado">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -130,13 +130,13 @@
             <p>!</p>
         </div>
         <div id="textoAviso">
-            <p id="infoWarn2">Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, no seu dispostivo e caso o navegador tenha as informações desse site deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
+            <p data-i18n="infoWarn2"></p>
         </div>
     </div>
 
     <div id="warnForMobileBg" style="display: none;">
         <div id="warnForMobile">
-            <p id="infoWarn2ForMobile">Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, no seu dispostivo e caso o navegador tenha as informações desse site deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
+            <p data-i18n="infoWarn2ForMobile">Esse site se baseia no armazenamento através do localstorage, resumidamente, isso significa que as informações ficam armazenadas no seu navegador, no seu dispostivo e caso o navegador tenha as informações desse site deletadas, isso significa que suas anotações também serão perdidas no processo.</p>
         </div>
     </div>
 

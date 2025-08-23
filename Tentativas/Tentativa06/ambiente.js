@@ -27,7 +27,6 @@
         const saveNewCategory = document.getElementById('saveNewCategory')
 
         // Edit of categories
-        
         const salvarEditCateg = document.getElementById('salvarEditCateg')
 
         // Delete categories
@@ -38,7 +37,12 @@
     const aviso2 = document.getElementById('aviso2')
     const cliqueAviso = document.getElementById('cliqueAviso')
     const textoAviso = document.getElementById('textoAviso')
-    const avisoHeigth = textoAviso.offsetHeight + 2
+    let avisoHeight
+    setTimeout(()=>{
+        avisoHeight = textoAviso.offsetHeight + 2
+        console.log(avisoHeight)
+    },[200])
+    
     // + 2 pois a borda tbm tem width, 1 pixel em cima e 1 pixel em baixo
 
     // Warn for mobile devices
@@ -56,21 +60,33 @@
 
 // Configuration for localStorage and language changer
 const langFromLocalStorage = localStorage.getItem('lang')
+let langForFunction;
 
 if(!langFromLocalStorage){
-    localStorage.setItem('lang', JSON.stringify({lang: 'br'}))
+    localStorage.setItem('lang', JSON.stringify({lang: 'us'}))
+    langForFunction = 'us'
+
+    langsFormatted.forEach((lang)=>{
+        if(lang.id == 'us'){
+            lang.className = 'lang selected'
+        }else{
+            lang.className = 'lang unSelected'
+        }
+    })
+}else{
+    langsFormatted.forEach((lang)=>{
+        const language = JSON.parse(langFromLocalStorage).lang
+        langForFunction = language
+
+        if(lang.id == language){
+            lang.className = 'lang selected'
+        }else{
+            lang.className = 'lang unSelected'
+        }
+    })
 }
 
-langsFormatted.forEach((lang)=>{
-    const language = JSON.parse(langFromLocalStorage).lang
-    console.log(lang.id, language)
 
-    if(lang.id == language){
-        lang.className = 'lang selected'
-    }else{
-        lang.className = 'lang unSelected'
-    }
-})
 
 // resgata as anotações e as categorias que estão no local storage, se n tiver nenhuma eles recebem arrays vazios
     const categorias = JSON.parse(localStorage.getItem('categorias')) || []
@@ -113,6 +129,7 @@ function aplyStyles(element, styles) {
                 border : '0px solid white',
                 height : '0px',
             })
+            iconeAbrirFechar.style.rotate = '0deg'
         }
     })
 
@@ -146,10 +163,10 @@ function aplyStyles(element, styles) {
     // Exibe o aviso do localStorage
     cliqueAviso.addEventListener('click', ()=>{
         if(window.innerWidth >= 768){
-            if(aviso2.style.transform == `translateY(${avisoHeigth}px)`){
+            if(aviso2.style.transform == `translateY(${avisoHeight}px)`){
                 aviso2.style.transform = "translateY(0px)"
             }else if(aviso2.style.transform == "translateY(0px)"){
-                aviso2.style.transform = `translateY(${avisoHeigth}px)`
+                aviso2.style.transform = `translateY(${avisoHeight}px)`
             }
         }else{
             console.log('oi')
@@ -158,20 +175,23 @@ function aplyStyles(element, styles) {
         
     })
 
-    // Executed just once, did for eventlisteners get configurated
-    if(window.innerWidth >= 768){
-        // Fecha o aviso do localStorage quando a pagina carrega
-        aviso2.style.transform = `translateY(${avisoHeigth}px)`
-    }else{
-        // Se a tela for mobile, configura o aviso para tal
-        textoAviso.style.display = 'none'
-        aviso2.style.width = '60px'
-    }
+    setTimeout(()=>{
+       // Executed just once, did for eventlisteners get configurated
+        if(window.innerWidth >= 768){
+            // Fecha o aviso do localStorage quando a pagina carrega
+            aviso2.style.transform = `translateY(${avisoHeight}px)`
+        }else{
+            // Se a tela for mobile, configura o aviso para tal
+            textoAviso.style.display = 'none'
+            aviso2.style.width = '60px'
+        } 
+    },[200])
+    
 
     // Fecha o aviso do localStorage && Fecha o aviso para dispositivo mobile
     window.addEventListener('click', (e)=>{
         if(aviso2.style.transform == "translateY(0px)" && !textoAviso.contains(e.target) && !cliqueAviso.contains(e.target) && textoAviso.style.display == 'block'){
-            aviso2.style.transform = `translateY(${avisoHeigth}px)`
+            aviso2.style.transform = `translateY(${avisoHeight}px)`
         }
 
         if(warnForMobileBg.style.display == 'flex' && e.target === warnForMobileBg){
@@ -190,9 +210,9 @@ function aplyStyles(element, styles) {
             aviso2.style.width = '60px'
         }else{
             
-            console.log(avisoHeigth)
+            console.log(avisoHeight)
 
-            aviso2.style.transform = `translateY(${avisoHeigth}px)`
+            aviso2.style.transform = `translateY(${avisoHeight}px)`
             textoAviso.style.display = 'block'
         
             aviso2.style.width = '240px'
@@ -261,18 +281,23 @@ function aplyStyles(element, styles) {
             const userClick = langsFormatted.find(lang => lang.id == e.target.id)
             
             localStorage.setItem('lang', JSON.stringify({lang: userClick.id}))
+            loadLanguage(userClick.id)
 
             changeLanguage.className = 'offSelection'
 
             langsFormatted.forEach((lang)=>{
                 const language = userClick.id
-
+                
                 if(lang.id == language){
                     lang.className = 'lang selected'
                 }else{
                     lang.className = 'lang unSelected'
                 }
             })
+
+            // When the language changes, it gets the new height
+            avisoHeight = textoAviso.offsetHeight + 2
+            aviso2.style.transform = `translateY(${avisoHeight}px)`
         }
     })
 
@@ -316,4 +341,4 @@ loadNotations()
 // Gets the categories on the localStorage, and load the selects with it, and controls wich category the user is editing
 loadCategories()
 // Sets the site language
-loadLanguage()
+loadLanguage(langForFunction)

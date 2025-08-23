@@ -30,3 +30,24 @@ async function teste(usuario){
     }
     
 }
+
+const mute = document.getElementById('mute')
+const mutePlayer = document.getElementById('mutePlayer')
+
+mute.addEventListener('click', ()=>{
+    let inputValue = mutePlayer.value
+
+    let valoresSeperados = inputValue.split(" ")
+    let getCommand = valoresSeperados[0]
+
+    valoresSeperados.shift()
+    let getName = valoresSeperados.join(" ")
+
+    if(getCommand != '/mute'){
+        window.alert('digite um comando valido')
+        return;
+    }
+
+
+    console.log(getCommand, getName)
+})

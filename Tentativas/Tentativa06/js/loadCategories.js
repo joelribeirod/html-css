@@ -26,19 +26,21 @@ const deletarCateg = document.getElementById('deletarCateg')
 export let idCateg
 
 export function loadCategories(){
+    // I'm not that proud of how this code look, but when i tried to use 1 option for 3 different selects, it went wrong. Apparentetly, you can't create 1 element and append it for many differents elements 
     categorias.forEach((categoria)=>{
         // Carrega as categorias no select de filtragem
-        let opcao = document.createElement('option')
+        let optionForFilter = document.createElement('option')
+        let optionForCreatingCards = document.createElement('option')
+        let optionForEditingCategories = document.createElement('option')
 
-        opcao.value = categoria.id
-        opcao.textContent = categoria.nome
-
-        selectCategories.appendChild(opcao)
-
-        // Carrega as categorias no select da criação de cards
-        selectDeCategorias.appendChild(opcao)
-
-        // Carrega as categorias no menu de categorias
+        optionForFilter.value = categoria.id
+        optionForFilter.textContent = categoria.nome
+        optionForCreatingCards.value = categoria.id
+        optionForCreatingCards.textContent = categoria.nome
+        optionForEditingCategories.value = categoria.id
+        optionForEditingCategories.textContent = categoria.nome
+        
+        // Creating the category that will appear on edit category's menu
         let category = document.createElement('div')
         category.classList = 'categoria'
 
@@ -52,10 +54,17 @@ export function loadCategories(){
             editCateg(categoria.nome, categoria.cor) 
         })
 
+        // Filter by categories
+        selectCategories.appendChild(optionForFilter)
+
+        // Selecting a category to edit
         todasCategorias.appendChild(category)
 
         // Carrega as categorias na edição de card
-        editarCategoriaCard.appendChild(opcao)
+        editarCategoriaCard.appendChild(optionForEditingCategories)
+
+        // Carrega as categorias no select da criação de cards
+        selectDeCategorias.appendChild(optionForCreatingCards)
     })
 }
 
